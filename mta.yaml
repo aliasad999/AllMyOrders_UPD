@@ -23,7 +23,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: otc-ordermonitoring-hdi-container
-
+      - name: ordermonitoring-xsuaa
   - name: otc-db-deployer
     type: hdb
     path: gen/db
@@ -31,10 +31,45 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: otc-ordermonitoring-hdi-container
-
+  - name: ordermonitoring-approuter
+    type: nodejs
+    path: approuter
+    parameters:
+      TENANT_HOST_PATTERN: "approuter-(.*).cfapps.eu10.hana.ondemand.com"
+      disk-quota: 512M
+      memory: 512M
+      buildpack: nodejs_buildpack
+    build-parameters:
+      ignore: ["default-env.json", "node_modules/"]
+      builder: custom
+      commands: []
+    requires:
+      - name: ordermonitoring-destination
+      - name: ordermonitoring-xsuaa
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api
+          url: ~{srv-url}
+          forwardAuthToken: true
+          timeout: 60000
 resources:
   - name: otc-ordermonitoring-hdi-container
     type: org.cloudfoundry.existing-service
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: ordermonitoring-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+  - name: ordermonitoring-xsuaa
+    type: com.sap.xs.uaa
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      
+
+      

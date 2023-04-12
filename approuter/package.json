@@ -1,0 +1,17 @@
+{
+	"name": "ordermonitoringrouter",
+	"version": "0.0.1",
+	"engines": {
+		"node": "14.x.x"
+	},
+	"scripts": {
+		"start": "node approuter.js",
+		"local": "node -r dotenv/config index.js"
+	},
+	"dependencies": {
+		"@sap/approuter": "latest"
+	},
+	"devDependencies": {
+		"dotenv": "^8.2.0"
+	}
+}
