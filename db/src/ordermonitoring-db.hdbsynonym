@@ -1,0 +1,7 @@
+{
+    "ALLORDERS_DB_ORDERS":{
+        "target":{
+            "object":"ordermonitoring.db::ORDERS"
+        }
+    }
+}
