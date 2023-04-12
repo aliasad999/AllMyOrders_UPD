@@ -1,7 +1,7 @@
 _schema-version: '3.1'
-ID: trial
+ID: allmyorders
 version: 1.0.0
-description: "A simple CAP project."
+description: "CAP Project for All my orders"
 parameters:
   enable-parallel-deployments: true
 build-parameters:
@@ -22,18 +22,18 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: ordermonitoring-db
+      - name: otc-ordermonitoring-hdi-container
 
-  - name: ordermonitoring-db-deployer
+  - name: otc-db-deployer
     type: hdb
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
     requires:
-      - name: ordermonitoring-db
+      - name: otc-ordermonitoring-hdi-container
 
 resources:
-  - name: ordermonitoring-db
+  - name: otc-ordermonitoring-hdi-container
     type: org.cloudfoundry.existing-service
     parameters:
       service: hana
