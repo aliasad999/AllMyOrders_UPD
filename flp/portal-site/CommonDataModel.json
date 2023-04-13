@@ -1,0 +1,91 @@
+{
+	"_version": "2.8",
+	"identification": {
+		"id": "74d951ea-3733-42ac-8179-8c9f4e682d4a-1553601432295",
+		"entityType": "bundle"
+	},
+	"payload": {
+		"catalogs": [{
+			"_version": "2.8",
+			"identification": {
+				"id": "defaultCatalogId",
+				"title": "{{catalogTitle}}",
+				"entityType": "catalog",
+				"i18n": "i18n/i18n.properties"
+			},
+			"payload": {
+				"appDescriptors": [{
+                    "id": "ordermonitoring.allorders",
+                    "intentHintId": "allorders-display"
+                }]
+			}
+		}],
+		"groups": [{
+			"_version": "2.8",
+			"identification": {
+				"id": "defaultGroupId",
+				"title": "{{groupTitle}}",
+				"entityType": "group",
+				"i18n": "i18n/i18n.properties"
+			},
+			"payload": {
+				"tiles": [{
+					"id": "allorders",
+					"appId": "ordermonitoring.allorders",
+					"intentHintId": "allorders-display"
+				}]
+			}
+		}],
+		"sites": [{
+			"_version": "2.8",
+			"identification": {
+				"id": "3347eef0-8c94-4de2-a326-2f7c2ce0b8af-1553601432295",
+				"entityType": "site",
+				"title": "SAP Order Monitoring Launchpad",
+				"description": "Order Montioring Launchpad"
+			},
+			"payload": {
+				"config": {
+					"ushellConfig": {
+						"renderers": {
+							"fiori2": {
+								"componentData": {
+									"config": {
+										"enableRecentActivity": true,
+										"enableNotificationsUI": true,
+										"applications": {
+											"Shell-home": {
+												"enableNotificationsPreview": true
+											},
+											"enableSearch": false,
+											"enablePersonalization": true,
+											"enableSetTheme": true,
+											"enableSetLanguage": true
+										}
+									}
+								}
+							}
+						},
+						"services": {
+							"Notifications": {
+								"config": {
+									"enabled": true,
+									"serviceUrl": "/ns/Consumer.svc",
+									"webSocketUrl": "/ns/WebSocket.svc",
+									"pollingIntervalInSeconds": 10
+								}
+							}
+						}
+					}
+				},
+				"groupsOrder": ["defaultGroupId"],
+				"sap.cloud.portal": {
+					"config": {
+						"theme.id": "sap_horizon",
+						"theme.active": ["sap_belize", "sap_belize_plus", "sap_belize_hcb", "sap_belize_hcw","sap_horizon"]
+					}
+				}
+			}
+		}]
+	}
+}

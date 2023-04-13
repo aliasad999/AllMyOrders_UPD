@@ -1,75 +1,204 @@
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: allmyorders
+description: CAP Project for All my orders
 version: 1.0.0
-description: "CAP Project for All my orders"
-parameters:
-  enable-parallel-deployments: true
+modules:
+#
+  #   ┌─────────────────────────────────────┐   #
+  #   │         SRV Layer                   │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: allmyorders-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: otc-ordermonitoring-hdi-container
+  - name: ordermonitoring-xsuaa
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: npm-ci
+  #
+  #   ┌─────────────────────────────────────┐   #
+  #   │         HDI Deployer                │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: otc-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: otc-ordermonitoring-hdi-container
+  parameters:
+    buildpack: nodejs_buildpack
+  #
+  #   ┌─────────────────────────────────────┐   #
+  #   │         Application Router          │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: ordermonitoring-approuter
+  type: nodejs
+  path: approuter
+  requires:
+  - name: ordermonitoring-repo-runtime
+  - name: ordermonitoring-portal
+  - name: ordermonitoring-destination
+  - name: ordermonitoring-xsuaa
+  - name: srv-api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv-api
+      timeout: 60000
+      url: ~{srv-url}
+  parameters:
+    TENANT_HOST_PATTERN: approuter-(.*).cfapps.eu10.hana.ondemand.com
+    buildpack: nodejs_buildpack
+    disk-quota: 512M
+    memory: 512M
+  build-parameters:
+    builder: custom
+    commands: []
+    ignore:
+    - default-env.json
+    - node_modules/
+  #
+  #   ┌─────────────────────────────────────┐   #
+  #   │         HTML5 Content               │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: ordermonitoring-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: ordermonitoring-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - ordermonitoringallorders.zip
+      name: ordermonitoringallorders
+      target-path: resources/
+  # 
+  #   ┌─────────────────────────────────────┐   #
+  #   │         All Orders HTML5 ap         │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: ordermonitoringallorders
+  type: html5
+  path: app/allorders
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+  #
+  #   ╔═══════════════════════════════════════╗   #
+  #   ║            PORTAL DEPLOYER            ║   #
+  #   ╚═══════════════════════════════════════╝   #
+  #
+- name: ordermonitoring-portal-deployer
+  type: com.sap.application.content
+  path: flp
+  parameters:
+    config:
+      TENANT_HOST_PATTERN: portal-(.*).cfapps.eu10.hana.ondemand.com
+  requires:
+    - name: ordermonitoring-portal
+      parameters:
+        content-target: true
+        service-key:
+          name: content-deploy-key
+          config:
+            content-endpoint: developer
+    - name: ordermonitoring-repo-host
+    - name: ordermonitoring-xsuaa
+    
+resources:
+  #
+  #   ┌─────────────────────────────────────┐   #
+  #   │         HDI Container Instance      │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: otc-ordermonitoring-hdi-container
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+  #
+  #   ┌─────────────────────────────────────┐   #
+  #   │         Destination Instance        │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: ordermonitoring-destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+    service: destination
+    service-plan: lite
+  #
+  #   ┌─────────────────────────────────────┐   #
+  #   │         XSUAA Instance              │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: ordermonitoring-xsuaa
+  type: com.sap.xs.uaa
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+  #
+  #   ┌─────────────────────────────────────┐   #
+  #   │         HTML5  HOST                 │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: ordermonitoring-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+  #
+  #   ┌─────────────────────────────────────┐   #
+  #   │            PORTAL SERVICE           │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: ordermonitoring-portal
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: portal
+    service-plan: standard
+  #
+  #   ┌─────────────────────────────────────┐   #
+  #   │            HTML5 RUNTIME            │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: ordermonitoring-repo-runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+
+
+
 build-parameters:
   before-all:
-    - builder: custom
-      commands:
-        - npx -p @sap/cds-dk cds build --production
-modules:
-  - name: allmyorders-srv
-    type: nodejs
-    path: gen/srv
-    parameters:
-      buildpack: nodejs_buildpack
-    build-parameters:
-      builder: npm-ci
-    provides:
-      - name: srv-api # required by consumers of CAP services (e.g. approuter)
-        properties:
-          srv-url: ${default-url}
-    requires:
-      - name: otc-ordermonitoring-hdi-container
-      - name: ordermonitoring-xsuaa
-  - name: otc-db-deployer
-    type: hdb
-    path: gen/db
-    parameters:
-      buildpack: nodejs_buildpack
-    requires:
-      - name: otc-ordermonitoring-hdi-container
-  - name: ordermonitoring-approuter
-    type: nodejs
-    path: approuter
-    parameters:
-      TENANT_HOST_PATTERN: "approuter-(.*).cfapps.eu10.hana.ondemand.com"
-      disk-quota: 512M
-      memory: 512M
-      buildpack: nodejs_buildpack
-    build-parameters:
-      ignore: ["default-env.json", "node_modules/"]
-      builder: custom
-      commands: []
-    requires:
-      - name: ordermonitoring-destination
-      - name: ordermonitoring-xsuaa
-      - name: srv-api
-        group: destinations
-        properties:
-          name: srv-api
-          url: ~{srv-url}
-          forwardAuthToken: true
-          timeout: 60000
-resources:
-  - name: otc-ordermonitoring-hdi-container
-    type: org.cloudfoundry.existing-service
-    parameters:
-      service: hana
-      service-plan: hdi-shared
-  - name: ordermonitoring-destination
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: destination
-      service-plan: lite
-  - name: ordermonitoring-xsuaa
-    type: com.sap.xs.uaa
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      
-
-      
+  - builder: custom
+    commands:
+    - npx -p @sap/cds-dk cds build --production
