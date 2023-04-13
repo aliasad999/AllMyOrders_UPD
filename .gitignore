@@ -12,7 +12,8 @@ target/
 # Web IDE, App Studio
 .che/
 .gen/
-
+*dist*
+*.zip*
 # MTA
 *_mta_build_tmp
 *.mtar
@@ -27,7 +28,7 @@ mta_archives/
 *.flattened-pom.xml
 *.vscode*
 *gen*
-
+cf-html5*
 # IDEs
 # .vscode
 # .idea
