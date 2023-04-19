@@ -22,6 +22,7 @@
         "start": "cds-serve",
         "start:backend": "cds watch",
         "build:cds": "cds build",
+        "install:all": "npm-recursive-install",
         "start:approuter": "cd approuter && npm run start",
         "watch-allorders": "cds watch --open allorders/webapp/index.html?sap-ui-xx-viewCache=false",
         "undeploy": "cf undeploy allmyorders --delete-services --delete-service-keys --delete-service-brokers",
