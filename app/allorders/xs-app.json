@@ -1,12 +1,20 @@
 {
   "welcomeFile": "/index.html",
   "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
   "routes": [
     {
-      "source": "^/srv-open-orders/(.*)$",
-      "target": "/srv-open-orders/$1",
+      "source": "^/srv(.*)",
       "destination": "srv-api",
-      "authenticationType": "xsuaa",
+      "authenticationType": "xsuaa"
+  },
+    {
+      "source": "^/sap/(.*)$",
+      "target": "/sap/$1",
+      "destination": "SAP_GATEWAY",
+      "authenticationType": "none",
       "csrfProtection": false
     },
     {

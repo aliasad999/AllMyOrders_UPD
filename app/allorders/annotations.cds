@@ -1,4 +1,4 @@
-using srvOpenOrders as service from '../../srv/model-srv';
+using srvOpenOrders as service from '../../srv/allOrders-srv';
 
 annotate service.Results with @Capabilities : {
    FilterRestrictions : {

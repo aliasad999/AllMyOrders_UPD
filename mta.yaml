@@ -47,6 +47,7 @@ modules:
   - name: ordermonitoring-portal
   - name: ordermonitoring-destination
   - name: ordermonitoring-xsuaa
+  - name: ordermonitoring-connectivity
   - name: srv-api
     group: destinations
     properties:
@@ -194,6 +195,17 @@ resources:
   parameters:
     service: html5-apps-repo
     service-plan: app-runtime
+  #
+  #   ┌─────────────────────────────────────┐   #
+  #   │         Backend Connectivitiy       │   #
+  #   └─────────────────────────────────────┘   #
+  #
+
+- name: ordermonitoring-connectivity
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
 
 
 
