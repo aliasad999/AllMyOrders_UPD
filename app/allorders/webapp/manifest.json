@@ -27,6 +27,13 @@
                     "odataVersion": "4.0"
                 }
             },
+            "notes": {
+                "uri": "/sap/opu/odata/sap/LORD_ODATA_ORDER_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0"
+                }
+            },
             "annotation": {
                 "type": "ODataAnnotation",
                 "uri": "annotations/annotation.xml",
@@ -107,6 +114,14 @@
             "@i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "uri": "i18n/i18n.properties"
+            },
+            "notesModel": {
+                "dataSource": "notes",
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "useBatch": false
+                }
             }
         },
         "extends": {

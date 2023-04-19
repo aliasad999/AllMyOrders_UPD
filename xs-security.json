@@ -13,5 +13,12 @@
 			"description": "UAA",
 			"scope-references": ["uaa.user"]
 		}
-	]
+	],
+	"oauth2-configuration" : {
+		"redirect-uris" : [
+			"https://port5000-workspaces-ws-vnpgs.eu10.applicationstudio.cloud.sap/",
+			"https://basf-se-consumption-based-basf-webplatform-dev-poc-cs-c67445ba6.cfapps.eu10.hana.ondemand.com/",
+			"http://localhost:5000/"
+		]
+	}
   }

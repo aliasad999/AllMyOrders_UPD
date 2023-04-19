@@ -7,6 +7,7 @@
     "private": true,
     "dependencies": {
         "@sap/cds": "^6",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
         "@sap/xssec": "^2.2.3",
         "express": "^4",
         "hdb": "^0.19.0",
@@ -14,13 +15,13 @@
     },
     "devDependencies": {
         "@sap/ux-specification": "^1.108.2",
-        "sqlite3": "^5",
-        "rimraf": "^3.0.2"
+        "rimraf": "^3.0.2",
+        "sqlite3": "^5"
     },
     "scripts": {
         "start": "cds-serve",
         "start:backend": "cds watch",
-        "build:cds" : "cds build",
+        "build:cds": "cds build",
         "start:approuter": "cd approuter && npm run start",
         "watch-allorders": "cds watch --open allorders/webapp/index.html?sap-ui-xx-viewCache=false",
         "undeploy": "cf undeploy allmyorders --delete-services --delete-service-keys --delete-service-brokers",

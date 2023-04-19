@@ -51,28 +51,29 @@
 							"fiori2": {
 								"componentData": {
 									"config": {
+										"enableHelp": true,
 										"enableRecentActivity": true,
-										"enableNotificationsUI": true,
+										"enableNotificationsUI": false,
+										"enableAutomaticSignout": true,
+										"enableWebAssist": true,
+										"keyUserAdaptation": true,
+										"enableSearch": true,
+										"webAssistantParams": {
+												"product": "LAUNCHPADS_BTP_CF",
+												"version": "latest",
+												"stateUACP": "DEVELOPMENT",
+												"dataUrlUACP": "https://help.sap.com/webassistant/",
+												"resourceUrl": "https://webassistant.enable-now.cloud.sap/web_assistant/framework/"
+										},
 										"applications": {
 											"Shell-home": {
-												"enableNotificationsPreview": true
+												"enableNotificationsPreview": false
 											},
-											"enableSearch": false,
 											"enablePersonalization": true,
 											"enableSetTheme": true,
 											"enableSetLanguage": true
 										}
 									}
-								}
-							}
-						},
-						"services": {
-							"Notifications": {
-								"config": {
-									"enabled": true,
-									"serviceUrl": "/ns/Consumer.svc",
-									"webSocketUrl": "/ns/WebSocket.svc",
-									"pollingIntervalInSeconds": 10
 								}
 							}
 						}
