@@ -85,14 +85,33 @@ modules:
       - ordermonitoringallorders.zip
       name: ordermonitoringallorders
       target-path: resources/
+    - artifacts:
+      - ordermonitoringallmyorders.zip
+      name: ordermonitoringallmyorders
+      target-path: resources/
   # 
   #   ┌─────────────────────────────────────┐   #
-  #   │         All Orders HTML5 ap         │   #
+  #   │         All Orders HTML5 app        │   #
   #   └─────────────────────────────────────┘   #
   #
 - name: ordermonitoringallorders
   type: html5
   path: app/allorders
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+  # 
+  #   ┌─────────────────────────────────────┐   #
+  #   │         All Orders Freestyle app    │   #
+  #   └─────────────────────────────────────┘   #
+  #
+- name: ordermonitoringallmyorders
+  type: html5
+  path: app/allmyorders
   build-parameters:
     build-result: dist
     builder: custom
