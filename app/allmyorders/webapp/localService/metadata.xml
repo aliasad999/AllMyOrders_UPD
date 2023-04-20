@@ -1,0 +1,313 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+        <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+    </edmx:Reference>
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="srvOpenOrders">
+            <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Results" EntityType="srvOpenOrders.Results"/>
+            </EntityContainer>
+            <EntityType Name="Results">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" MaxLength="6"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="MaterialNo" Type="Edm.String" MaxLength="18"/>
+                <Property Name="MaterialName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="SoldToParty" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SoldtoPartyName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ShipToParty" Type="Edm.String" MaxLength="10"/>
+                <Property Name="ShipToPartyName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="CustomerReference" Type="Edm.String" MaxLength="35"/>
+                <Property Name="SalesOrg" Type="Edm.String" MaxLength="4"/>
+                <Property Name="SalesOrgName" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Note" Type="Edm.String" MaxLength="255"/>
+                <Property Name="RequestedDelDate" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="RequestedQuantity" Type="Edm.Decimal" Scale="3" Precision="15"/>
+                <Property Name="RequestedQuantityUnit" Type="Edm.String" MaxLength="3"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4"/>
+                <Property Name="OrderType" Type="Edm.String" MaxLength="4"/>
+                <Property Name="OrderTypeDesc" Type="Edm.String" MaxLength="20"/>
+                <Property Name="POType" Type="Edm.String" MaxLength="4"/>
+                <Property Name="POTypeDesc" Type="Edm.String" MaxLength="20"/>
+                <Property Name="Incoterm1" Type="Edm.String" MaxLength="3"/>
+                <Property Name="Incoterm2" Type="Edm.String" MaxLength="28"/>
+                <Property Name="PaymentTerm" Type="Edm.String" MaxLength="4"/>
+                <Property Name="VEPartner" Type="Edm.String" MaxLength="8"/>
+                <Property Name="VEPartnerName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ASPartner" Type="Edm.String" MaxLength="8"/>
+                <Property Name="ASPartnerName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="DIFF_CONF_REQ_DATE" Type="Edm.String" MaxLength="8"/>
+                <Property Name="GROUP_COMPANY" Type="Edm.String" MaxLength="1"/>
+                <Property Name="SUPPLY_POINT" Type="Edm.String" MaxLength="1"/>
+                <Property Name="CUSTOMER_PRIORITY" Type="Edm.String" MaxLength="30"/>
+                <Property Name="TM_DOC_NO" Type="Edm.String" MaxLength="10"/>
+                <Property Name="FORWARDER_NAME" Type="Edm.String" MaxLength="35"/>
+                <Property Name="VESSEL_NAME" Type="Edm.String" MaxLength="35"/>
+                <Property Name="CONTAINER_NO" Type="Edm.String" MaxLength="20"/>
+                <Property Name="ShipmentETA" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="ShipmentETD" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="ConfDelDate" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="SHIPPING_TYPE" Type="Edm.String" MaxLength="2"/>
+                <Property Name="SHIP_TYPE_DESC" Type="Edm.String" MaxLength="20"/>
+                <Property Name="LoadingDate" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="SHIP_STAT_DESC" Type="Edm.String" MaxLength="255"/>
+                <Property Name="SHIP_STATR_DESC" Type="Edm.String" MaxLength="255"/>
+                <Property Name="REQ_TEXT" Type="Edm.String" MaxLength="250"/>
+                <Property Name="BILLING_BLOCK_ITEM" Type="Edm.String" MaxLength="250"/>
+                <Property Name="DOCUMENT_TYPE" Type="Edm.String" MaxLength="1"/>
+                <Property Name="GUSCON_LEVEL" Type="Edm.String" MaxLength="2"/>
+                <Property Name="LEVEL_TYPE" Type="Edm.String" MaxLength="7"/>
+                <Property Name="SORT_ORDER" Type="Edm.Int32"/>
+                <Property Name="ORDER_STATUS" Type="Edm.String" MaxLength="12"/>
+                <Property Name="DISTRIBUTION_CHANNEL" Type="Edm.String" MaxLength="2"/>
+                <Property Name="DELIVERY" Type="Edm.String" MaxLength="10"/>
+                <Property Name="SBU" Type="Edm.String" MaxLength="18"/>
+                <Property Name="PlannedDelDate" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="SORT_ORDER1" Type="Edm.Int32"/>
+                <Property Name="INITIAL_ORDER" Type="Edm.String" MaxLength="10"/>
+                <Property Name="NEXT_ORDER" Type="Edm.String" MaxLength="10"/>
+                <Property Name="FINAL_ORDER" Type="Edm.String" MaxLength="10"/>
+                <Property Name="STATUS_BIZAGI" Type="Edm.String" MaxLength="100"/>
+                <Property Name="FA_TRACKING_ID" Type="Edm.String" MaxLength="35"/>
+                <Property Name="TRACKING_ID" Type="Edm.String" MaxLength="12"/>
+                <Property Name="LC_NUMBER" Type="Edm.String" MaxLength="10"/>
+                <Property Name="CUSTOMER_MAT_REFERENCE" Type="Edm.String" MaxLength="100"/>
+                <Property Name="CONFIRMED_QUANTITY" Type="Edm.Decimal" Scale="3" Precision="15"/>
+                <Property Name="PENDING_DEL_QTY" Type="Edm.Decimal" Scale="3" Precision="15"/>
+                <Property Name="PENDING_DEL_QTY_UNIT" Type="Edm.String" MaxLength="3"/>
+                <Property Name="UNCONFIRMED_QUANTITY" Type="Edm.Decimal" Scale="3" Precision="15"/>
+                <Property Name="DELIVERY_TYPE" Type="Edm.String" MaxLength="40"/>
+                <Property Name="STORAGE_LOCATION" Type="Edm.String" MaxLength="4"/>
+                <Property Name="SUPPLYING_PLANT" Type="Edm.String" MaxLength="4"/>
+                <Property Name="SELLING_INVOICE" Type="Edm.String" MaxLength="10"/>
+                <Property Name="CREATION_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="SHIP_TO_COUNTRY_NAME" Type="Edm.String" MaxLength="25"/>
+                <Property Name="SUPPLY_SITUATION" Type="Edm.String" MaxLength="50"/>
+                <Property Name="DELIVERY_QTY" Type="Edm.Decimal" Scale="3" Precision="15"/>
+                <Property Name="SUPPLIER_PO" Type="Edm.String" MaxLength="35"/>
+                <Property Name="COM_TRACKING_ID" Type="Edm.String" MaxLength="50"/>
+                <Property Name="PRICING_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="BILLING_DOCUMENT" Type="Edm.String" MaxLength="10"/>
+                <Property Name="DEL_QTY_UNIT" Type="Edm.String" MaxLength="3"/>
+                <Property Name="CO_PARTNER" Type="Edm.String" MaxLength="10"/>
+                <Property Name="CO_PARTNER_NAME" Type="Edm.String" MaxLength="40"/>
+                <Property Name="NY_PARTNER" Type="Edm.String" MaxLength="10"/>
+                <Property Name="NY_PARTNER_NAME" Type="Edm.String" MaxLength="40"/>
+                <Property Name="SHIPMNT_ATA" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="SHIPMNT_ATD" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="ShipmentATA" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="ShipmentATD" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="BATCH_NUMBER" Type="Edm.String" MaxLength="10"/>
+                <Property Name="DATE_OF_MANUF" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="SHELF_LIFE_EXP_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+                <Property Name="NOTA_FISCAL" Type="Edm.String" MaxLength="16"/>
+                <Property Name="AM_PARTNER" Type="Edm.String" MaxLength="10"/>
+                <Property Name="AM_PARTNER_NAME" Type="Edm.String" MaxLength="40"/>
+                <Property Name="NET_AMOUNT" Type="Edm.String" MaxLength="25"/>
+                <Property Name="PRICE_PER_UNIT" Type="Edm.String" MaxLength="30"/>
+                <Property Name="MRP_CONTROLLER" Type="Edm.String" MaxLength="3"/>
+                <Property Name="ITEM_CATEGORY" Type="Edm.String" MaxLength="30"/>
+                <Property Name="HOM_REMARK" Type="Edm.String"/>
+                <Property Name="SHIP_TO_CITY_NAME" Type="Edm.String" MaxLength="40"/>
+                <Property Name="PROD_ALLOC" Type="Edm.String" MaxLength="18"/>
+            </EntityType>
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>CreatedOn</PropertyPath>
+                        <PropertyPath>SalesOrgName</PropertyPath>
+                        <PropertyPath>SoldtoPartyName</PropertyPath>
+                        <PropertyPath>ShipToPartyName</PropertyPath>
+                        <PropertyPath>SalesOrder</PropertyPath>
+                        <PropertyPath>LEVEL_TYPE</PropertyPath>
+                        <PropertyPath>ORDER_STATUS</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SalesOrder"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="NEXT_ORDER"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="FINAL_ORDER"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SalesOrderItem"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreatedOn"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="LEVEL_TYPE"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ORDER_STATUS"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                            <PropertyValue Property="Criticality" Int="2"/>
+                            <PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaterialName"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MaterialNo"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="BILLING_BLOCK_ITEM"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="LC_NUMBER"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CREATION_DATE"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CustomerReference"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DELIVERY_TYPE"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CUSTOMER_MAT_REFERENCE"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="STORAGE_LOCATION"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Plant"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="BILLING_DOCUMENT"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CONFIRMED_QUANTITY"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PENDING_DEL_QTY"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PENDING_DEL_QTY_UNIT"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="UNCONFIRMED_QUANTITY"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SUPPLY_SITUATION"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DELIVERY_QTY"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PRICING_DATE"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="BILLING_DOCUMENT"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CO_PARTNER"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CO_PARTNER_NAME"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="NY_PARTNER"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="NY_PARTNER_NAME"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PRICE_PER_UNIT"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="NET_AMOUNT"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ShipmentATA"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ShipmentATD"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="BATCH_NUMBER"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="NOTA_FISCAL"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="AM_PARTNER"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="AM_PARTNER_NAME"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="HOM_REMARK"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ITEM_CATEGORY"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="MRP_CONTROLLER"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SHIP_TO_COUNTRY_NAME"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="DIFF_CONF_REQ_DATE"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SHIP_TO_CITY_NAME"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="PROD_ALLOC"/>
+                        </Record>
+                    </Collection>
+                    <Annotation Term="UI.Criticality" Int="5"/>
+                </Annotation>
+            </Annotations>
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.EntityContainer/Results">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record Type="Capabilities.FilterRestrictionsType">
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record Type="Capabilities.FilterExpressionRestrictionType">
+                                    <PropertyValue Property="Property" PropertyPath="CreatedOn"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SingleRange"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.DeleteRestrictions">
+                    <Record Type="Capabilities.DeleteRestrictionsType">
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.InsertRestrictions">
+                    <Record Type="Capabilities.InsertRestrictionsType">
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.UpdateRestrictions">
+                    <Record Type="Capabilities.UpdateRestrictionsType">
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
