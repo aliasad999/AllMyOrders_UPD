@@ -12,7 +12,8 @@ sap.ui.define([
 
         return UIComponent.extend("ordermonitoring.allmyorders.Component", {
             metadata: {
-                manifest: "json"
+                manifest: "json",
+                config : { fullWidth : true}
             },
 
             /**

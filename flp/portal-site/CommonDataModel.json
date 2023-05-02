@@ -17,6 +17,10 @@
 				"appDescriptors": [{
                     "id": "ordermonitoring.allorders",
                     "intentHintId": "allorders-display"
+                },
+				{
+                    "id": "ordermonitoring.allmyorders",
+                    "intentHintId": "allmyorders-display"
                 }]
 			}
 		}],
@@ -33,6 +37,11 @@
 					"id": "allorders",
 					"appId": "ordermonitoring.allorders",
 					"intentHintId": "allorders-display"
+				},
+				{
+					"id": "allmyorders",
+					"appId": "ordermonitoring.allmyorders",
+					"intentHintId": "allmyorders-display"
 				}]
 			}
 		}],
