@@ -1,9 +1,14 @@
-using {allorders.db.ORDERS as Orders} from '../db/allOrders.cds';
+using {allorders.db as db} from '../db/allOrders.cds';
+
 
 service srvOpenOrders {
     @readonly
     entity Results as
-       select distinct  * from Orders ;
+       select distinct  * from db.ORDERS ;
+    
+    entity valueHelps as
+       select distinct  * from db.ORDERS ;
+    
 
 }
 

@@ -1,0 +1,32 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m">
+    <TableSelectDialog
+		id="idErpSystem"
+		title="{localModel>/title}"
+		search="onSearch"
+		multiSelect="false"
+        items="{
+			path : 'localModel>/items'
+		}">
+        <ColumnListItem>
+            <cells>
+                <ObjectIdentifier title="{localModel>key}"  />
+                <Text text="{localModel>value}" />
+            </cells>
+        </ColumnListItem>
+        <columns>
+            <Column width="20em">
+                <header>
+                    <FormattedText htmlText="{localModel>/field}" />
+                </header>
+            </Column>
+            <Column>
+                <header>
+                    <FormattedText htmlText="{localModel>/value}" />
+                </header>
+            </Column>
+           
+        </columns>
+    </TableSelectDialog>
+</core:FragmentDefinition>

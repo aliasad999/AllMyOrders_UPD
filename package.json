@@ -8,9 +8,11 @@
     "dependencies": {
         "@sap/cds": "^6",
         "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+        "@sap/xsenv": "^3.4.0",
         "@sap/xssec": "^2.2.3",
         "express": "^4",
         "hdb": "^0.19.0",
+        "node-cache": "^5.1.2",
         "passport": "^0.4.0"
     },
     "devDependencies": {
@@ -31,12 +33,16 @@
     },
     "cds": {
         "requires": {
+            "auth": {
+                "kind": "jwt"
+            },
             "db": {
                 "kind": "hana-cloud"
             }
         }
     },
     "sapux": [
-        "app/allorders"
+        "app/allorders",
+        "app/allmyorders"
     ]
 }

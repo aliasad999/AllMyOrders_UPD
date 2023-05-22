@@ -3,5 +3,10 @@
         "target":{
             "object":"ordermonitoring.db::ORDERS"
         }
+    },
+    "ALLORDERS_DB_VALUEHELPS":{
+        "target":{
+            "object":"ordermonitoring.db::ORDERS"
+        }
     }
 }

@@ -5,22 +5,45 @@
 		<pages>
 			<Page showHeader="false">
 				<content>
-					<sfb:SmartFilterBar
-					id="smartFilterBar"
-					entitySet="Results"
-				
-					persistencyKey="UniqueAndStablePersistencyKey"/>
+					<sfb:SmartFilterBar id="idSmartFilter" entitySet="Results" liveMode="true" showClearOnFB="true" 
+						persistencyKey="UniqueAndStablePersistencyKey">
+						<sfb:controlConfiguration>
+							<sfb:ControlConfiguration id="idCreatedOn" key="CreatedOn" visibleInAdvancedArea="true"
+								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
+							<sfb:ControlConfiguration id="idRequestedDelDate" key="RequestedDelDate" 
+								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
+							<sfb:ControlConfiguration id="idShipmentETA" key="ShipmentETA" 
+								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
+							<sfb:ControlConfiguration id="idShipmentETD" key="ShipmentETD" 
+								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
+							<sfb:ControlConfiguration id="idConfDelDate" key="ConfDelDate" 
+								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
+							<sfb:ControlConfiguration id="idLoadingDate" key="LoadingDate" 
+								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
+							<sfb:ControlConfiguration id="idPlannedDelDate" key="idPlannedDelDate" 
+								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
+							<sfb:ControlConfiguration id="idCREATION_DATE" key="CREATION_DATE" 
+								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
+							<sfb:ControlConfiguration id="idDATE_OF_MANUF" key="DATE_OF_MANUF" 
+								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
+							<sfb:ControlConfiguration id="idSHELF_LIFE_EXP_DATE" key="SHELF_LIFE_EXP_DATE" 
+								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
+							<sfb:ControlConfiguration id="idPRICING_DATE" key="PRICING_DATE" 
+								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
+						</sfb:controlConfiguration>
+					</sfb:SmartFilterBar>
 					<smartTable:SmartTable id="idSmartTable" entitySet="Results"
-			 useExportToExcel="true" rowSelectionChange="onRowSelection"
+			 useExportToExcel="true" rowSelectionChange="onRowSelection" showFullScreenButton="true" 
 			useVariantManagement="false" useTablePersonalisation="true" header="All My Orders"
-			showRowCount="true" persistencyKey="SmartTableRefApp_Explored"
-			enableAutoBinding="false" enableAutoColumnWidth="true" smartFilterId="smartFilterBar" initiallyVisibleFields="SalesOrder"
+			showRowCount="true" persistencyKey="SmartTableRefApp_Explored" beforeRebindTable="onBeforeRebindTable" 
+			enableAutoBinding="true" enableAutoColumnWidth="true" smartFilterId="idSmartFilter" 
 			
 			>
 			<smartTable:customToolbar>
 <OverflowToolbar design="Auto">
 			<ToolbarSpacer />
 			<Button  icon="sap-icon://notes" enabled="{localModel>/orderSelected}" text="{i18n>addNote}" press="onAddNewNote"/>
+			<Button id="idShowDetails" icon="sap-icon://display-more" enabled="{localModel>/orderSelected}" text="{i18n>showDetails}" press="onShowDetails"/>
 				</OverflowToolbar> 
 				</smartTable:customToolbar>
 			<!-- layout data used to make the table growing but the filter bar fixed -->
