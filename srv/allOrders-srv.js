@@ -32,13 +32,10 @@ module.exports = cds.service.impl(async (service) => {
         const queryId = `${sessionID}Query`
         let lt_result = []
         if (req.query.SELECT.search) {
-            const queryString = sessionCache.get(queryId);
-            const request = JSON.parse(queryString);
-            delete request.SELECT.limit
-            request._suppressLocalization = true
-            request.distinct = true
-            request.SELECT.search = req.query.SELECT.search
-            lt_result = await cds.run(request);
+            req.query._suppressLocalization = true
+            req.query.distinct = true
+            req.query.SELECT.limit.rows.val = 100000000;
+            lt_result = await cds.run(req.query);
         } else if(sessionCache.get(sessionID)) {
             const resultString = sessionCache.get(sessionID);
             lt_result = JSON.parse(resultString);
@@ -48,7 +45,19 @@ module.exports = cds.service.impl(async (service) => {
             const selectedField = req._query && req._query['$select'] ;
             
             const fields = selectedField && selectedField.split(',');
-            const lt_result_final = removeDuplicates(fields, lt_result)
+            let lt_result_final = removeDuplicates(fields, lt_result);
+            if (req.query.SELECT.columns[0].as !== '$count'  && req.query.SELECT.search) {
+                 lt_result_final = lt_result_final.filter((item)=>{
+                    for (const prop in item) {
+                          if (item[prop] === null) return false;  
+                          if (item[prop].includes(req.query.SELECT.search[0].val)) {
+                            return true;
+                          }
+                        }
+                        return false;
+                      
+                 });
+            }
             return lt_result_final;
     })
 })

@@ -1,58 +1,200 @@
-<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 	xmlns:sfb="sap.ui.comp.smartfilterbar"
-	xmlns:core="sap.ui.core" xmlns:vm="sap.ui.comp.variants" xmlns:sf="sap.ui.layout.form" xmlns:f="sap.f"
-	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:ui="sap.ui.table" controllerName="ordermonitoring.allmyorders.controller.OrderList">
-	<App>
-		<pages>
-			<Page showHeader="false">
-				<content>
-					<sfb:SmartFilterBar id="idSmartFilter" entitySet="Results" liveMode="true" showClearOnFB="true" 
-						persistencyKey="UniqueAndStablePersistencyKey">
-						<sfb:controlConfiguration>
-							<sfb:ControlConfiguration id="idCreatedOn" key="CreatedOn" visibleInAdvancedArea="true"
-								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
-							<sfb:ControlConfiguration id="idRequestedDelDate" key="RequestedDelDate" 
-								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
-							<sfb:ControlConfiguration id="idShipmentETA" key="ShipmentETA" 
-								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
-							<sfb:ControlConfiguration id="idShipmentETD" key="ShipmentETD" 
-								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
-							<sfb:ControlConfiguration id="idConfDelDate" key="ConfDelDate" 
-								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
-							<sfb:ControlConfiguration id="idLoadingDate" key="LoadingDate" 
-								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
-							<sfb:ControlConfiguration id="idPlannedDelDate" key="idPlannedDelDate" 
-								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
-							<sfb:ControlConfiguration id="idCREATION_DATE" key="CREATION_DATE" 
-								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
-							<sfb:ControlConfiguration id="idDATE_OF_MANUF" key="DATE_OF_MANUF" 
-								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
-							<sfb:ControlConfiguration id="idSHELF_LIFE_EXP_DATE" key="SHELF_LIFE_EXP_DATE" 
-								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
-							<sfb:ControlConfiguration id="idPRICING_DATE" key="PRICING_DATE" 
-								conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"/>
-						</sfb:controlConfiguration>
-					</sfb:SmartFilterBar>
-					<smartTable:SmartTable id="idSmartTable" entitySet="Results"
-			 useExportToExcel="true" rowSelectionChange="onRowSelection" showFullScreenButton="true" 
-			useVariantManagement="false" useTablePersonalisation="true" header="All My Orders"
-			showRowCount="true" persistencyKey="SmartTableRefApp_Explored" beforeRebindTable="onBeforeRebindTable" 
-			enableAutoBinding="true" enableAutoColumnWidth="true" smartFilterId="idSmartFilter" 
-			
-			>
-			<smartTable:customToolbar>
-<OverflowToolbar design="Auto">
-			<ToolbarSpacer />
-			<Button  icon="sap-icon://notes" enabled="{localModel>/orderSelected}" text="{i18n>addNote}" press="onAddNewNote"/>
-			<Button id="idShowDetails" icon="sap-icon://display-more" enabled="{localModel>/orderSelected}" text="{i18n>showDetails}" press="onShowDetails"/>
-				</OverflowToolbar> 
-				</smartTable:customToolbar>
-			<!-- layout data used to make the table growing but the filter bar fixed -->
-			<smartTable:layoutData>
-				<FlexItemData growFactor="1" baseSize="0%" />
-			</smartTable:layoutData>
-		</smartTable:SmartTable>
-				</content>
-			</Page>
-		</pages>
-	</App>
+<mvc:View
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:sfb="sap.ui.comp.smartfilterbar"
+    xmlns:core="sap.ui.core"
+    xmlns:vm="sap.ui.comp.variants"
+    xmlns:sf="sap.ui.layout.form"
+    xmlns:f="sap.f"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:ui="sap.ui.table"
+    controllerName="ordermonitoring.allmyorders.controller.OrderList"
+    height="100%"
+>
+    <App id="_IDGenApp1">
+        <pages>
+            <Page
+                id="_IDGenPage1"
+                showHeader="false"
+                enableScrolling="false"
+            >
+                <content>
+                    <VBox
+                        id="_IDGenVBox1"
+                        fitContainer="true"
+                    >
+                        <sfb:SmartFilterBar
+                            id="idSmartFilter"
+                            entitySet="Results"
+                            liveMode="true"
+                            showClearOnFB="true"
+                            persistencyKey="UniqueAndStablePersistencyKey"
+                        >
+                            <sfb:controlConfiguration>
+                                <sfb:ControlConfiguration
+                                    id="idCreatedOn"
+                                    key="CreatedOn"
+                                    visibleInAdvancedArea="false"
+                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                                />
+                                <sfb:ControlConfiguration
+                                    id="idRequestedDelDate"
+                                    key="RequestedDelDate"
+                                    visibleInAdvancedArea="true"
+                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                                />
+                                <sfb:ControlConfiguration
+                                    id="idShipmentETA"
+                                    key="ShipmentETA"
+                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                                />
+                                <sfb:ControlConfiguration
+                                    id="idShipmentETD"
+                                    key="ShipmentETD"
+                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                                />
+                                <sfb:ControlConfiguration
+                                    id="idConfDelDate"
+                                    key="ConfDelDate"
+                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                                />
+                                <sfb:ControlConfiguration
+                                    id="idLoadingDate"
+                                    key="LoadingDate"
+                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                                />
+                                <sfb:ControlConfiguration
+                                    id="idPlannedDelDate"
+                                    key="idPlannedDelDate"
+                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                                />
+                                <sfb:ControlConfiguration
+                                    id="idCREATION_DATE"
+                                    key="CREATION_DATE"
+                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType',
+									defaultOperation: 'THISQUARTER'}"
+                                />
+                                <sfb:ControlConfiguration
+                                    id="idDATE_OF_MANUF"
+                                    key="DATE_OF_MANUF"
+                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                                />
+                                <sfb:ControlConfiguration
+                                    id="idSHELF_LIFE_EXP_DATE"
+                                    key="SHELF_LIFE_EXP_DATE"
+                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                                />
+                                <sfb:ControlConfiguration
+                                    id="idPRICING_DATE"
+                                    key="PRICING_DATE"
+                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                                />
+                            </sfb:controlConfiguration>
+                            <sfb:layoutData>
+                                <FlexItemData
+                                    id="_IDGenFlexItemData1"
+                                    shrinkFactor="0"
+                                />
+                            </sfb:layoutData>
+                        </sfb:SmartFilterBar>
+                        <smartTable:SmartTable
+                            id="idSmartTable"
+                            entitySet="Results"
+                            tableType="Table"
+                            showFullScreenButton="true"
+                            useVariantManagement="false"
+                            useTablePersonalisation="true"
+                            header="{i18n>allOrders}"
+                            showRowCount="true"
+                            persistencyKey="SmartTableRefApp_Explored"
+                            beforeRebindTable="onBeforeRebindTable"
+                            enableAutoBinding="true"
+                            enableAutoColumnWidth="true"
+                            smartFilterId="idSmartFilter"
+                        >
+                            <smartTable:customToolbar>
+                                <OverflowToolbar
+                                    id="_IDGenOverflowToolbar1"
+                                    design="Auto"
+                                >
+                                    <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                                    <Button
+                                        id="_IDGenButton1"
+                                        icon="sap-icon://notes"
+                                        enabled="{localModel>/orderSelected}"
+                                        text="{i18n>addNote}"
+                                        press="onAddNewNote"
+                                    />
+                                    <Button
+                                        id="idShowDetails"
+                                        icon="sap-icon://display-more"
+                                        enabled="{localModel>/orderSelected}"
+                                        text="{i18n>showDetails}"
+                                        press="onShowDetails"
+                                    />
+                                </OverflowToolbar>
+                            </smartTable:customToolbar>
+                             <ui:Table id="_IDGenTable1" visibleRowCountMode="Auto">
+                                <ui:columns>
+                                    <ui:Column
+                                        id="idBatchNumberCol"
+                                        
+                                        autoResizable="true"
+                                    >
+                                        <ui:customData>
+                                            <core:CustomData
+                                                key="p13nData"
+                                                value='\{"columnKey": "BATCH_NUMBER", "leadingProperty": "BATCH_NUMBER", "columnIndex": 101,"sortProperty": "BATCH_NUMBER", "filterProperty": "BATCH_NUMBER"}'
+                                            />
+                                        </ui:customData>
+                                        <Label
+                                            id="_IDGenLabel1"
+                                            text="{i18n>BATCH_NUMBER}"
+                                        />
+                                        <ui:template>
+                                            <Text
+                                                id="_IDGenText1"
+                                                wrapping="false"
+                                                text="{BATCH_NUMBER}"
+                                                tooltip="{parts: [
+											{value: 'Manuf. Date '},
+											{path: 'DATE_OF_MANUF' },
+											{value: ' / '},
+											{value: 'SLED/BBD '},
+											{path: 'SHELF_LIFE_EXP_DATE'}
+										]
+										}"
+                                            />
+                                        </ui:template>
+                                        <ui:layoutData>
+                                            <FlexItemData
+                                                id="_IDGenFlexItemData3"
+                                                growFactor="1"
+                                                baseSize="0%"
+                                            />
+                                        </ui:layoutData>
+                                    </ui:Column>
+                                </ui:columns>
+                                <ui:layoutData>
+                                    <FlexItemData
+                                        id="_IDGenFlexItemData4"
+                                        growFactor="1"
+                                        baseSize="0%"
+                                    />
+                                </ui:layoutData>
+                            </ui:Table>
+                            <smartTable:layoutData>
+                                <FlexItemData
+                                    id="_IDGenFlexItemData2"
+                                    growFactor="1"
+                                    baseSize="0%"
+                                />
+                            </smartTable:layoutData>
+                        </smartTable:SmartTable>
+                    </VBox>
+                </content>
+            </Page>
+        </pages>
+    </App>
 </mvc:View>

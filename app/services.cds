@@ -108,7 +108,11 @@ annotate service.Results with @UI.LineItem: {
         {Value: NET_AMOUNT},
         {Value: ShipmentATA},
         {Value: ShipmentATD},
-        {Value: BATCH_NUMBER},
+        {
+            $Type                    : 'UI.DataFieldForAnnotation',
+            Target:'@UI.DataPoint#BatchWithTooltip'
+            
+        },
         {Value: NOTA_FISCAL},
         {Value: AM_PARTNER},
         {Value: AM_PARTNER_NAME},
@@ -831,6 +835,15 @@ annotate service.Results with {
     }}
     annotate service.Results with {
     BATCH_NUMBER
+    
+    /*parts: [
+											{value: 'Manuf. Date '},
+											{path: 'orderList>DateOfManufacturing', formatter:'.formatDates' },
+											{value: ' / '},
+											{value: 'SLED/BBD '},
+											{path: 'orderList>ShelfLifeExpDate', formatter:'.formatDates'}
+										]
+										}"*/
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
         Label                  : '{@i18n>BATCH_NUMBER}',
@@ -1054,3 +1067,9 @@ annotate service.Results with {
         }]
     }}
     
+    annotate service.Results with @(
+        UI.DataPoint #BatchWithTooltip: {
+            Value: BATCH_NUMBER,
+            ![@Common.QuickInfo]: 'this is a tooltip!!'
+        }
+    );

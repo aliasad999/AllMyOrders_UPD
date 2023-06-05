@@ -24,6 +24,24 @@ sap.ui.define([
 
 	return Controller.extend("ordermonitoring.allmyorders.controller.OrderList", {
 		onInit: function () {
+			let smartTable = this.getView().byId("idSmartTable")
+			smartTable.attachInitialise(((oEvent)=>{
+				oEvent.getSource()._oPersController.attachDialogAfterOpen((oEvent)=>{
+					
+					this._dialogOpen = true
+					
+				})
+				oEvent.getSource()._oPersController.attachDialogAfterClose((oEvent)=>{
+					
+					if(!this._bCallSent){
+						this.getView().byId('idSmartFilter').fireSearch()
+						this._dialogOpen = false;
+						
+					}
+					this._bCallSent= false;
+					
+				})
+			}))
 			let oModel = new JSONModel();
 			this.getView().byId("idSmartTable").getTable().setThreshold(10000000);
 			oModel.setProperty('/orderSelected', false);
@@ -67,8 +85,15 @@ sap.ui.define([
 		},
 		onBeforeRebindTable: function (oEvent) {
 			let oBindingParams = oEvent.getParameter("bindingParams");
+			if (!oEvent.getParameter('bindingParams').filters.length){
+				MessageBox.error(this._getText('noFilterSelected'))
+				oEvent.getParameter('bindingParams').preventTableBind = true
+			}
+
 			this.addBindingListener(oBindingParams, "dataRequested", this._onBindingDataRequestedListener.bind(this))
+			this.addBindingListener(oBindingParams, "dataReceived", this._onBindingDataRecievedListener.bind(this))
 		},
+		
 		addBindingListener: function (oBindingInfo, sEventName, fHandler) {
 			oBindingInfo.events = oBindingInfo.events || {};
 			if (!oBindingInfo.events[sEventName]) {
@@ -83,8 +108,13 @@ sap.ui.define([
 			}
 		},
 		_onBindingDataRequestedListener: function (oEvent) {
-
+			if (this._dialogOpen){
+			this._bCallSent = true;
+		}
 			this.getView().byId("idSmartTable").getTable().setThreshold(10000000);
+		},
+		_onBindingDataRecievedListener: function(oEvent){
+			debugger;
 		},
 		onAddNewNote: function (aContext, aaContext) {
 			let oDialog = new Dialog({
@@ -160,7 +190,6 @@ sap.ui.define([
 
 		},
 		onShowDetails: function (oEvent) {
-			debugger;
 			if (this.getView().byId('idSmartTable').getTable().getSelectedIndices().length > 1)
 				return MessageBox.error(this._getText('selectOneRecord'))
 			let selectedIndex = this.getView().byId('idSmartTable').getTable().getSelectedIndices()[0]
@@ -219,7 +248,7 @@ sap.ui.define([
 			return this.getView().getModel('i18n').getResourceBundle().getText(key, arr);
 		},
 		onRowSelection: function (oEvent) {
-			debugger;
+			
 		}
 	});
 });
