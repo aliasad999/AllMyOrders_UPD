@@ -1,0 +1,14 @@
+{
+    "otc-ordermonitoring-hdi-container": {
+        "object_owner": {
+            "container_roles": [
+                "ORDERMONITORING::EXTERNAL_ACCESS_G#"
+            ]
+        },
+        "application_user": {
+            "container_roles": [
+                "ORDERMONITORING::EXTERNAL_ACCESS"
+            ]
+        }
+    }
+}

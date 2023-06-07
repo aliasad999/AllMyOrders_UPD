@@ -2,13 +2,13 @@
     "ALLORDERS_DB_ORDERS":{
         "target":{
             "object":"ORDERMONITORING::ORDERS",
-            "schema": "_PLACEHOLDER_"
+            "schema.configure": "otc-ordermonitoring-hdi-container/schema"
         }
     },
     "ALLORDERS_DB_VALUEHELPS":{
         "target":{
             "object":"ORDERMONITORING::ORDERS",
-            "schema": "_PLACEHOLDER_"
+            "schema.configure": "otc-ordermonitoring-hdi-container/schema"
         }
     }
 }
