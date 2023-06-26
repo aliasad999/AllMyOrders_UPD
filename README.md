@@ -75,7 +75,7 @@ once the build has been completed, you can push your changes via following comma
 
 ## Usefull commands
 To login quickly via terminal you can use the following command
-```cf.exe login -a "https://api.cf.eu10.hana.ondemand.com" --sso-passcode "RQPqxS5umcLgtIM5mi-YWy0FtQE2Wc-S" ```
+```cf login -a "https://api.cf.eu10.hana.ondemand.com" --sso-passcode "PASSCODE" ```
 
 you can get passcode by opening following url in browser
 https://login.cf.eu10.hana.ondemand.com/passcode#

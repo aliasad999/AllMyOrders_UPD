@@ -1,13 +1,25 @@
 {
-    "ALLORDERS_DB_ORDERS":{
+    "ALLORDERS_DB_SALESORDER_DETAILS":{
         "target":{
-            "object":"ORDERMONITORING::ORDERS",
+            "object":"otc.csc.db.base.tables.v::CV_SALESORDER",
             "schema": "_PLACEHOLDER_"
         }
     },
-    "ALLORDERS_DB_VALUEHELPS":{
+    "ALLORDERS_DB_DELIVERY_DETAILS":{
         "target":{
-            "object":"ORDERMONITORING::ORDERS",
+            "object":"otc.csc.db.base.tables.v::CV_DELIVERY_DETAILS",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "ALLORDERS_DB_CV_NOTES":{
+        "target":{
+            "object":"otc.csc.db.base.tables.v::CV_NOTES",
+            "schema": "_PLACEHOLDER_"
+        }
+    },
+    "ALLORDERS_DB_ST_NOTES":{
+        "target":{
+            "object":"otc.csc.db.base.tables::ST_NOTES",
             "schema": "_PLACEHOLDER_"
         }
     }

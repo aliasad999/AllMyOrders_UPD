@@ -7,13 +7,16 @@
     "private": true,
     "dependencies": {
         "@sap/cds": "^6",
+        "@sap/cds-dk": "^6.8.2",
         "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
         "@sap/xsenv": "^3.4.0",
         "@sap/xssec": "^2.2.3",
+        "body-parser": "^1.20.2",
         "express": "^4",
         "hdb": "^0.19.0",
         "node-cache": "^5.1.2",
-        "passport": "^0.4.0"
+        "passport": "^0.4.0",
+        "uuid": "^9.0.0"
     },
     "devDependencies": {
         "@sap/ux-specification": "^1.108.2",
@@ -21,7 +24,7 @@
         "sqlite3": "^5"
     },
     "scripts": {
-        "start": "cds-serve",
+        "start": "cds watch",
         "start:backend": "cds watch",
         "build:cds": "cds build",
         "install:all": "npm-recursive-install",

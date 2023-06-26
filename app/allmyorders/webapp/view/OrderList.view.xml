@@ -33,63 +33,42 @@
                         >
                             <sfb:controlConfiguration>
                                 <sfb:ControlConfiguration
-                                    id="idCreatedOn"
-                                    key="CreatedOn"
-                                    visibleInAdvancedArea="false"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idRequestedDelDate"
-                                    key="RequestedDelDate"
+                                    id="idErdatOrder"
+                                    key="ERDAT_ORDER_DATE"
                                     visibleInAdvancedArea="true"
                                     conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
                                 />
                                 <sfb:ControlConfiguration
-                                    id="idShipmentETA"
-                                    key="ShipmentETA"
+                                    id="idErdatItem"
+                                    key="ERDAT_ITEM_DATE"
+                                    visibleInAdvancedArea="true"
                                     conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
                                 />
                                 <sfb:ControlConfiguration
-                                    id="idShipmentETD"
-                                    key="ShipmentETD"
+                                    id="idEdatuRequested"
+                                    key="EDATU_REQUESTED_DATE"
+                                    visibleInAdvancedArea="false"
                                     conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
                                 />
                                 <sfb:ControlConfiguration
-                                    id="idConfDelDate"
-                                    key="ConfDelDate"
+                                    id="idEdatuConfirmed"
+                                    key="EDATU_CONFIRMED_DATE"
+                                    visibleInAdvancedArea="false"
                                     conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
                                 />
                                 <sfb:ControlConfiguration
-                                    id="idLoadingDate"
-                                    key="LoadingDate"
+                                    id="idLddat"
+                                    key="LDDAT_DATE"
+                                    visibleInAdvancedArea="false"
                                     conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
                                 />
                                 <sfb:ControlConfiguration
-                                    id="idPlannedDelDate"
-                                    key="idPlannedDelDate"
+                                    id="idLfdatDate"
+                                    key="LFDAT_DATE"
+                                    visibleInAdvancedArea="false"
                                     conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
                                 />
-                                <sfb:ControlConfiguration
-                                    id="idCREATION_DATE"
-                                    key="CREATION_DATE"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType',
-									defaultOperation: 'THISQUARTER'}"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idDATE_OF_MANUF"
-                                    key="DATE_OF_MANUF"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idSHELF_LIFE_EXP_DATE"
-                                    key="SHELF_LIFE_EXP_DATE"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idPRICING_DATE"
-                                    key="PRICING_DATE"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
+                               
                             </sfb:controlConfiguration>
                             <sfb:layoutData>
                                 <FlexItemData
@@ -136,46 +115,8 @@
                                 </OverflowToolbar>
                             </smartTable:customToolbar>
                              <ui:Table id="_IDGenTable1" visibleRowCountMode="Auto">
-                                <ui:columns>
-                                    <ui:Column
-                                        id="idBatchNumberCol"
-                                        
-                                        autoResizable="true"
-                                    >
-                                        <ui:customData>
-                                            <core:CustomData
-                                                key="p13nData"
-                                                value='\{"columnKey": "BATCH_NUMBER", "leadingProperty": "BATCH_NUMBER", "columnIndex": 101,"sortProperty": "BATCH_NUMBER", "filterProperty": "BATCH_NUMBER"}'
-                                            />
-                                        </ui:customData>
-                                        <Label
-                                            id="_IDGenLabel1"
-                                            text="{i18n>BATCH_NUMBER}"
-                                        />
-                                        <ui:template>
-                                            <Text
-                                                id="_IDGenText1"
-                                                wrapping="false"
-                                                text="{BATCH_NUMBER}"
-                                                tooltip="{parts: [
-											{value: 'Manuf. Date '},
-											{path: 'DATE_OF_MANUF' },
-											{value: ' / '},
-											{value: 'SLED/BBD '},
-											{path: 'SHELF_LIFE_EXP_DATE'}
-										]
-										}"
-                                            />
-                                        </ui:template>
-                                        <ui:layoutData>
-                                            <FlexItemData
-                                                id="_IDGenFlexItemData3"
-                                                growFactor="1"
-                                                baseSize="0%"
-                                            />
-                                        </ui:layoutData>
-                                    </ui:Column>
-                                </ui:columns>
+                              
+                                    
                                 <ui:layoutData>
                                     <FlexItemData
                                         id="_IDGenFlexItemData4"
@@ -194,6 +135,16 @@
                         </smartTable:SmartTable>
                     </VBox>
                 </content>
+                <footer>
+            <Toolbar    id="otbFooter">
+                <Button id="idMsgManager"
+                    icon="sap-icon://alert"
+                    text="{= ${message>/}.length }"
+                    visible="{= ${message>/}.length > 0 }"
+                    type="Emphasized"
+                    press="onMessagePopoverPress" />
+            </Toolbar>
+        </footer>
             </Page>
         </pages>
     </App>

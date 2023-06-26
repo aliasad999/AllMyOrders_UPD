@@ -12,8 +12,7 @@ modules:
   type: nodejs
   path: gen/srv
   requires:
-  - name: otc-ordermonitoring-hdi-container
-  - name: views-db
+  - name: otc-csc-cap
   - name: ordermonitoring-xsuaa
   provides:
   - name: srv-api
@@ -21,6 +20,9 @@ modules:
       srv-url: ${default-url}
   parameters:
     buildpack: nodejs_buildpack
+    keep-existing-routes: true
+    disk-quota: 4096MB
+    memory: 4096MB
   build-parameters:
     builder: npm-ci
   #
@@ -32,10 +34,10 @@ modules:
   type: hdb
   path: gen/db
   properties:
-    TARGET_CONTAINER: views-db
+    TARGET_CONTAINER: otc-csc-cap
   requires:
-  - name: otc-ordermonitoring-hdi-container
-  - name: views-db
+  - name: otc-csc-hdi
+  - name: otc-csc-cap
   parameters:
     buildpack: nodejs_buildpack
   #
@@ -151,12 +153,12 @@ resources:
   #   │         HDI Container Instance      │   #
   #   └─────────────────────────────────────┘   #
   #
-- name: otc-ordermonitoring-hdi-container
+- name: otc-csc-hdi
   type: org.cloudfoundry.existing-service
   parameters:
     service: hana
 
-- name: views-db
+- name: otc-csc-cap
   type: com.sap.xs.hdi-container
   parameters:
     service: hana  

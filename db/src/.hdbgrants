@@ -1,13 +1,21 @@
 {
-    "otc-ordermonitoring-hdi-container": {
+    "otc-csc-hdi": {
         "object_owner": {
             "container_roles": [
-                "ORDERMONITORING::EXTERNAL_ACCESS_G#"
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_DELIVERY_G#",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_SALESORDER_G#",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_NOTES_VIEW_G#",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_NOTES_G#",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CALCULATION_VIEW_G#"
             ]
         },
         "application_user": {
             "container_roles": [
-                "ORDERMONITORING::EXTERNAL_ACCESS"
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_DELIVERY",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_SALESORDER",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_NOTES_VIEW",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_NOTES",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CALCULATION_VIEW"
             ]
         }
     }
