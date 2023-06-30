@@ -12,7 +12,7 @@ service srvOpenOrders {
           delivery.POSNR_DEL     as POSNR_DEL,
           delivery.CHARG         as CHARG,
           delivery.LFIMG         as LFIMG,
-          delivery.VRKME         as VRKME,
+          delivery.VRKME         as VRKME_DEL,
           delivery.POSAR         as POSAR,
           delivery.VGBEL         as VGBEL,
           delivery.VGPOS         as VGPOS,
@@ -22,11 +22,9 @@ service srvOpenOrders {
           delivery.TRAID         as TRAID,
           delivery.ZZ0S2BLNR     as ZZ0S2BLNR,
           delivery.PEND_DEL_QUAN as PEND_DEL_QUAN,
-          notes.NOTE_TEXT        as LAST_NOTE
+          notes.NOTE_TEXT        as LAST_NOTE,
+          notes.LANGUAGE        as LANGUAGE
     };
-      //    
-    
-    //where notes.LANGUAGE = 'E';
 
   entity valueHelps as projection on db.SALESORDER_DETAILS {
     key null                   as id : UUID,
@@ -35,7 +33,7 @@ service srvOpenOrders {
         delivery.POSNR_DEL     as POSNR_DEL,
         delivery.CHARG         as CHARG,
         delivery.LFIMG         as LFIMG,
-        delivery.VRKME         as VRKME,
+        delivery.VRKME         as VRKME_DEL,
         delivery.POSAR         as POSAR,
         delivery.VGBEL         as VGBEL,
         delivery.VGPOS         as VGPOS,
@@ -45,8 +43,9 @@ service srvOpenOrders {
         delivery.TRAID         as TRAID,
         delivery.ZZ0S2BLNR     as ZZ0S2BLNR,
         delivery.PEND_DEL_QUAN as PEND_DEL_QUAN,
-        notes.NOTE_TEXT        as LAST_NOTE
-  };
+        notes.NOTE_TEXT        as LAST_NOTE,
+        notes.LANGUAGE        as LANGUAGE
+  } 
 
   entity notes as select from db.ST_NOTES{
     key CLIENT,

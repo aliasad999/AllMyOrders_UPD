@@ -205,7 +205,7 @@
 			<Annotations Target="Metadata.Results/LFIMG">
 				<Annotation Term="Common.Label" String="{@i18n>LFIMG}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/VRKME">
+			<Annotations Target="Metadata.Results/VRKME_DEL">
 				<Annotation Term="Common.Label" String="{@i18n>vrkme_del}"/>
 			</Annotations>
 			<Annotations Target="Metadata.Results/POSAR">
@@ -440,7 +440,7 @@
 			<Annotations Target="Metadata.valueHelps/LFIMG">
 				<Annotation Term="Common.Label" String="{@i18n>LFIMG}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/VRKME">
+			<Annotations Target="Metadata.valueHelps/VRKME_DEL">
 				<Annotation Term="Common.Label" String="{@i18n>vrkme_del}"/>
 			</Annotations>
 			<Annotations Target="Metadata.valueHelps/POSAR">

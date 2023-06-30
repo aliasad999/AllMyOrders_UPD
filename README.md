@@ -21,7 +21,7 @@ open terminal, and in root folder install all dependecies via
 
 ## Initial deployment
 to deploy you can open git bash terminal and use 
-``` mbt build && cf deploy mta_archives/allmyorders_1.0.0.mtar ```
+``` mbt build && cf deploy mta_archives/OrderMonitoringCockpit_1.0.0.mtar ```
 
 ## note
 make sure to access endpoints using app router. if you directly access service you will not be authorized. app router url can be found in the applications within the space

@@ -67,20 +67,12 @@
 										"enableWebAssist": true,
 										"keyUserAdaptation": true,
 										"enableSearch": true,
-										"webAssistantParams": {
-												"product": "LAUNCHPADS_BTP_CF",
-												"version": "latest",
-												"stateUACP": "DEVELOPMENT",
-												"dataUrlUACP": "https://help.sap.com/webassistant/",
-												"resourceUrl": "https://webassistant.enable-now.cloud.sap/web_assistant/framework/"
-										},
 										"applications": {
 											"Shell-home": {
 												"enableNotificationsPreview": false
-											},
-											"enablePersonalization": true,
-											"enableSetTheme": true,
-											"enableSetLanguage": true
+											}
+											
+											
 										}
 									}
 								}
@@ -90,9 +82,13 @@
 				},
 				"groupsOrder": ["defaultGroupId"],
 				"sap.cloud.portal": {
+					"_version": "1.2.0",
 					"config": {
 						"theme.id": "sap_horizon",
-						"theme.active": ["sap_belize", "sap_belize_plus", "sap_belize_hcb", "sap_belize_hcw","sap_horizon"]
+						"theme.active": ["sap_belize", "sap_belize_plus", "sap_belize_hcb", "sap_belize_hcw","sap_horizon"],
+						"enableSetLanguage": true,
+						"enablePersonalization": true,
+						"enableSetTheme": true
 					}
 				}
 			}

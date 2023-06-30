@@ -87,6 +87,7 @@
                 "sap.m": {},
                 "sap.ui.core": {},
                 "sap.f": {},
+                "sap.uxap": {},
                 "sap.suite.ui.generic.template": {},
                 "sap.ui.comp": {},
                 "sap.ui.generic.app": {},
@@ -132,31 +133,54 @@
                 }
             ]
         },
+        "config": {
+			"fullWidth": true
+		},
         "routing": {
             "config": {
-                "routerClass": "sap.m.routing.Router",
+                "routerClass": "sap.f.routing.Router",
                 "viewType": "XML",
                 "async": true,
                 "viewPath": "ordermonitoring.allmyorders.view",
-                "controlAggregation": "pages",
                 "controlId": "idAppControl",
+                "transition": "slide",
                 "clearControlAggregation": false
             },
             "routes": [
               {
                 "pattern": "",
                 "name": "SalesOrders",
-                "view": "OrderList",
-                "viewId": "OrderList"
-            }
+                "layout": "OneColumn",
+                "target": [
+                    "OrderList"
+                  ]
+            },
+            {
+                "name": "notes",
+                "pattern": "notes/{salesOrder},{orderItem}",
+                "layout": "TwoColumnsBeginExpanded",
+                "target": [
+                  "OrderList",
+                  "Notes"
+                ]
+              }
             ],
-            "targets": {}
+            "targets": {
+                "OrderList": {
+                    "controlAggregation": "beginColumnPages",
+                    "viewName": "OrderList"
+                  },
+                  "Notes": {
+                    "controlAggregation": "midColumnPages",
+                    "viewName": "notes"
+                  }
+            }
         },
         "rootView": {
             "viewName": "ordermonitoring.allmyorders.view.App",
             "type": "XML",
             "async": true,
-            "id": "App"
+            "id": "idAppControl"
         }
     }
 }

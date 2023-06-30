@@ -1,6 +1,6 @@
 _schema-version: "3.1"
-ID: allmyorders
-description: CAP Project for All my orders
+ID: OrderMonitoringCockpit
+description: Order Monitoring Cockpit
 version: 1.0.0
 modules:
 #

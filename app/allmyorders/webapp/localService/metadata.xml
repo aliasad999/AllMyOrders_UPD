@@ -122,12 +122,13 @@
 <Property Name="POSNR_DEL" Type="Edm.String" MaxLength="6"/>
 <Property Name="CHARG" Type="Edm.String" MaxLength="10"/>
 <Property Name="LFIMG" Type="Edm.Decimal" Scale="3" Precision="13"/>
+<Property Name="VRKME_DEL" Type="Edm.String" MaxLength="3"/>
 <Property Name="POSAR" Type="Edm.String" MaxLength="1"/>
 <Property Name="VGBEL" Type="Edm.String" MaxLength="10"/>
 <Property Name="VGPOS" Type="Edm.String" MaxLength="6"/>
 <Property Name="LFART" Type="Edm.String" MaxLength="4"/>
 <Property Name="LFART_VTEXT" Type="Edm.String" MaxLength="20"/>
-<Property Name="LFDAT_DATE" Type="Edm.Date" MaxLength="8"/>
+<Property Name="LFDAT_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
 <Property Name="TRAID" Type="Edm.String" MaxLength="20"/>
 <Property Name="ZZ0S2BLNR" Type="Edm.String" MaxLength="30"/>
 <Property Name="PEND_DEL_QUAN" Type="Edm.String" MaxLength="500"/>
@@ -208,6 +209,7 @@
 <Property Name="POSNR_DEL" Type="Edm.String" MaxLength="6"/>
 <Property Name="CHARG" Type="Edm.String" MaxLength="10"/>
 <Property Name="LFIMG" Type="Edm.Decimal" Scale="3" Precision="13"/>
+<Property Name="VRKME_DEL" Type="Edm.String" MaxLength="3"/>
 <Property Name="POSAR" Type="Edm.String" MaxLength="1"/>
 <Property Name="VGBEL" Type="Edm.String" MaxLength="10"/>
 <Property Name="VGPOS" Type="Edm.String" MaxLength="6"/>
@@ -473,6 +475,7 @@
 <Annotation Term="Common.Label" String="MATNR"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/MAKTX">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="MAKTX"/>
 </Annotations>
@@ -581,6 +584,7 @@
 <Annotation Term="Common.Label" String="LAND1"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LANDX">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="LANDX"/>
 </Annotations>
@@ -626,6 +630,7 @@
 <Annotation Term="Common.Label" String="VKORG"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VKORG_NAME1">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="VKORG_NAME1"/>
 </Annotations>
@@ -678,6 +683,7 @@
 <Annotation Term="Common.Label" String="KWMENG"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VRKME">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="VRKME"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/EDATU_CONFIRMED_DATE">
@@ -768,6 +774,7 @@
 <Annotation Term="Common.Label" String="FAKSP"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/FAKSP_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="FAKSP_VTEXT"/>
 </Annotations>
@@ -813,6 +820,7 @@
 <Annotation Term="Common.Label" String="SUPPLY_SITUATION"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SUPPLY_SITUATION_DESCR">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="SUPPLY_SITUATION_DESCR"/>
 </Annotations>
@@ -837,27 +845,37 @@
 <Annotation Term="Common.Label" String="KBETR"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/WAERS">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="WAERS"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KPEIN">
+<Annotation Term="Measures.Unit" Path="KMEIN"/>
 <Annotation Term="Common.Label" String="KPEIN"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KMEIN">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="KMEIN"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/NETWR">
+<Annotation Term="Measures.ISOCurrency" Path="WAERK"/>
 <Annotation Term="Common.Label" String="NETWR"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/WAERK">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="WAERK"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/HTEXT">
 <Annotation Term="Common.Label" String="HTEXT"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/PSTYV">
+<Annotation Term="Common.Text" Path="PSTYV_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
 <Annotation Term="Common.Label" String="PSTYV"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/PSTYV_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="PSTYV_VTEXT"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/DISPO">
@@ -867,21 +885,30 @@
 <Annotation Term="Common.Label" String="KOSCH"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VKBUR">
+<Annotation Term="Common.Text" Path="VKBUR_BEZEI">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
 <Annotation Term="Common.Label" String="VKBUR"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VKBUR_BEZEI">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="VKBUR_BEZEI"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ABGRU">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="ABGRU"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ABSTA">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="ABSTA"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KNUMV">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="KNUMV"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SPART">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="SPART"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/CO_PARTNER">
@@ -959,7 +986,12 @@
 <Annotation Term="Common.Label" String="CHARG"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LFIMG">
+<Annotation Term="Measures.Unit" Path="VRKME_DEL"/>
 <Annotation Term="Common.Label" String="LFIMG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VRKME_DEL">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="VRKME"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/POSAR">
 <Annotation Term="Common.Label" String="POSAR"/>
@@ -971,9 +1003,14 @@
 <Annotation Term="Common.Label" String="VGPOS"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LFART">
+<Annotation Term="Common.Text" Path="LFART_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
 <Annotation Term="Common.Label" String="LFART"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LFART_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="LFART_VTEXT"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LFDAT_DATE">
@@ -986,6 +1023,7 @@
 <Annotation Term="Common.Label" String="ZZ0S2BLNR"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/PEND_DEL_QUAN">
+<Annotation Term="Measures.Unit" Path="VRKME_DEL"/>
 <Annotation Term="Common.Label" String="PEND_DEL_QUAN"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LAST_NOTE">
@@ -1025,6 +1063,7 @@
 <Annotation Term="Common.Label" String="MATNR"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/MAKTX">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="MAKTX"/>
 </Annotations>
@@ -1053,6 +1092,7 @@
 <Annotation Term="Common.Label" String="LAND1"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LANDX">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="LANDX"/>
 </Annotations>
@@ -1066,6 +1106,7 @@
 <Annotation Term="Common.Label" String="VKORG"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VKORG_NAME1">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="VKORG_NAME1"/>
 </Annotations>
@@ -1086,6 +1127,7 @@
 <Annotation Term="Common.Label" String="KWMENG"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VRKME">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="VRKME"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/EDATU_CONFIRMED_DATE">
@@ -1112,6 +1154,7 @@
 <Annotation Term="Common.Label" String="FAKSP"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/FAKSP_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="FAKSP_VTEXT"/>
 </Annotations>
@@ -1125,6 +1168,7 @@
 <Annotation Term="Common.Label" String="SUPPLY_SITUATION"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/SUPPLY_SITUATION_DESCR">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="SUPPLY_SITUATION_DESCR"/>
 </Annotations>
@@ -1133,27 +1177,37 @@
 <Annotation Term="Common.Label" String="KBETR"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/WAERS">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="WAERS"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KPEIN">
+<Annotation Term="Measures.Unit" Path="KMEIN"/>
 <Annotation Term="Common.Label" String="KPEIN"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KMEIN">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="KMEIN"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/NETWR">
+<Annotation Term="Measures.ISOCurrency" Path="WAERK"/>
 <Annotation Term="Common.Label" String="NETWR"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/WAERK">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="WAERK"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/HTEXT">
 <Annotation Term="Common.Label" String="HTEXT"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/PSTYV">
+<Annotation Term="Common.Text" Path="PSTYV_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
 <Annotation Term="Common.Label" String="PSTYV"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/PSTYV_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="PSTYV_VTEXT"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/DISPO">
@@ -1163,21 +1217,30 @@
 <Annotation Term="Common.Label" String="KOSCH"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VKBUR">
+<Annotation Term="Common.Text" Path="VKBUR_BEZEI">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
 <Annotation Term="Common.Label" String="VKBUR"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VKBUR_BEZEI">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="VKBUR_BEZEI"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/ABGRU">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="ABGRU"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/ABSTA">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="ABSTA"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KNUMV">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="KNUMV"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/SPART">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.Label" String="SPART"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/CO_PARTNER">
@@ -1255,7 +1318,12 @@
 <Annotation Term="Common.Label" String="CHARG"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LFIMG">
+<Annotation Term="Measures.Unit" Path="VRKME_DEL"/>
 <Annotation Term="Common.Label" String="LFIMG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VRKME_DEL">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="VRKME"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/POSAR">
 <Annotation Term="Common.Label" String="POSAR"/>
@@ -1267,9 +1335,14 @@
 <Annotation Term="Common.Label" String="VGPOS"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LFART">
+<Annotation Term="Common.Text" Path="LFART_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
 <Annotation Term="Common.Label" String="LFART"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LFART_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="LFART_VTEXT"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LFDAT_DATE">
@@ -1282,6 +1355,7 @@
 <Annotation Term="Common.Label" String="ZZ0S2BLNR"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/PEND_DEL_QUAN">
+<Annotation Term="Measures.Unit" Path="VRKME_DEL"/>
 <Annotation Term="Common.Label" String="PEND_DEL_QUAN"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LAST_NOTE">
@@ -1345,9 +1419,13 @@
 <Annotation Term="Common.Label" String="VGPOS"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/LFART">
+<Annotation Term="Common.Text" Path="LFART_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
 <Annotation Term="Common.Label" String="LFART"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/LFART_VTEXT">
+<Annotation Term="Common.TextFor" String="true"/>
 <Annotation Term="Common.Label" String="LFART_VTEXT"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/LFDAT_DATE">
