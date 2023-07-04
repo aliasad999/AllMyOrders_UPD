@@ -4,53 +4,58 @@ sap.ui.define([
 	"sap/m/Dialog",
 	"sap/m/VBox",
 	"sap/m/TextArea",
-	"sap/m/CheckBox",
 	"sap/m/Button",
 	"sap/m/MessageToast",
-	"sap/m/MessageBox"
+	"sap/m/MessageBox",
+	"sap/ui/core/message/Message",
+	"sap/ui/core/library",
+	"sap/m/MessageStrip"
 ], function (
 	Controller,
 	JSONModel,
 	Dialog,
 	VBox,
 	TextArea,
-	CheckBox,
 	Button,
 	MessageToast,
-	MessageBox
+	MessageBox,
+	Message,
+	library,
+	MessageStrip
 
 ) {
 	"use strict";
-
+	var MessageType = library.MessageType;
 	return Controller.extend("ordermonitoring.allmyorders.controller.OrderList", {
 		onInit: function () {
+			this.oRouter = this.getOwnerComponent().getRouter();
+			this.getView().setModel(sap.ui.getCore().getMessageManager().getMessageModel(), "message");
+			sap.ui.getCore().getMessageManager().registerObject(this.getView(), true);
 			let smartTable = this.getView().byId("idSmartTable")
-			smartTable.attachInitialise(((oEvent)=>{
-				oEvent.getSource()._oPersController.attachDialogAfterOpen((oEvent)=>{
-					
+			smartTable.attachInitialise(((oEvent) => {
+				oEvent.getSource()._oPersController.attachDialogAfterOpen((oEvent) => {
 					this._dialogOpen = true
-					
 				})
-				oEvent.getSource()._oPersController.attachDialogAfterClose((oEvent)=>{
-					
-					if(!this._bCallSent){
+				oEvent.getSource()._oPersController.attachDialogAfterClose((oEvent) => {
+					if (!this._bCallSent) {
 						this.getView().byId('idSmartFilter').fireSearch()
 						this._dialogOpen = false;
-						
 					}
-					this._bCallSent= false;
-					
+					this._bCallSent = false;
 				})
 			}))
 			let oModel = new JSONModel();
-			this.getView().byId("idSmartTable").getTable().setThreshold(10000000);
+
 			oModel.setProperty('/orderSelected', false);
+			oModel.setProperty('/orderSelectedSingle', false);
 			this.getView().setModel(oModel, 'localModel');
 			let oTable = this.getView().byId('idSmartTable').getTable();
 			this.getView().getModel('localModel').setProperty('/salesOrderTable', [])
 			oTable.attachRowSelectionChange((oEvent) => {
 				let enabled = this.getView().byId('idSmartTable').getTable().getSelectedIndices().length === 0 ? false : true;
+				let SingleEnabled = this.getView().byId('idSmartTable').getTable().getSelectedIndices().length === 1 ? true : false;
 				this.getView().getModel('localModel').setProperty('/orderSelected', enabled);
+				this.getView().getModel('localModel').setProperty('/orderSelectedSingle', SingleEnabled);
 				let aSalesOrderTable = this.getView().getModel('localModel').getProperty('/salesOrderTable');
 				if (!aSalesOrderTable)
 					aSalesOrderTable = [];
@@ -60,8 +65,8 @@ sap.ui.define([
 					aIndices.forEach((index) => {
 						let oContext = this.getView().byId('idSmartTable').getTable().getContextByIndex(index);
 						aSalesOrderTable.push({
-							"salesOrder": this.getView().getModel().getProperty(oContext.sPath).SalesOrder,
-							"salesOrderItem": this.getView().getModel().getProperty(oContext.sPath).SalesOrderItem
+							"salesOrder": this.getView().getModel().getProperty(oContext.sPath).VBELN,
+							"salesOrderItem": this.getView().getModel().getProperty(oContext.sPath).POSNR
 						})
 					})
 				} else if (oEvent.getParameter('rowIndex') === -1) {
@@ -71,29 +76,67 @@ sap.ui.define([
 					let sPath = oEvent.getParameters().rowContext.sPath;
 					if (oEvent.getSource().isIndexSelected(oEvent.getParameter('rowIndex'))) {
 						aSalesOrderTable.push({
-							"salesOrder": this.getView().getModel().getProperty(sPath).SalesOrder,
-							"salesOrderItem": this.getView().getModel().getProperty(sPath).SalesOrderItem
+							"salesOrder": this.getView().getModel().getProperty(sPath).VBELN,
+							"salesOrderItem": this.getView().getModel().getProperty(sPath).POSNR
 						})
 					} else {
 						aSalesOrderTable = aSalesOrderTable.filter((item) => {
-							return item.salesOrder !== this.getView().getModel().getProperty(sPath).SalesOrder || item.salesOrderItem !== this.getView().getModel().getProperty(sPath).SalesOrderItem
+							return item.salesOrder !== this.getView().getModel().getProperty(sPath).VBELN || item.salesOrderItem !== this.getView().getModel().getProperty(sPath).POSNR
 						})
 					}
 				}
 				this.getView().getModel('localModel').setProperty('/salesOrderTable', aSalesOrderTable);
 			});
 		},
+		onMessagePopoverPress: function (oEvent) {
+			var oSourceControl = oEvent.getSource();
+			this._getMessagePopover().then(function (oMessagePopover) {
+				oMessagePopover.openBy(oSourceControl);
+			});
+		},
 		onBeforeRebindTable: function (oEvent) {
 			let oBindingParams = oEvent.getParameter("bindingParams");
-			if (!oEvent.getParameter('bindingParams').filters.length){
-				MessageBox.error(this._getText('noFilterSelected'))
+			sap.ui.getCore().getMessageManager().removeAllMessages();
+			if (!oEvent.getParameter('bindingParams').filters.length) {
+				this.getView().getModel('localModel').setProperty('/msgVisible', true);
+				this.getView().byId('idMsgManager').setIcon('sap-icon://alert')
+				let oMessage = new Message({
+					message: this._getText('noFilterSelected'),
+					type: MessageType.Warning,
+					target: "/Dummy",
+					processor: this.getView().getModel()
+				});
+				sap.ui.getCore().getMessageManager().addMessages(oMessage);
+				oMessage = new Message({
+					message: this._getText('prevDataShown'),
+					type: MessageType.Information,
+					target: "/Dummy",
+					processor: this.getView().getModel()
+				});
+				sap.ui.getCore().getMessageManager().addMessages(oMessage);
 				oEvent.getParameter('bindingParams').preventTableBind = true
+			} else {
+				this.getView().getModel('localModel').setProperty('/msgVisible', false);
 			}
 
+			this.getView().getModel().setHeaders({ 'select': oEvent.getParameter('bindingParams').parameters.select })
+			if (oEvent.getParameter('bindingParams').parameters.select.includes('CHARG')){
+				if (oEvent.getParameter('bindingParams').parameters.select.includes('LDDAT_DATE') && oEvent.getParameter('bindingParams').parameters.select.includes('LFDAT_DATE')){
+					
+				} else{
+					oEvent.getParameter('bindingParams').preventTableBind = true
+					let oMessage = new Message({
+						message: this._getText('selectDates'),
+						type: MessageType.Warning,
+						target: "/Dummy",
+						processor: this.getView().getModel()
+					});
+					sap.ui.getCore().getMessageManager().addMessages(oMessage);
+				}
+			}
 			this.addBindingListener(oBindingParams, "dataRequested", this._onBindingDataRequestedListener.bind(this))
 			this.addBindingListener(oBindingParams, "dataReceived", this._onBindingDataRecievedListener.bind(this))
 		},
-		
 		addBindingListener: function (oBindingInfo, sEventName, fHandler) {
 			oBindingInfo.events = oBindingInfo.events || {};
 			if (!oBindingInfo.events[sEventName]) {
@@ -107,87 +150,52 @@ sap.ui.define([
 				};
 			}
 		},
-		_onBindingDataRequestedListener: function (oEvent) {
-			if (this._dialogOpen){
-			this._bCallSent = true;
-		}
-			this.getView().byId("idSmartTable").getTable().setThreshold(10000000);
-		},
-		_onBindingDataRecievedListener: function(oEvent){
-			debugger;
+		onRowSelChange: function(oEvent){
+			let salesOrder = this.getView().getModel().getProperty(oEvent.getParameter("row").getBindingContext().sPath).VBELN
+			let orderItem = this.getView().getModel().getProperty(oEvent.getParameter("row").getBindingContext().sPath).POSNR
+			this._navToNotes(salesOrder,orderItem);
 		},
 		onAddNewNote: function (aContext, aaContext) {
 			let oDialog = new Dialog({
-				title: '{i18n>changeCommentTitle}',
+				title: this._getText('changeCommentTitle'),
 				type: sap.m.DialogType.Message,
 				content: new VBox({
 					items: [
+						new MessageStrip({
+							text:this._getText('langInfo'),
+							showIcon:true
+						}),
 						new TextArea({
+							id: "idTextArea",
 							value: "",
 							cols: 100,
 							maxLength: 1024,
 							rows: 8
-						}),
-						new CheckBox({
-							selected: false,
-							text: '{i18n>onHeaderLevel}'
 						})
 					]
 				}),
 				beginButton: new Button({
-					text: '{i18n>AddCommentApply}',
-					enabled: true,
-					press: [function () {
-						var sNewNote = oDialog.getContent()[0].getItems()[0].getValue().trim();
-						this._bOnHeader = oDialog.getContent()[0].getItems()[1].getSelected();
-						this._onAddComment(sNewNote);
-						oDialog.close();
-					}, this]
-				}),
-				endButton: new Button({
-					text: 'Cancel Comment',
+					text: this._getText('cancel'),
 					press: function () {
 						oDialog.close();
 					}
+				}),
+				endButton:new Button({
+					text: this._getText('save'),
+					enabled: true,
+					type: "Emphasized",
+					press: [function () {
+
+						this._onAddComment();
+						oDialog.close();
+					}, this]
 				}),
 				afterClose: function () {
 					oDialog.destroy();
 				}
 			});
+			this._oAddnote = oDialog;
 			oDialog.open();
-		},
-		_onAddComment: function (sNewNote) {
-			let oSalesTable = this.getView().getModel('localModel').getProperty('/salesOrderTable');
-			oSalesTable.forEach((item) => {
-				let sTitle = "Sales Order " + item.SalesOrder;
-				if (this._bOnHeader === true) {
-					sTitle = "&CSEU&000000& " + sTitle;
-				} else {
-					sTitle = "&CSEU&" + item.SalesOrderItem + "& " + sTitle;
-				}
-				let creatItem = {
-					SalesOrderID: item.salesOrder,
-					Title: sTitle,
-					Content: sNewNote
-				};
-				this.getView().getModel("NotesModel").setDeferredGroups(["postComment"]);
-				this.getView().getModel("NotesModel").create("/NoteSet", creatItem, {
-					groupId: "postComment"
-				});
-				this.getView().getModel("NotesModel").submitChanges({
-
-					groupId: "postComment",
-					success: function (oData) {
-						debugger;
-
-					},
-					error: function (error) {
-						var msg = JSON.parse(error.responseText).error.message.value;
-						MessageToast.show(msg);
-					}
-				});
-			})
-
 		},
 		onShowDetails: function (oEvent) {
 			if (this.getView().byId('idSmartTable').getTable().getSelectedIndices().length > 1)
@@ -211,6 +219,12 @@ sap.ui.define([
 			this._openDetailsDialog();
 
 		},
+		onSearch: function (oEvent) {
+			let sValue = oEvent.getParameter("value");
+			let oFilter = new sap.ui.model.Filter("key", "Contains", sValue);
+			let oBinding = oEvent.getParameter("itemsBinding");
+			oBinding.filter([oFilter]);
+		},
 		_openDetailsDialog: function () {
 			if (!this._showDetailsDialog) {
 				this._showDetailsDialog = sap.ui.core.Fragment.load({
@@ -226,11 +240,20 @@ sap.ui.define([
 				this.getView().addDependent(oDialog);
 			}.bind(this));
 		},
-		onSearch: function (oEvent) {
-			let sValue = oEvent.getParameter("value");
-			let oFilter = new sap.ui.model.Filter("key", "Contains", sValue);
-			let oBinding = oEvent.getParameter("itemsBinding");
-			oBinding.filter([oFilter]);
+		_getMessagePopover: function () {
+			var oView = this.getView();
+
+			// create popover lazily (singleton)
+			if (!this._pMessagePopover) {
+				this._pMessagePopover = sap.ui.core.Fragment.load({
+					id: oView.getId(),
+					name: "ordermonitoring.allmyorders.fragment.messagePopover"
+				}).then(function (oMessagePopover) {
+					oView.addDependent(oMessagePopover);
+					return oMessagePopover;
+				});
+			}
+			return this._pMessagePopover;
 		},
 		_createKeyValue: function (oRow) {
 			let keyValuePair = [];
@@ -247,8 +270,84 @@ sap.ui.define([
 		_getText: function (key, arr = []) {
 			return this.getView().getModel('i18n').getResourceBundle().getText(key, arr);
 		},
-		onRowSelection: function (oEvent) {
+		_onBindingDataRequestedListener: function (oEvent) {
+			if (this._dialogOpen) {
+				this._bCallSent = true;
+			}
+		},
+		_onBindingDataRecievedListener: function (oEvent) {
+			sap.ui.getCore().getMessageManager().removeAllMessages();
+			let oMessage = new Message({
+				message: this._getText('ResSuccess'),
+				type: MessageType.Success,
+				target: "/Dummy",
+				processor: this.getView().getModel()
+			});
+			sap.ui.getCore().getMessageManager().addMessages(oMessage);
+			this.getView().byId('idMsgManager').setIcon('sap-icon://message-success')
+		},
+		onShowAllNotes: function (oEvent) {
+			let salesOrder = this.getView().getModel('localModel').getProperty('/salesOrderTable')[0].salesOrder;
+			let orderItem = this.getView().getModel('localModel').getProperty('/salesOrderTable')[0].salesOrderItem;
+			this._navToNotes(salesOrder,orderItem)
 			
+		},
+		_onAddComment: function () {
+			let oSalesTable = this.getView().getModel('localModel').getProperty('/salesOrderTable');
+			oSalesTable.forEach((item) => {
+				let sTitle = "Sales Order " + item.salesOrder;
+				if (this._bOnHeader === true) {
+					sTitle = "&CSEU&000000& " + sTitle;
+				} else {
+					sTitle = "&CSEU&" + item.salesOrderItem + "& " + sTitle;
+				}
+				let creatItem = {
+					CLIENT: '100',
+					VBELN: item.salesOrder,
+					POSNR: item.salesOrderItem,
+					UTCTIME: Date.now(),
+					LANGUAGE: sap.ui.getCore().getConfiguration().getLanguage().split('-')[0].toUpperCase(),
+					NOTE_TITLE: sTitle,
+					NOTE_TEXT: sap.ui.getCore().byId('idTextArea').getValue(),
+				};
+				this.getView().getModel().setDeferredGroups(["postComment"]);
+				this.getView().getModel().create("/notes", creatItem, {
+					groupId: "postComment"
+				});
+
+			})
+
+			this.getView().getModel().submitChanges({
+				groupId: "postComment",
+				success: ((oData) => {
+					if (oData.__batchResponses[0].__changeResponses[0].statusCode === '200' || oData.__batchResponses[0].__changeResponses[0].statusCode === '201') {
+						MessageToast.show(this._getText('notesAdded'))
+						this.getView().getModel().refresh();
+					} else {
+						let oMessage = new Message({
+							message: this._getText('notesNotAdded'),
+							type: MessageType.Success,
+							target: "/Dummy",
+							processor: this.getView().getModel()
+						});
+						sap.ui.getCore().getMessageManager().addMessages(oMessage);
+					}
+				}),
+				error: ((error) => {
+					var msg = JSON.parse(error.responseText).error.message.value;
+					let oMessage = new Message({
+						message: msg,
+						type: MessageType.Success,
+						target: "/Dummy",
+						processor: this.getView().getModel()
+					});
+					sap.ui.getCore().getMessageManager().addMessages(oMessage);
+
+				})
+			});
+		},
+		_navToNotes: function(salesOrder,orderItem){
+			this.oRouter.navTo("notes", { salesOrder: salesOrder, orderItem: orderItem});
 		}
 	});
 });

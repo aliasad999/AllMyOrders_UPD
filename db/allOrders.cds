@@ -1,294 +1,163 @@
 namespace allorders.db;
 
 @cds.persistence.exists
-
-entity![ORDERS]{
-          virtual id                : String;
-       key![SalesOrder]             : String(50);
-       key![SalesOrderItem]         : String(6);
-       key![CreatedOn]              : Date;
-              @Common.Text           : MaterialName
-              @Common.TextArrangement: #TextLast
-       key![MaterialNo]             : String(18);
-              @Common.TextFor
-       key![MaterialName]           : String(40);
-              @Common.Text           : SoldtoPartyName
-              @Common.TextArrangement: #TextLast
-       key![SoldToParty]            : String(10);
-              @Common.TextFor
-       key![SoldtoPartyName]        : String(40);
-              @Common.Text           : ShipToPartyName
-              @Common.TextArrangement: #TextLast
-       key![ShipToParty]            : String(10);
-              @Common.TextFor
-       key![ShipToPartyName]        : String(40);
-       key![CustomerReference]      : String(35);
-              @Common.Text           : SalesOrgName
-              @Common.TextArrangement: #TextLast
-       key![SalesOrg]               : String(4);
-              @Common.TextFor
-       key![SalesOrgName]           : String(20);
-       key![Note]                   : String(255);
-       key![RequestedDelDate]       : Date;
-       key![RequestedQuantity]      : Decimal(15, 3);
-          ![RequestedQuantityUnit]  : String(3);
-       key![Plant]                  : String(4);
-              @Common.Text           : OrderTypeDesc
-              @Common.TextArrangement: #TextLast
-       key![OrderType]              : String(4);
-              @Common.TextFor
-       key![OrderTypeDesc]          : String(20);
-              @Common.Text           : POTypeDesc
-              @Common.TextArrangement: #TextLast
-       key![POType]                 : String(4);
-              @Common.TextFor
-       key![POTypeDesc]             : String(20);
-       key![Incoterm1]              : String(3);
-       key![Incoterm2]              : String(28);
-       key![PaymentTerm]            : String(4);
-              @Common.Text           : VEPartnerName
-              @Common.TextArrangement: #TextLast
-       key![VEPartner]              : String(8);
-              @Common.TextFor
-       key![VEPartnerName]          : String(40);
-              @Common.Text           : ASPartnerName
-              @Common.TextArrangement: #TextLast
-       key![ASPartner]              : String(8);
-              @Common.TextFor
-       key![ASPartnerName]          : String(40);
-       key![DIFF_CONF_REQ_DATE]     : String(8);
-       key![GROUP_COMPANY]          : String(1);
-              @Common.Text           : SUPPLY_POINT_DESC
-              @Common.TextArrangement: #TextLast
-       key![SUPPLY_POINT]           : String(4);
-              @Common.TextFor
-          ![SUPPLY_POINT_DESC]      : String(30);
-       key![CUSTOMER_PRIORITY]      : String(30);
-       key![TM_DOC_NO]              : String(10);
-       key![FORWARDER_NAME]         : String(35);
-       key![VESSEL_NAME]            : String(35);
-       key![CONTAINER_NO]           : String(20);
-       key![ShipmentETA]            : Date;
-       key![ShipmentETD]            : Date;
-       key![ConfDelDate]            : Date;
-       key![SHIPPING_TYPE]          : String(2);
-       key![SHIP_TYPE_DESC]         : String(20);
-       key![LoadingDate]            : Date;
-       key![SHIP_STAT_DESC]         : String(255);
-       key![SHIP_STATR_DESC]        : String(255);
-       key![REQ_TEXT]               : String(250);
-       key![BILLING_BLOCK_ITEM]     : String(250);
-       key![DOCUMENT_TYPE]          : String(1);
-       key![GUSCON_LEVEL]           : String(2);
-       key![LEVEL_TYPE]             : String(7);
-       key![SORT_ORDER]             : Integer;
-       key![ORDER_STATUS]           : String(12);
-       key![DISTRIBUTION_CHANNEL]   : String(2);
-       key![DELIVERY]               : String(10);
-       key![SBU]                    : String(18);
-       key![PlannedDelDate]         : Date;
-       key![SORT_ORDER1]            : Integer;
-       key![INITIAL_ORDER]          : String(10);
-       key![NEXT_ORDER]             : String(10);
-       key![FINAL_ORDER]            : String(10);
-       key![STATUS_BIZAGI]          : String(100);
-       key![FA_TRACKING_ID]         : String(35);
-       key![TRACKING_ID]            : String(12);
-       key![LC_NUMBER]              : String(10);
-       key![CUSTOMER_MAT_REFERENCE] : String(100);
-       key![CONFIRMED_QUANTITY]     : Decimal(15, 3);
-       key![PENDING_DEL_QTY]        : Decimal(15, 3);
-       key![PENDING_DEL_QTY_UNIT]   : String(3);
-       key![UNCONFIRMED_QUANTITY]   : Decimal(15, 3);
-       key![DELIVERY_TYPE]          : String(40);
-       key![STORAGE_LOCATION]       : String(4);
-       key![SUPPLYING_PLANT]        : String(4);
-       key![SELLING_INVOICE]        : String(10);
-       key![CREATION_DATE]          : Date;
-       key![SHIP_TO_COUNTRY_NAME]   : String(25);
-       key![SUPPLY_SITUATION]       : String(2);
-       key![SUPPLY_SITUATION_DESC]  : String(40);
-       key![DELIVERY_QTY]           : Decimal(15, 3);
-       key![SUPPLIER_PO]            : String(35);
-       key![COM_TRACKING_ID]        : String(50);
-       key![PRICING_DATE]           : Date;
-       key![BILLING_DOCUMENT]       : String(10);
-       key![DEL_QTY_UNIT]           : String(3);
-            @Common.Text           : CO_PARTNER_NAME
-            @Common.TextArrangement: #TextLast
-       key![CO_PARTNER]             : String(10);
-            @Common.TextFor
-       key![CO_PARTNER_NAME]        : String(40);
-            @Common.Text           : NY_PARTNER_NAME
-            @Common.TextArrangement: #TextLast
-       key![NY_PARTNER]             : String(10);
-            @Common.TextFor
-       key![NY_PARTNER_NAME]        : String(40);
-       key![SHIPMNT_ATA]            : Date;
-       key![SHIPMNT_ATD]            : Date;
-       key![ShipmentATA]            : Date;
-       key![ShipmentATD]            : Date;
-       key![BATCH_NUMBER]           : String(10);
-       key![DATE_OF_MANUF]          : Date;
-       key![SHELF_LIFE_EXP_DATE]    : Date;
-       key![NOTA_FISCAL]            : String(16);
-              @Common.Text           : AM_PARTNER_NAME
-              @Common.TextArrangement: #TextLast
-       key![AM_PARTNER]             : String(10);
-              @Common.TextFor
-       key![AM_PARTNER_NAME]        : String(40);
-       key![NET_AMOUNT]             : String(25);
-       key![PRICE_PER_UNIT]         : String(30);
-       key![MRP_CONTROLLER]         : String(3);
-       key![ITEM_CATEGORY]          : String(30);
-       key![HOM_REMARK]             : String;
-       key![SHIP_TO_CITY_NAME]      : String(40);
-       key![PROD_ALLOC]             : String(18);
-
+entity![SALESORDER_DETAILS]  {
+	MANDT: String(3)  @title: 'MANDT' ; 
+        VBELN: String(10)  @title: 'VBELN' ; 
+        POSNR: String(6)  @title: 'POSNR' ; 
+        ERDAT_ORDER_DATE: Date  @title: 'ERDAT_ORDER' ; 
+        ERDAT_ITEM_DATE: Date  @title: 'ERDAT_ITEM' ; 
+        AUART: String(4)  @title: 'AUART' ; 
+        WERKS: String(4)  @title: 'WERKS' ; 
+        VTWEG: String(2)  @title: 'VTWEG' ; 
+        @Common.Text           : MAKTX
+        @Common.TextArrangement: #TextLast
+        MATNR: String(18)  @title: 'MATNR' ; 
+        @Common.TextFor
+        MAKTX: String(40)  @title: 'MAKTX' ; 
+        KDMAT: String(35)  @title: 'KDMAT' ; 
+        BSTNK: String(20)  @title: 'BSTNK' ; 
+        @Common.Text           : AG_PARTNER_NAME
+        @Common.TextArrangement: #TextLast
+        AG_PARTNER: String(10)  @title: 'AG_PARTNER' ; 
+        @Common.Text           : WE_PARTNER_NAME
+        @Common.TextArrangement: #TextLast
+        WE_PARTNER: String(10)  @title: 'WE_PARTNER' ; 
+        @Common.Text           : LANDX
+        @Common.TextArrangement: #TextLast
+        LAND1: String(3)  @title: 'LAND1' ;
+        @Common.TextFor 
+        LANDX: String(15)  @title: 'LANDX' ; 
+        ORT01: String(35)  @title: 'ORT01' ; 
+        @Common.Text           : VKORG_NAME1
+        @Common.TextArrangement: #TextLast
+        VKORG: String(4)  @title: 'VKORG' ; 
+        @Common.TextFor 
+        VKORG_NAME1: String(40)  @title: 'VKORG_NAME1' ; 
+        KNREF_HEAD: String(30)  @title: 'KNREF_HEAD' ; 
+        KNREF_ITM: String(30)  @title: 'KNREF_ITM' ; 
+        VBUND: String(6)  @title: 'VBUND' ; 
+        EDATU_REQUESTED_DATE: Date  @title: 'EDATU_REQUESTED' ; 
+        KWMENG: Decimal(15, 3)  @title: 'KWMENG' ; 
+        VRKME: String(3)  @title: 'VRKME' ; 
+        EDATU_CONFIRMED_DATE: Date  @title: 'EDATU_CONFIRMED' ; 
+        KBMENG: Decimal(15, 3)  @title: 'KBMENG' ; 
+        LDDAT_DATE: Date  @title: 'LDDAT' ; 
+        UNCONFIRMED_QTY: Decimal(15, 3)  @title: 'UNCONFIRMED_QTY' ; 
+        REQ_TEXT: String(250)  @title: 'REQ_TEXT' ; 
+        @Common.Text           : FAKSP_VTEXT
+        @Common.TextArrangement: #TextLast
+        FAKSP: String(2)  @title: 'FAKSP' ; 
+        @Common.TextFor 
+        FAKSP_VTEXT: String(20)  @title: 'FAKSP_VTEXT' ; 
+        LGORT: String(4)  @title: 'LGORT' ; 
+        @Common.Text           : SUPPLY_SITUATION_DESCR
+        @Common.TextArrangement: #TextLast
+        SUPPLY_SITUATION: Int16  @title: 'SUPPLY_SITUATION' ; 
+        @Common.TextFor 
+        SUPPLY_SITUATION_DESCR: String(60)  @title: 'SUPPLY_SITUATION_DESCR' ; 
+        KBETR: Decimal(11, 2)  @title: 'KBETR' ; 
+        WAERS: String(5)  @title: 'WAERS' ; 
+        KPEIN: Decimal(5)  @title: 'KPEIN' ; 
+        KMEIN: String(3)  @title: 'KMEIN' ; 
+        NETWR: Decimal(15, 2)  @title: 'NETWR' ; 
+        WAERK: String(5)  @title: 'WAERK' ; 
+        HTEXT: String(4000)  @title: 'HTEXT' ; 
+        @Common.Text           : PSTYV_VTEXT
+        @Common.TextArrangement: #TextLast
+        PSTYV: String(4)  @title: 'PSTYV' ; 
+        @Common.TextFor 
+        PSTYV_VTEXT: String(20)  @title: 'PSTYV_VTEXT' ; 
+        DISPO: String(3)  @title: 'DISPO' ; 
+        KOSCH: String(18)  @title: 'KOSCH' ; 
+        @Common.Text           : VKBUR_BEZEI
+        @Common.TextArrangement: #TextLast
+        VKBUR: String(4)  @title: 'VKBUR' ; 
+        @Common.TextFor 
+        VKBUR_BEZEI: String(20)  @title: 'VKBUR_BEZEI' ; 
+        ABGRU: String(2)  @title: 'ABGRU' ;
+        ABSTA: String(1)  @title: 'ABSTA' ;
+        KNUMV: String(10)  @title: 'KNUMV' ; 
+        SPART: String(2)  @title: 'SPART' ; 
+        @Common.Text           : CO_PARTNER_NAME
+        @Common.TextArrangement: #TextLast
+        CO_PARTNER: String(10)  @title: 'CO Partner' ; 
+        @Common.TextFor 
+        CO_PARTNER_NAME: String(70)  @title: 'CO Partner Name' ; 
+        @Common.Text           : NY_PARTNER_NAME
+        @Common.TextArrangement: #TextLast
+        NY_PARTNER: String(10)  @title: 'NY Partner' ; 
+        @Common.TextFor 
+        NY_PARTNER_NAME: String(70)  @title: 'NY Partner Name' ; 
+        @Common.Text           : AS_PARTNER
+        @Common.TextArrangement: #TextLast
+        AS_PARTNER: String(8)  @title: 'AS_PARTNER' ; 
+        @Common.TextFor 
+        AS_PARTNER_NAME: String(40)  @title: 'AS Partner Name' ; 
+        @Common.Text           : VE_PARTNER_NAME
+        @Common.TextArrangement: #TextLast
+        VE_PARTNER: String(8)  @title: 'VE Partner' ; 
+        @Common.TextFor 
+        VE_PARTNER_NAME: String(40)  @title: 'VE Partner Name' ; 
+        @Common.Text           : AM_PARTNER_NAME
+        @Common.TextArrangement: #TextLast
+        AM_PARTNER: String(8)  @title: 'AM Partner' ; 
+        @Common.TextFor 
+        AM_PARTNER_NAME: String(40)  @title: 'AM Partner Name' ; 
+        @Common.TextFor 
+        AG_PARTNER_NAME: String(70)  @title: 'AG Partner Name' ; 
+        @Common.TextFor 
+        WE_PARTNER_NAME: String(70)  @title: 'WE Partner Name' ; 
+        delivery: Composition of many DELIVERY_DETAILS on $self.VBELN = delivery.VBELN and $self.POSNR = delivery.POSNR;
+        notes: Composition of many CV_NOTES on $self.VBELN = notes.VBELN and $self.POSNR = notes.POSNR;
+        
+	
+    
+};
+@cds.persistence.exists
+entity ![DELIVERY_DETAILS]{
+        MANDT: String(3)  @title: 'MANDT' ; 
+        VBELN: String(10)  @title: 'VBELN' ; 
+        POSNR: String(6)  @title: 'POSNR' ; 
+        VBELN_DEL: String(10)  @title: 'VBELN_DEL' ; 
+        POSNR_DEL: String(6)  @title: 'POSNR_DEL' ; 
+        CHARG: String(10)  @title: 'CHARG' ; 
+        LFIMG: Decimal(13, 3)  @title: 'LFIMG' ; 
+        VRKME: String(3)  @title: 'VRKME' ; 
+        POSAR: String(1)  @title: 'POSAR' ; 
+        VGBEL: String(10)  @title: 'VGBEL' ; 
+        VGPOS: String(6)  @title: 'VGPOS' ; 
+        @Common.Text           : LFART_VTEXT
+        @Common.TextArrangement: #TextLast
+        LFART: String(4)  @title: 'LFART' ; 
+        @Common.TextFor
+        LFART_VTEXT: String(20)  @title: 'LFART_VTEXT' ; 
+        LFDAT_DATE: Date  @title: 'LFDAT' ; 
+        TRAID: String(20)  @title: 'TRAID' ; 
+        ZZ0S2BLNR: String(30)  @title: 'ZZ0S2BLNR' ; 
+        PEND_DEL_QUAN: String(500)  @title: 'PEND_DEL_QUAN' ;
+        salesorder: Association to one SALESORDER_DETAILS on $self.VBELN = salesorder.VBELN and $self.POSNR = salesorder.POSNR
 }
 
-@cds.persistence.exists
-entity VALUEHELPS {
-      virtual id                : String;
-       key![SalesOrder]             : String(50);
-       key![SalesOrderItem]         : String(6);
-       key![CreatedOn]              : Date;
-              @Common.Text           : MaterialName
-              @Common.TextArrangement: #TextLast
-       key![MaterialNo]             : String(18);
-              @Common.TextFor
-       key![MaterialName]           : String(40);
-              @Common.Text           : SoldtoPartyName
-              @Common.TextArrangement: #TextLast
-       key![SoldToParty]            : String(10);
-              @Common.TextFor
-       key![SoldtoPartyName]        : String(40);
-              @Common.Text           : ShipToPartyName
-              @Common.TextArrangement: #TextLast
-       key![ShipToParty]            : String(10);
-              @Common.TextFor
-       key![ShipToPartyName]        : String(40);
-       key![CustomerReference]      : String(35);
-              @Common.Text           : SalesOrgName
-              @Common.TextArrangement: #TextLast
-       key![SalesOrg]               : String(4);
-              @Common.TextFor
-       key![SalesOrgName]           : String(20);
-       key![Note]                   : String(255);
-       key![RequestedDelDate]       : Date;
-       key![RequestedQuantity]      : Decimal(15, 3);
-          ![RequestedQuantityUnit]  : String(3);
-       key![Plant]                  : String(4);
-              @Common.Text           : OrderTypeDesc
-              @Common.TextArrangement: #TextLast
-       key![OrderType]              : String(4);
-              @Common.TextFor
-       key![OrderTypeDesc]          : String(20);
-              @Common.Text           : POTypeDesc
-              @Common.TextArrangement: #TextLast
-       key![POType]                 : String(4);
-              @Common.TextFor
-       key![POTypeDesc]             : String(20);
-       key![Incoterm1]              : String(3);
-       key![Incoterm2]              : String(28);
-       key![PaymentTerm]            : String(4);
-              @Common.Text           : VEPartnerName
-              @Common.TextArrangement: #TextLast
-       key![VEPartner]              : String(8);
-              @Common.TextFor
-       key![VEPartnerName]          : String(40);
-              @Common.Text           : ASPartnerName
-              @Common.TextArrangement: #TextLast
-       key![ASPartner]              : String(8);
-              @Common.TextFor
-       key![ASPartnerName]          : String(40);
-       key![DIFF_CONF_REQ_DATE]     : String(8);
-       key![GROUP_COMPANY]          : String(1);
-              @Common.Text           : SUPPLY_POINT_DESC
-              @Common.TextArrangement: #TextLast
-       key![SUPPLY_POINT]           : String(4);
-              @Common.TextFor
-          ![SUPPLY_POINT_DESC]      : String(30);
-       key![CUSTOMER_PRIORITY]      : String(30);
-       key![TM_DOC_NO]              : String(10);
-       key![FORWARDER_NAME]         : String(35);
-       key![VESSEL_NAME]            : String(35);
-       key![CONTAINER_NO]           : String(20);
-       key![ShipmentETA]            : Date;
-       key![ShipmentETD]            : Date;
-       key![ConfDelDate]            : Date;
-       key![SHIPPING_TYPE]          : String(2);
-       key![SHIP_TYPE_DESC]         : String(20);
-       key![LoadingDate]            : Date;
-       key![SHIP_STAT_DESC]         : String(255);
-       key![SHIP_STATR_DESC]        : String(255);
-       key![REQ_TEXT]               : String(250);
-       key![BILLING_BLOCK_ITEM]     : String(250);
-       key![DOCUMENT_TYPE]          : String(1);
-       key![GUSCON_LEVEL]           : String(2);
-       key![LEVEL_TYPE]             : String(7);
-       key![SORT_ORDER]             : Integer;
-       key![ORDER_STATUS]           : String(12);
-       key![DISTRIBUTION_CHANNEL]   : String(2);
-       key![DELIVERY]               : String(10);
-       key![SBU]                    : String(18);
-       key![PlannedDelDate]         : Date;
-       key![SORT_ORDER1]            : Integer;
-       key![INITIAL_ORDER]          : String(10);
-       key![NEXT_ORDER]             : String(10);
-       key![FINAL_ORDER]            : String(10);
-       key![STATUS_BIZAGI]          : String(100);
-       key![FA_TRACKING_ID]         : String(35);
-       key![TRACKING_ID]            : String(12);
-       key![LC_NUMBER]              : String(10);
-       key![CUSTOMER_MAT_REFERENCE] : String(100);
-       key![CONFIRMED_QUANTITY]     : Decimal(15, 3);
-       key![PENDING_DEL_QTY]        : Decimal(15, 3);
-       key![PENDING_DEL_QTY_UNIT]   : String(3);
-       key![UNCONFIRMED_QUANTITY]   : Decimal(15, 3);
-       key![DELIVERY_TYPE]          : String(4);
-       key![DELIVERY_TYPE_DESC]     : String(40);
-       key![STORAGE_LOCATION]       : String(4);
-       key![SUPPLYING_PLANT]        : String(4);
-       key![SELLING_INVOICE]        : String(10);
-       key![CREATION_DATE]          : Date;
-       key![SHIP_TO_COUNTRY_NAME]   : String(25);
-       key![SUPPLY_SITUATION]       : String(50);
-       key![DELIVERY_QTY]           : Decimal(15, 3);
-       key![SUPPLIER_PO]            : String(35);
-       key![COM_TRACKING_ID]        : String(50);
-       key![PRICING_DATE]           : Date;
-       key![BILLING_DOCUMENT]       : String(10);
-       key![DEL_QTY_UNIT]           : String(3);
-          @Common.Text           : CO_PARTNER_NAME
-            @Common.TextArrangement: #TextLast
-       key![CO_PARTNER]             : String(10);
-            @Common.TextFor
-       key![CO_PARTNER_NAME]        : String(40);
-            @Common.Text           : NY_PARTNER_NAME
-            @Common.TextArrangement: #TextLast
-       key![NY_PARTNER]             : String(10);
-            @Common.TextFor
-       key![NY_PARTNER_NAME]        : String(40);
-       key![SHIPMNT_ATA]            : Date;
-       key![SHIPMNT_ATD]            : Date;
-       key![ShipmentATA]            : Date;
-       key![ShipmentATD]            : Date;
-       key![BATCH_NUMBER]           : String(10);
-       key![DATE_OF_MANUF]          : Date;
-       key![SHELF_LIFE_EXP_DATE]    : Date;
-       key![NOTA_FISCAL]            : String(16);
-              @Common.Text           : AM_PARTNER_NAME
-              @Common.TextArrangement: #TextLast
-       key![AM_PARTNER]             : String(10);
-              @Common.TextFor
-       key![AM_PARTNER_NAME]        : String(40);
-       key![NET_AMOUNT]             : String(25);
-       key![PRICE_PER_UNIT]         : String(30);
-       key![MRP_CONTROLLER]         : String(3);
-       key![ITEM_CATEGORY]          : String(30);
-       key![ITEM_CATEGORY_DESC]     : String(30);
-       key![HOM_REMARK]             : String;
-       key![SHIP_TO_CITY_NAME]      : String(40);
-       key![PROD_ALLOC]             : String(18);
+@cds.persistence.exists 
+@cds.persistence.calcview 
+entity ![CV_NOTES] {
+        UTCTIME: Decimal(15)  @title: 'UTCTIME' ; 
+        VBELN: String(10)  @title: 'VBELN' ; 
+        POSNR: String(6)  @title: 'POSNR' ; 
+        LANGUAGE: String(2)  @title: 'LANGUAGE' ; 
+        NOTE_TEXT: String(1000)  @title: 'NOTE_TEXT' ; 
+        salesorder: Association to one SALESORDER_DETAILS on $self.VBELN = salesorder.VBELN and $self.POSNR = salesorder.POSNR
+}
+
+@cds.persistence.exists 
+entity ![ST_NOTES] {
+        ID: Integer64  @title: 'ID' ;
+        CLIENT: String(3) @title:'Client';
+        VBELN: String(10)  @title: 'VBELN' ; 
+        POSNR: String(6)  @title: 'POSNR' ; 
+        UTCTIME: Decimal(15) not null  @title: 'UTCTIME' ; 
+        LANGUAGE: String(2)  @title: 'LANGUAGE' ; 
+        NOTE_TITLE: String(60)  @title: 'NOTE_TITLE' ; 
+        NOTE_TEXT: String(1000)  @title: 'NOTE_TEXT' ; 
 }

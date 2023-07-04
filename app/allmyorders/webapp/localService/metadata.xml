@@ -19,594 +19,316 @@
 <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
 <EntitySet Name="Results" EntityType="srvOpenOrders.Results"/>
 <EntitySet Name="valueHelps" EntityType="srvOpenOrders.valueHelps"/>
+<EntitySet Name="notes" EntityType="srvOpenOrders.notes"/>
+<EntitySet Name="DELIVERY_DETAILS" EntityType="srvOpenOrders.DELIVERY_DETAILS"/>
+<EntitySet Name="CV_NOTES" EntityType="srvOpenOrders.CV_NOTES"/>
+<AssociationSet Name="Results_delivery" Association="srvOpenOrders.Results_delivery">
+<End Role="Results" EntitySet="Results"/>
+<End Role="DELIVERY_DETAILS" EntitySet="DELIVERY_DETAILS"/>
+</AssociationSet>
+<AssociationSet Name="Results_notes" Association="srvOpenOrders.Results_notes">
+<End Role="Results" EntitySet="Results"/>
+<End Role="CV_NOTES" EntitySet="CV_NOTES"/>
+</AssociationSet>
+<AssociationSet Name="valueHelps_delivery" Association="srvOpenOrders.valueHelps_delivery">
+<End Role="valueHelps" EntitySet="valueHelps"/>
+<End Role="DELIVERY_DETAILS" EntitySet="DELIVERY_DETAILS"/>
+</AssociationSet>
+<AssociationSet Name="valueHelps_notes" Association="srvOpenOrders.valueHelps_notes">
+<End Role="valueHelps" EntitySet="valueHelps"/>
+<End Role="CV_NOTES" EntitySet="CV_NOTES"/>
+</AssociationSet>
+<AssociationSet Name="DELIVERY_DETAILS_salesorder" Association="srvOpenOrders.DELIVERY_DETAILS_salesorder">
+<End Role="DELIVERY_DETAILS" EntitySet="DELIVERY_DETAILS"/>
+<End Role="Results" EntitySet="Results"/>
+</AssociationSet>
+<AssociationSet Name="CV_NOTES_salesorder" Association="srvOpenOrders.CV_NOTES_salesorder">
+<End Role="CV_NOTES" EntitySet="CV_NOTES"/>
+<End Role="Results" EntitySet="Results"/>
+</AssociationSet>
 </EntityContainer>
 <EntityType Name="Results">
 <Key>
-<PropertyRef Name="SalesOrder"/>
-<PropertyRef Name="SalesOrderItem"/>
-<PropertyRef Name="CreatedOn"/>
-<PropertyRef Name="MaterialNo"/>
-<PropertyRef Name="MaterialName"/>
-<PropertyRef Name="SoldToParty"/>
-<PropertyRef Name="SoldtoPartyName"/>
-<PropertyRef Name="ShipToParty"/>
-<PropertyRef Name="ShipToPartyName"/>
-<PropertyRef Name="CustomerReference"/>
-<PropertyRef Name="SalesOrg"/>
-<PropertyRef Name="SalesOrgName"/>
-<PropertyRef Name="Note"/>
-<PropertyRef Name="RequestedDelDate"/>
-<PropertyRef Name="RequestedQuantity"/>
-<PropertyRef Name="Plant"/>
-<PropertyRef Name="OrderType"/>
-<PropertyRef Name="OrderTypeDesc"/>
-<PropertyRef Name="POType"/>
-<PropertyRef Name="POTypeDesc"/>
-<PropertyRef Name="Incoterm1"/>
-<PropertyRef Name="Incoterm2"/>
-<PropertyRef Name="PaymentTerm"/>
-<PropertyRef Name="VEPartner"/>
-<PropertyRef Name="VEPartnerName"/>
-<PropertyRef Name="ASPartner"/>
-<PropertyRef Name="ASPartnerName"/>
-<PropertyRef Name="DIFF_CONF_REQ_DATE"/>
-<PropertyRef Name="GROUP_COMPANY"/>
-<PropertyRef Name="SUPPLY_POINT"/>
-<PropertyRef Name="CUSTOMER_PRIORITY"/>
-<PropertyRef Name="TM_DOC_NO"/>
-<PropertyRef Name="FORWARDER_NAME"/>
-<PropertyRef Name="VESSEL_NAME"/>
-<PropertyRef Name="CONTAINER_NO"/>
-<PropertyRef Name="ShipmentETA"/>
-<PropertyRef Name="ShipmentETD"/>
-<PropertyRef Name="ConfDelDate"/>
-<PropertyRef Name="SHIPPING_TYPE"/>
-<PropertyRef Name="SHIP_TYPE_DESC"/>
-<PropertyRef Name="LoadingDate"/>
-<PropertyRef Name="SHIP_STAT_DESC"/>
-<PropertyRef Name="SHIP_STATR_DESC"/>
-<PropertyRef Name="REQ_TEXT"/>
-<PropertyRef Name="BILLING_BLOCK_ITEM"/>
-<PropertyRef Name="DOCUMENT_TYPE"/>
-<PropertyRef Name="GUSCON_LEVEL"/>
-<PropertyRef Name="LEVEL_TYPE"/>
-<PropertyRef Name="SORT_ORDER"/>
-<PropertyRef Name="ORDER_STATUS"/>
-<PropertyRef Name="DISTRIBUTION_CHANNEL"/>
-<PropertyRef Name="DELIVERY"/>
-<PropertyRef Name="SBU"/>
-<PropertyRef Name="PlannedDelDate"/>
-<PropertyRef Name="SORT_ORDER1"/>
-<PropertyRef Name="INITIAL_ORDER"/>
-<PropertyRef Name="NEXT_ORDER"/>
-<PropertyRef Name="FINAL_ORDER"/>
-<PropertyRef Name="STATUS_BIZAGI"/>
-<PropertyRef Name="FA_TRACKING_ID"/>
-<PropertyRef Name="TRACKING_ID"/>
-<PropertyRef Name="LC_NUMBER"/>
-<PropertyRef Name="CUSTOMER_MAT_REFERENCE"/>
-<PropertyRef Name="CONFIRMED_QUANTITY"/>
-<PropertyRef Name="PENDING_DEL_QTY"/>
-<PropertyRef Name="PENDING_DEL_QTY_UNIT"/>
-<PropertyRef Name="UNCONFIRMED_QUANTITY"/>
-<PropertyRef Name="DELIVERY_TYPE"/>
-<PropertyRef Name="STORAGE_LOCATION"/>
-<PropertyRef Name="SUPPLYING_PLANT"/>
-<PropertyRef Name="SELLING_INVOICE"/>
-<PropertyRef Name="CREATION_DATE"/>
-<PropertyRef Name="SHIP_TO_COUNTRY_NAME"/>
-<PropertyRef Name="SUPPLY_SITUATION"/>
-<PropertyRef Name="DELIVERY_QTY"/>
-<PropertyRef Name="SUPPLIER_PO"/>
-<PropertyRef Name="COM_TRACKING_ID"/>
-<PropertyRef Name="PRICING_DATE"/>
-<PropertyRef Name="BILLING_DOCUMENT"/>
-<PropertyRef Name="DEL_QTY_UNIT"/>
-<PropertyRef Name="CO_PARTNER"/>
-<PropertyRef Name="CO_PARTNER_NAME"/>
-<PropertyRef Name="NY_PARTNER"/>
-<PropertyRef Name="NY_PARTNER_NAME"/>
-<PropertyRef Name="SHIPMNT_ATA"/>
-<PropertyRef Name="SHIPMNT_ATD"/>
-<PropertyRef Name="ShipmentATA"/>
-<PropertyRef Name="ShipmentATD"/>
-<PropertyRef Name="BATCH_NUMBER"/>
-<PropertyRef Name="DATE_OF_MANUF"/>
-<PropertyRef Name="SHELF_LIFE_EXP_DATE"/>
-<PropertyRef Name="NOTA_FISCAL"/>
-<PropertyRef Name="AM_PARTNER"/>
-<PropertyRef Name="AM_PARTNER_NAME"/>
-<PropertyRef Name="NET_AMOUNT"/>
-<PropertyRef Name="PRICE_PER_UNIT"/>
-<PropertyRef Name="MRP_CONTROLLER"/>
-<PropertyRef Name="ITEM_CATEGORY"/>
-<PropertyRef Name="HOM_REMARK"/>
-<PropertyRef Name="SHIP_TO_CITY_NAME"/>
-<PropertyRef Name="PROD_ALLOC"/>
+<PropertyRef Name="id"/>
 </Key>
-<Property Name="id" Type="Edm.String"/>
-<Property Name="SalesOrder" Type="Edm.String" MaxLength="50" Nullable="false"/>
-<Property Name="SalesOrderItem" Type="Edm.String" MaxLength="6" Nullable="false"/>
-<Property Name="CreatedOn" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="MaterialNo" Type="Edm.String" MaxLength="18" Nullable="false"/>
-<Property Name="MaterialName" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="SoldToParty" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="SoldtoPartyName" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="ShipToParty" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="ShipToPartyName" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="CustomerReference" Type="Edm.String" MaxLength="35" Nullable="false"/>
-<Property Name="SalesOrg" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="SalesOrgName" Type="Edm.String" MaxLength="20" Nullable="false"/>
-<Property Name="Note" Type="Edm.String" MaxLength="255" Nullable="false"/>
-<Property Name="RequestedDelDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="RequestedQuantity" Type="Edm.Decimal" Scale="3" Precision="15" Nullable="false"/>
-<Property Name="RequestedQuantityUnit" Type="Edm.String" MaxLength="3"/>
-<Property Name="Plant" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="OrderType" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="OrderTypeDesc" Type="Edm.String" MaxLength="20" Nullable="false"/>
-<Property Name="POType" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="POTypeDesc" Type="Edm.String" MaxLength="20" Nullable="false"/>
-<Property Name="Incoterm1" Type="Edm.String" MaxLength="3" Nullable="false"/>
-<Property Name="Incoterm2" Type="Edm.String" MaxLength="28" Nullable="false"/>
-<Property Name="PaymentTerm" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="VEPartner" Type="Edm.String" MaxLength="8" Nullable="false"/>
-<Property Name="VEPartnerName" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="ASPartner" Type="Edm.String" MaxLength="8" Nullable="false"/>
-<Property Name="ASPartnerName" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="DIFF_CONF_REQ_DATE" Type="Edm.String" MaxLength="8" Nullable="false"/>
-<Property Name="GROUP_COMPANY" Type="Edm.String" MaxLength="1" Nullable="false"/>
-<Property Name="SUPPLY_POINT" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="SUPPLY_POINT_DESC" Type="Edm.String" MaxLength="30"/>
-<Property Name="CUSTOMER_PRIORITY" Type="Edm.String" MaxLength="30" Nullable="false"/>
-<Property Name="TM_DOC_NO" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="FORWARDER_NAME" Type="Edm.String" MaxLength="35" Nullable="false"/>
-<Property Name="VESSEL_NAME" Type="Edm.String" MaxLength="35" Nullable="false"/>
-<Property Name="CONTAINER_NO" Type="Edm.String" MaxLength="20" Nullable="false"/>
-<Property Name="ShipmentETA" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="ShipmentETD" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="ConfDelDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SHIPPING_TYPE" Type="Edm.String" MaxLength="2" Nullable="false"/>
-<Property Name="SHIP_TYPE_DESC" Type="Edm.String" MaxLength="20" Nullable="false"/>
-<Property Name="LoadingDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SHIP_STAT_DESC" Type="Edm.String" MaxLength="255" Nullable="false"/>
-<Property Name="SHIP_STATR_DESC" Type="Edm.String" MaxLength="255" Nullable="false"/>
-<Property Name="REQ_TEXT" Type="Edm.String" MaxLength="250" Nullable="false"/>
-<Property Name="BILLING_BLOCK_ITEM" Type="Edm.String" MaxLength="250" Nullable="false"/>
-<Property Name="DOCUMENT_TYPE" Type="Edm.String" MaxLength="1" Nullable="false"/>
-<Property Name="GUSCON_LEVEL" Type="Edm.String" MaxLength="2" Nullable="false"/>
-<Property Name="LEVEL_TYPE" Type="Edm.String" MaxLength="7" Nullable="false"/>
-<Property Name="SORT_ORDER" Type="Edm.Int32" Nullable="false"/>
-<Property Name="ORDER_STATUS" Type="Edm.String" MaxLength="12" Nullable="false"/>
-<Property Name="DISTRIBUTION_CHANNEL" Type="Edm.String" MaxLength="2" Nullable="false"/>
-<Property Name="DELIVERY" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="SBU" Type="Edm.String" MaxLength="18" Nullable="false"/>
-<Property Name="PlannedDelDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SORT_ORDER1" Type="Edm.Int32" Nullable="false"/>
-<Property Name="INITIAL_ORDER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="NEXT_ORDER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="FINAL_ORDER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="STATUS_BIZAGI" Type="Edm.String" MaxLength="100" Nullable="false"/>
-<Property Name="FA_TRACKING_ID" Type="Edm.String" MaxLength="35" Nullable="false"/>
-<Property Name="TRACKING_ID" Type="Edm.String" MaxLength="12" Nullable="false"/>
-<Property Name="LC_NUMBER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="CUSTOMER_MAT_REFERENCE" Type="Edm.String" MaxLength="100" Nullable="false"/>
-<Property Name="CONFIRMED_QUANTITY" Type="Edm.Decimal" Scale="3" Precision="15" Nullable="false"/>
-<Property Name="PENDING_DEL_QTY" Type="Edm.Decimal" Scale="3" Precision="15" Nullable="false"/>
-<Property Name="PENDING_DEL_QTY_UNIT" Type="Edm.String" MaxLength="3" Nullable="false"/>
-<Property Name="UNCONFIRMED_QUANTITY" Type="Edm.Decimal" Scale="3" Precision="15" Nullable="false"/>
-<Property Name="DELIVERY_TYPE" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="STORAGE_LOCATION" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="SUPPLYING_PLANT" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="SELLING_INVOICE" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="CREATION_DATE" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SHIP_TO_COUNTRY_NAME" Type="Edm.String" MaxLength="25" Nullable="false"/>
-<Property Name="SUPPLY_SITUATION" Type="Edm.String" MaxLength="50" Nullable="false"/>
-<Property Name="DELIVERY_QTY" Type="Edm.Decimal" Scale="3" Precision="15" Nullable="false"/>
-<Property Name="SUPPLIER_PO" Type="Edm.String" MaxLength="35" Nullable="false"/>
-<Property Name="COM_TRACKING_ID" Type="Edm.String" MaxLength="50" Nullable="false"/>
-<Property Name="PRICING_DATE" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="BILLING_DOCUMENT" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="DEL_QTY_UNIT" Type="Edm.String" MaxLength="3" Nullable="false"/>
-<Property Name="CO_PARTNER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="CO_PARTNER_NAME" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="NY_PARTNER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="NY_PARTNER_NAME" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="SHIPMNT_ATA" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SHIPMNT_ATD" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="ShipmentATA" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="ShipmentATD" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="BATCH_NUMBER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="DATE_OF_MANUF" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SHELF_LIFE_EXP_DATE" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="NOTA_FISCAL" Type="Edm.String" MaxLength="16" Nullable="false"/>
-<Property Name="AM_PARTNER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="AM_PARTNER_NAME" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="NET_AMOUNT" Type="Edm.String" MaxLength="25" Nullable="false"/>
-<Property Name="PRICE_PER_UNIT" Type="Edm.String" MaxLength="30" Nullable="false"/>
-<Property Name="MRP_CONTROLLER" Type="Edm.String" MaxLength="3" Nullable="false"/>
-<Property Name="ITEM_CATEGORY" Type="Edm.String" MaxLength="30" Nullable="false"/>
-<Property Name="HOM_REMARK" Type="Edm.String" Nullable="false"/>
-<Property Name="SHIP_TO_CITY_NAME" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="PROD_ALLOC" Type="Edm.String" MaxLength="18" Nullable="false"/>
+<Property Name="id" Type="Edm.Guid" Nullable="false"/>
+<Property Name="MANDT" Type="Edm.String" MaxLength="3"/>
+<Property Name="VBELN" Type="Edm.String" MaxLength="10"/>
+<Property Name="POSNR" Type="Edm.String" MaxLength="6"/>
+<Property Name="ERDAT_ORDER_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="ERDAT_ITEM_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="AUART" Type="Edm.String" MaxLength="4"/>
+<Property Name="WERKS" Type="Edm.String" MaxLength="4"/>
+<Property Name="VTWEG" Type="Edm.String" MaxLength="2"/>
+<Property Name="MATNR" Type="Edm.String" MaxLength="18"/>
+<Property Name="MAKTX" Type="Edm.String" MaxLength="40"/>
+<Property Name="KDMAT" Type="Edm.String" MaxLength="35"/>
+<Property Name="BSTNK" Type="Edm.String" MaxLength="20"/>
+<Property Name="AG_PARTNER" Type="Edm.String" MaxLength="10"/>
+<Property Name="WE_PARTNER" Type="Edm.String" MaxLength="10"/>
+<Property Name="LAND1" Type="Edm.String" MaxLength="3"/>
+<Property Name="LANDX" Type="Edm.String" MaxLength="15"/>
+<Property Name="ORT01" Type="Edm.String" MaxLength="35"/>
+<Property Name="VKORG" Type="Edm.String" MaxLength="4"/>
+<Property Name="VKORG_NAME1" Type="Edm.String" MaxLength="40"/>
+<Property Name="KNREF_HEAD" Type="Edm.String" MaxLength="30"/>
+<Property Name="KNREF_ITM" Type="Edm.String" MaxLength="30"/>
+<Property Name="VBUND" Type="Edm.String" MaxLength="6"/>
+<Property Name="EDATU_REQUESTED_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="KWMENG" Type="Edm.Decimal" Scale="3" Precision="15"/>
+<Property Name="VRKME" Type="Edm.String" MaxLength="3"/>
+<Property Name="EDATU_CONFIRMED_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="KBMENG" Type="Edm.Decimal" Scale="3" Precision="15"/>
+<Property Name="LDDAT_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="UNCONFIRMED_QTY" Type="Edm.Decimal" Scale="3" Precision="15"/>
+<Property Name="REQ_TEXT" Type="Edm.String" MaxLength="250"/>
+<Property Name="FAKSP" Type="Edm.String" MaxLength="2"/>
+<Property Name="FAKSP_VTEXT" Type="Edm.String" MaxLength="20"/>
+<Property Name="LGORT" Type="Edm.String" MaxLength="4"/>
+<Property Name="SUPPLY_SITUATION" Type="Edm.Int16"/>
+<Property Name="SUPPLY_SITUATION_DESCR" Type="Edm.String" MaxLength="60"/>
+<Property Name="KBETR" Type="Edm.Decimal" Scale="2" Precision="11"/>
+<Property Name="WAERS" Type="Edm.String" MaxLength="5"/>
+<Property Name="KPEIN" Type="Edm.Decimal" Precision="5"/>
+<Property Name="KMEIN" Type="Edm.String" MaxLength="3"/>
+<Property Name="NETWR" Type="Edm.Decimal" Scale="2" Precision="15"/>
+<Property Name="WAERK" Type="Edm.String" MaxLength="5"/>
+<Property Name="HTEXT" Type="Edm.String" MaxLength="4000"/>
+<Property Name="PSTYV" Type="Edm.String" MaxLength="4"/>
+<Property Name="PSTYV_VTEXT" Type="Edm.String" MaxLength="20"/>
+<Property Name="DISPO" Type="Edm.String" MaxLength="3"/>
+<Property Name="KOSCH" Type="Edm.String" MaxLength="18"/>
+<Property Name="VKBUR" Type="Edm.String" MaxLength="4"/>
+<Property Name="VKBUR_BEZEI" Type="Edm.String" MaxLength="20"/>
+<Property Name="ABGRU" Type="Edm.String" MaxLength="2"/>
+<Property Name="ABSTA" Type="Edm.String" MaxLength="1"/>
+<Property Name="KNUMV" Type="Edm.String" MaxLength="10"/>
+<Property Name="SPART" Type="Edm.String" MaxLength="2"/>
+<Property Name="CO_PARTNER" Type="Edm.String" MaxLength="10"/>
+<Property Name="CO_PARTNER_NAME" Type="Edm.String" MaxLength="70"/>
+<Property Name="NY_PARTNER" Type="Edm.String" MaxLength="10"/>
+<Property Name="NY_PARTNER_NAME" Type="Edm.String" MaxLength="70"/>
+<Property Name="AS_PARTNER" Type="Edm.String" MaxLength="8"/>
+<Property Name="AS_PARTNER_NAME" Type="Edm.String" MaxLength="40"/>
+<Property Name="VE_PARTNER" Type="Edm.String" MaxLength="8"/>
+<Property Name="VE_PARTNER_NAME" Type="Edm.String" MaxLength="40"/>
+<Property Name="AM_PARTNER" Type="Edm.String" MaxLength="8"/>
+<Property Name="AM_PARTNER_NAME" Type="Edm.String" MaxLength="40"/>
+<Property Name="AG_PARTNER_NAME" Type="Edm.String" MaxLength="70"/>
+<Property Name="WE_PARTNER_NAME" Type="Edm.String" MaxLength="70"/>
+<NavigationProperty Name="delivery" Relationship="srvOpenOrders.Results_delivery" FromRole="Results" ToRole="DELIVERY_DETAILS"/>
+<NavigationProperty Name="notes" Relationship="srvOpenOrders.Results_notes" FromRole="Results" ToRole="CV_NOTES"/>
+<Property Name="VBELN_DEL" Type="Edm.String" MaxLength="10"/>
+<Property Name="POSNR_DEL" Type="Edm.String" MaxLength="6"/>
+<Property Name="CHARG" Type="Edm.String" MaxLength="10"/>
+<Property Name="LFIMG" Type="Edm.Decimal" Scale="3" Precision="13"/>
+<Property Name="VRKME_DEL" Type="Edm.String" MaxLength="3"/>
+<Property Name="POSAR" Type="Edm.String" MaxLength="1"/>
+<Property Name="VGBEL" Type="Edm.String" MaxLength="10"/>
+<Property Name="VGPOS" Type="Edm.String" MaxLength="6"/>
+<Property Name="LFART" Type="Edm.String" MaxLength="4"/>
+<Property Name="LFART_VTEXT" Type="Edm.String" MaxLength="20"/>
+<Property Name="LFDAT_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="TRAID" Type="Edm.String" MaxLength="20"/>
+<Property Name="ZZ0S2BLNR" Type="Edm.String" MaxLength="30"/>
+<Property Name="PEND_DEL_QUAN" Type="Edm.String" MaxLength="500"/>
+<Property Name="LAST_NOTE" Type="Edm.String" MaxLength="1000"/>
 </EntityType>
 <EntityType Name="valueHelps">
 <Key>
-<PropertyRef Name="SalesOrder"/>
-<PropertyRef Name="SalesOrderItem"/>
-<PropertyRef Name="CreatedOn"/>
-<PropertyRef Name="MaterialNo"/>
-<PropertyRef Name="MaterialName"/>
-<PropertyRef Name="SoldToParty"/>
-<PropertyRef Name="SoldtoPartyName"/>
-<PropertyRef Name="ShipToParty"/>
-<PropertyRef Name="ShipToPartyName"/>
-<PropertyRef Name="CustomerReference"/>
-<PropertyRef Name="SalesOrg"/>
-<PropertyRef Name="SalesOrgName"/>
-<PropertyRef Name="Note"/>
-<PropertyRef Name="RequestedDelDate"/>
-<PropertyRef Name="RequestedQuantity"/>
-<PropertyRef Name="Plant"/>
-<PropertyRef Name="OrderType"/>
-<PropertyRef Name="OrderTypeDesc"/>
-<PropertyRef Name="POType"/>
-<PropertyRef Name="POTypeDesc"/>
-<PropertyRef Name="Incoterm1"/>
-<PropertyRef Name="Incoterm2"/>
-<PropertyRef Name="PaymentTerm"/>
-<PropertyRef Name="VEPartner"/>
-<PropertyRef Name="VEPartnerName"/>
-<PropertyRef Name="ASPartner"/>
-<PropertyRef Name="ASPartnerName"/>
-<PropertyRef Name="DIFF_CONF_REQ_DATE"/>
-<PropertyRef Name="GROUP_COMPANY"/>
-<PropertyRef Name="SUPPLY_POINT"/>
-<PropertyRef Name="CUSTOMER_PRIORITY"/>
-<PropertyRef Name="TM_DOC_NO"/>
-<PropertyRef Name="FORWARDER_NAME"/>
-<PropertyRef Name="VESSEL_NAME"/>
-<PropertyRef Name="CONTAINER_NO"/>
-<PropertyRef Name="ShipmentETA"/>
-<PropertyRef Name="ShipmentETD"/>
-<PropertyRef Name="ConfDelDate"/>
-<PropertyRef Name="SHIPPING_TYPE"/>
-<PropertyRef Name="SHIP_TYPE_DESC"/>
-<PropertyRef Name="LoadingDate"/>
-<PropertyRef Name="SHIP_STAT_DESC"/>
-<PropertyRef Name="SHIP_STATR_DESC"/>
-<PropertyRef Name="REQ_TEXT"/>
-<PropertyRef Name="BILLING_BLOCK_ITEM"/>
-<PropertyRef Name="DOCUMENT_TYPE"/>
-<PropertyRef Name="GUSCON_LEVEL"/>
-<PropertyRef Name="LEVEL_TYPE"/>
-<PropertyRef Name="SORT_ORDER"/>
-<PropertyRef Name="ORDER_STATUS"/>
-<PropertyRef Name="DISTRIBUTION_CHANNEL"/>
-<PropertyRef Name="DELIVERY"/>
-<PropertyRef Name="SBU"/>
-<PropertyRef Name="PlannedDelDate"/>
-<PropertyRef Name="SORT_ORDER1"/>
-<PropertyRef Name="INITIAL_ORDER"/>
-<PropertyRef Name="NEXT_ORDER"/>
-<PropertyRef Name="FINAL_ORDER"/>
-<PropertyRef Name="STATUS_BIZAGI"/>
-<PropertyRef Name="FA_TRACKING_ID"/>
-<PropertyRef Name="TRACKING_ID"/>
-<PropertyRef Name="LC_NUMBER"/>
-<PropertyRef Name="CUSTOMER_MAT_REFERENCE"/>
-<PropertyRef Name="CONFIRMED_QUANTITY"/>
-<PropertyRef Name="PENDING_DEL_QTY"/>
-<PropertyRef Name="PENDING_DEL_QTY_UNIT"/>
-<PropertyRef Name="UNCONFIRMED_QUANTITY"/>
-<PropertyRef Name="DELIVERY_TYPE"/>
-<PropertyRef Name="STORAGE_LOCATION"/>
-<PropertyRef Name="SUPPLYING_PLANT"/>
-<PropertyRef Name="SELLING_INVOICE"/>
-<PropertyRef Name="CREATION_DATE"/>
-<PropertyRef Name="SHIP_TO_COUNTRY_NAME"/>
-<PropertyRef Name="SUPPLY_SITUATION"/>
-<PropertyRef Name="DELIVERY_QTY"/>
-<PropertyRef Name="SUPPLIER_PO"/>
-<PropertyRef Name="COM_TRACKING_ID"/>
-<PropertyRef Name="PRICING_DATE"/>
-<PropertyRef Name="BILLING_DOCUMENT"/>
-<PropertyRef Name="DEL_QTY_UNIT"/>
-<PropertyRef Name="CO_PARTNER"/>
-<PropertyRef Name="CO_PARTNER_NAME"/>
-<PropertyRef Name="NY_PARTNER"/>
-<PropertyRef Name="NY_PARTNER_NAME"/>
-<PropertyRef Name="SHIPMNT_ATA"/>
-<PropertyRef Name="SHIPMNT_ATD"/>
-<PropertyRef Name="ShipmentATA"/>
-<PropertyRef Name="ShipmentATD"/>
-<PropertyRef Name="BATCH_NUMBER"/>
-<PropertyRef Name="DATE_OF_MANUF"/>
-<PropertyRef Name="SHELF_LIFE_EXP_DATE"/>
-<PropertyRef Name="NOTA_FISCAL"/>
-<PropertyRef Name="AM_PARTNER"/>
-<PropertyRef Name="AM_PARTNER_NAME"/>
-<PropertyRef Name="NET_AMOUNT"/>
-<PropertyRef Name="PRICE_PER_UNIT"/>
-<PropertyRef Name="MRP_CONTROLLER"/>
-<PropertyRef Name="ITEM_CATEGORY"/>
-<PropertyRef Name="HOM_REMARK"/>
-<PropertyRef Name="SHIP_TO_CITY_NAME"/>
-<PropertyRef Name="PROD_ALLOC"/>
+<PropertyRef Name="id"/>
 </Key>
-<Property Name="id" Type="Edm.String"/>
-<Property Name="SalesOrder" Type="Edm.String" MaxLength="50" Nullable="false"/>
-<Property Name="SalesOrderItem" Type="Edm.String" MaxLength="6" Nullable="false"/>
-<Property Name="CreatedOn" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="MaterialNo" Type="Edm.String" MaxLength="18" Nullable="false"/>
-<Property Name="MaterialName" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="SoldToParty" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="SoldtoPartyName" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="ShipToParty" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="ShipToPartyName" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="CustomerReference" Type="Edm.String" MaxLength="35" Nullable="false"/>
-<Property Name="SalesOrg" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="SalesOrgName" Type="Edm.String" MaxLength="20" Nullable="false"/>
-<Property Name="Note" Type="Edm.String" MaxLength="255" Nullable="false"/>
-<Property Name="RequestedDelDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="RequestedQuantity" Type="Edm.Decimal" Scale="3" Precision="15" Nullable="false"/>
-<Property Name="RequestedQuantityUnit" Type="Edm.String" MaxLength="3"/>
-<Property Name="Plant" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="OrderType" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="OrderTypeDesc" Type="Edm.String" MaxLength="20" Nullable="false"/>
-<Property Name="POType" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="POTypeDesc" Type="Edm.String" MaxLength="20" Nullable="false"/>
-<Property Name="Incoterm1" Type="Edm.String" MaxLength="3" Nullable="false"/>
-<Property Name="Incoterm2" Type="Edm.String" MaxLength="28" Nullable="false"/>
-<Property Name="PaymentTerm" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="VEPartner" Type="Edm.String" MaxLength="8" Nullable="false"/>
-<Property Name="VEPartnerName" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="ASPartner" Type="Edm.String" MaxLength="8" Nullable="false"/>
-<Property Name="ASPartnerName" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="DIFF_CONF_REQ_DATE" Type="Edm.String" MaxLength="8" Nullable="false"/>
-<Property Name="GROUP_COMPANY" Type="Edm.String" MaxLength="1" Nullable="false"/>
-<Property Name="SUPPLY_POINT" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="SUPPLY_POINT_DESC" Type="Edm.String" MaxLength="30"/>
-<Property Name="CUSTOMER_PRIORITY" Type="Edm.String" MaxLength="30" Nullable="false"/>
-<Property Name="TM_DOC_NO" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="FORWARDER_NAME" Type="Edm.String" MaxLength="35" Nullable="false"/>
-<Property Name="VESSEL_NAME" Type="Edm.String" MaxLength="35" Nullable="false"/>
-<Property Name="CONTAINER_NO" Type="Edm.String" MaxLength="20" Nullable="false"/>
-<Property Name="ShipmentETA" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="ShipmentETD" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="ConfDelDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SHIPPING_TYPE" Type="Edm.String" MaxLength="2" Nullable="false"/>
-<Property Name="SHIP_TYPE_DESC" Type="Edm.String" MaxLength="20" Nullable="false"/>
-<Property Name="LoadingDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SHIP_STAT_DESC" Type="Edm.String" MaxLength="255" Nullable="false"/>
-<Property Name="SHIP_STATR_DESC" Type="Edm.String" MaxLength="255" Nullable="false"/>
-<Property Name="REQ_TEXT" Type="Edm.String" MaxLength="250" Nullable="false"/>
-<Property Name="BILLING_BLOCK_ITEM" Type="Edm.String" MaxLength="250" Nullable="false"/>
-<Property Name="DOCUMENT_TYPE" Type="Edm.String" MaxLength="1" Nullable="false"/>
-<Property Name="GUSCON_LEVEL" Type="Edm.String" MaxLength="2" Nullable="false"/>
-<Property Name="LEVEL_TYPE" Type="Edm.String" MaxLength="7" Nullable="false"/>
-<Property Name="SORT_ORDER" Type="Edm.Int32" Nullable="false"/>
-<Property Name="ORDER_STATUS" Type="Edm.String" MaxLength="12" Nullable="false"/>
-<Property Name="DISTRIBUTION_CHANNEL" Type="Edm.String" MaxLength="2" Nullable="false"/>
-<Property Name="DELIVERY" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="SBU" Type="Edm.String" MaxLength="18" Nullable="false"/>
-<Property Name="PlannedDelDate" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SORT_ORDER1" Type="Edm.Int32" Nullable="false"/>
-<Property Name="INITIAL_ORDER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="NEXT_ORDER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="FINAL_ORDER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="STATUS_BIZAGI" Type="Edm.String" MaxLength="100" Nullable="false"/>
-<Property Name="FA_TRACKING_ID" Type="Edm.String" MaxLength="35" Nullable="false"/>
-<Property Name="TRACKING_ID" Type="Edm.String" MaxLength="12" Nullable="false"/>
-<Property Name="LC_NUMBER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="CUSTOMER_MAT_REFERENCE" Type="Edm.String" MaxLength="100" Nullable="false"/>
-<Property Name="CONFIRMED_QUANTITY" Type="Edm.Decimal" Scale="3" Precision="15" Nullable="false"/>
-<Property Name="PENDING_DEL_QTY" Type="Edm.Decimal" Scale="3" Precision="15" Nullable="false"/>
-<Property Name="PENDING_DEL_QTY_UNIT" Type="Edm.String" MaxLength="3" Nullable="false"/>
-<Property Name="UNCONFIRMED_QUANTITY" Type="Edm.Decimal" Scale="3" Precision="15" Nullable="false"/>
-<Property Name="DELIVERY_TYPE" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="STORAGE_LOCATION" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="SUPPLYING_PLANT" Type="Edm.String" MaxLength="4" Nullable="false"/>
-<Property Name="SELLING_INVOICE" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="CREATION_DATE" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SHIP_TO_COUNTRY_NAME" Type="Edm.String" MaxLength="25" Nullable="false"/>
-<Property Name="SUPPLY_SITUATION" Type="Edm.String" MaxLength="50" Nullable="false"/>
-<Property Name="DELIVERY_QTY" Type="Edm.Decimal" Scale="3" Precision="15" Nullable="false"/>
-<Property Name="SUPPLIER_PO" Type="Edm.String" MaxLength="35" Nullable="false"/>
-<Property Name="COM_TRACKING_ID" Type="Edm.String" MaxLength="50" Nullable="false"/>
-<Property Name="PRICING_DATE" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="BILLING_DOCUMENT" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="DEL_QTY_UNIT" Type="Edm.String" MaxLength="3" Nullable="false"/>
-<Property Name="CO_PARTNER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="CO_PARTNER_NAME" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="NY_PARTNER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="NY_PARTNER_NAME" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="SHIPMNT_ATA" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SHIPMNT_ATD" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="ShipmentATA" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="ShipmentATD" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="BATCH_NUMBER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="DATE_OF_MANUF" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="SHELF_LIFE_EXP_DATE" Type="Edm.DateTime" Nullable="false" sap:display-format="Date"/>
-<Property Name="NOTA_FISCAL" Type="Edm.String" MaxLength="16" Nullable="false"/>
-<Property Name="AM_PARTNER" Type="Edm.String" MaxLength="10" Nullable="false"/>
-<Property Name="AM_PARTNER_NAME" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="NET_AMOUNT" Type="Edm.String" MaxLength="25" Nullable="false"/>
-<Property Name="PRICE_PER_UNIT" Type="Edm.String" MaxLength="30" Nullable="false"/>
-<Property Name="MRP_CONTROLLER" Type="Edm.String" MaxLength="3" Nullable="false"/>
-<Property Name="ITEM_CATEGORY" Type="Edm.String" MaxLength="30" Nullable="false"/>
-<Property Name="HOM_REMARK" Type="Edm.String" Nullable="false"/>
-<Property Name="SHIP_TO_CITY_NAME" Type="Edm.String" MaxLength="40" Nullable="false"/>
-<Property Name="PROD_ALLOC" Type="Edm.String" MaxLength="18" Nullable="false"/>
+<Property Name="id" Type="Edm.Guid" Nullable="false"/>
+<Property Name="MANDT" Type="Edm.String" MaxLength="3"/>
+<Property Name="VBELN" Type="Edm.String" MaxLength="10"/>
+<Property Name="POSNR" Type="Edm.String" MaxLength="6"/>
+<Property Name="ERDAT_ORDER_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="ERDAT_ITEM_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="AUART" Type="Edm.String" MaxLength="4"/>
+<Property Name="WERKS" Type="Edm.String" MaxLength="4"/>
+<Property Name="VTWEG" Type="Edm.String" MaxLength="2"/>
+<Property Name="MATNR" Type="Edm.String" MaxLength="18"/>
+<Property Name="MAKTX" Type="Edm.String" MaxLength="40"/>
+<Property Name="KDMAT" Type="Edm.String" MaxLength="35"/>
+<Property Name="BSTNK" Type="Edm.String" MaxLength="20"/>
+<Property Name="AG_PARTNER" Type="Edm.String" MaxLength="10"/>
+<Property Name="WE_PARTNER" Type="Edm.String" MaxLength="10"/>
+<Property Name="LAND1" Type="Edm.String" MaxLength="3"/>
+<Property Name="LANDX" Type="Edm.String" MaxLength="15"/>
+<Property Name="ORT01" Type="Edm.String" MaxLength="35"/>
+<Property Name="VKORG" Type="Edm.String" MaxLength="4"/>
+<Property Name="VKORG_NAME1" Type="Edm.String" MaxLength="40"/>
+<Property Name="KNREF_HEAD" Type="Edm.String" MaxLength="30"/>
+<Property Name="KNREF_ITM" Type="Edm.String" MaxLength="30"/>
+<Property Name="VBUND" Type="Edm.String" MaxLength="6"/>
+<Property Name="EDATU_REQUESTED_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="KWMENG" Type="Edm.Decimal" Scale="3" Precision="15"/>
+<Property Name="VRKME" Type="Edm.String" MaxLength="3"/>
+<Property Name="EDATU_CONFIRMED_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="KBMENG" Type="Edm.Decimal" Scale="3" Precision="15"/>
+<Property Name="LDDAT_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="UNCONFIRMED_QTY" Type="Edm.Decimal" Scale="3" Precision="15"/>
+<Property Name="REQ_TEXT" Type="Edm.String" MaxLength="250"/>
+<Property Name="FAKSP" Type="Edm.String" MaxLength="2"/>
+<Property Name="FAKSP_VTEXT" Type="Edm.String" MaxLength="20"/>
+<Property Name="LGORT" Type="Edm.String" MaxLength="4"/>
+<Property Name="SUPPLY_SITUATION" Type="Edm.Int16"/>
+<Property Name="SUPPLY_SITUATION_DESCR" Type="Edm.String" MaxLength="60"/>
+<Property Name="KBETR" Type="Edm.Decimal" Scale="2" Precision="11"/>
+<Property Name="WAERS" Type="Edm.String" MaxLength="5"/>
+<Property Name="KPEIN" Type="Edm.Decimal" Precision="5"/>
+<Property Name="KMEIN" Type="Edm.String" MaxLength="3"/>
+<Property Name="NETWR" Type="Edm.Decimal" Scale="2" Precision="15"/>
+<Property Name="WAERK" Type="Edm.String" MaxLength="5"/>
+<Property Name="HTEXT" Type="Edm.String" MaxLength="4000"/>
+<Property Name="PSTYV" Type="Edm.String" MaxLength="4"/>
+<Property Name="PSTYV_VTEXT" Type="Edm.String" MaxLength="20"/>
+<Property Name="DISPO" Type="Edm.String" MaxLength="3"/>
+<Property Name="KOSCH" Type="Edm.String" MaxLength="18"/>
+<Property Name="VKBUR" Type="Edm.String" MaxLength="4"/>
+<Property Name="VKBUR_BEZEI" Type="Edm.String" MaxLength="20"/>
+<Property Name="ABGRU" Type="Edm.String" MaxLength="2"/>
+<Property Name="ABSTA" Type="Edm.String" MaxLength="1"/>
+<Property Name="KNUMV" Type="Edm.String" MaxLength="10"/>
+<Property Name="SPART" Type="Edm.String" MaxLength="2"/>
+<Property Name="CO_PARTNER" Type="Edm.String" MaxLength="10"/>
+<Property Name="CO_PARTNER_NAME" Type="Edm.String" MaxLength="70"/>
+<Property Name="NY_PARTNER" Type="Edm.String" MaxLength="10"/>
+<Property Name="NY_PARTNER_NAME" Type="Edm.String" MaxLength="70"/>
+<Property Name="AS_PARTNER" Type="Edm.String" MaxLength="8"/>
+<Property Name="AS_PARTNER_NAME" Type="Edm.String" MaxLength="40"/>
+<Property Name="VE_PARTNER" Type="Edm.String" MaxLength="8"/>
+<Property Name="VE_PARTNER_NAME" Type="Edm.String" MaxLength="40"/>
+<Property Name="AM_PARTNER" Type="Edm.String" MaxLength="8"/>
+<Property Name="AM_PARTNER_NAME" Type="Edm.String" MaxLength="40"/>
+<Property Name="AG_PARTNER_NAME" Type="Edm.String" MaxLength="70"/>
+<Property Name="WE_PARTNER_NAME" Type="Edm.String" MaxLength="70"/>
+<NavigationProperty Name="delivery" Relationship="srvOpenOrders.valueHelps_delivery" FromRole="valueHelps" ToRole="DELIVERY_DETAILS"/>
+<NavigationProperty Name="notes" Relationship="srvOpenOrders.valueHelps_notes" FromRole="valueHelps" ToRole="CV_NOTES"/>
+<Property Name="VBELN_DEL" Type="Edm.String" MaxLength="10"/>
+<Property Name="POSNR_DEL" Type="Edm.String" MaxLength="6"/>
+<Property Name="CHARG" Type="Edm.String" MaxLength="10"/>
+<Property Name="LFIMG" Type="Edm.Decimal" Scale="3" Precision="13"/>
+<Property Name="VRKME_DEL" Type="Edm.String" MaxLength="3"/>
+<Property Name="POSAR" Type="Edm.String" MaxLength="1"/>
+<Property Name="VGBEL" Type="Edm.String" MaxLength="10"/>
+<Property Name="VGPOS" Type="Edm.String" MaxLength="6"/>
+<Property Name="LFART" Type="Edm.String" MaxLength="4"/>
+<Property Name="LFART_VTEXT" Type="Edm.String" MaxLength="20"/>
+<Property Name="LFDAT_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="TRAID" Type="Edm.String" MaxLength="20"/>
+<Property Name="ZZ0S2BLNR" Type="Edm.String" MaxLength="30"/>
+<Property Name="PEND_DEL_QUAN" Type="Edm.String" MaxLength="500"/>
+<Property Name="LAST_NOTE" Type="Edm.String" MaxLength="1000"/>
 </EntityType>
+<EntityType Name="notes">
+<Key>
+<PropertyRef Name="CLIENT"/>
+<PropertyRef Name="ID"/>
+<PropertyRef Name="VBELN"/>
+<PropertyRef Name="POSNR"/>
+</Key>
+<Property Name="CLIENT" Type="Edm.String" MaxLength="3" Nullable="false"/>
+<Property Name="ID" Type="Edm.Int64" Nullable="false"/>
+<Property Name="VBELN" Type="Edm.String" MaxLength="10" Nullable="false"/>
+<Property Name="POSNR" Type="Edm.String" MaxLength="6" Nullable="false"/>
+<Property Name="UTCTIME" Type="Edm.Decimal" Precision="15" Nullable="false"/>
+<Property Name="LANGUAGE" Type="Edm.String" MaxLength="1"/>
+<Property Name="NOTE_TITLE" Type="Edm.String" MaxLength="60"/>
+<Property Name="NOTE_TEXT" Type="Edm.String" MaxLength="1000"/>
+</EntityType>
+<EntityType Name="DELIVERY_DETAILS">
+<Property Name="MANDT" Type="Edm.String" MaxLength="3"/>
+<Property Name="VBELN" Type="Edm.String" MaxLength="10"/>
+<Property Name="POSNR" Type="Edm.String" MaxLength="6"/>
+<Property Name="VBELN_DEL" Type="Edm.String" MaxLength="10"/>
+<Property Name="POSNR_DEL" Type="Edm.String" MaxLength="6"/>
+<Property Name="CHARG" Type="Edm.String" MaxLength="10"/>
+<Property Name="LFIMG" Type="Edm.Decimal" Scale="3" Precision="13"/>
+<Property Name="VRKME" Type="Edm.String" MaxLength="3"/>
+<Property Name="POSAR" Type="Edm.String" MaxLength="1"/>
+<Property Name="VGBEL" Type="Edm.String" MaxLength="10"/>
+<Property Name="VGPOS" Type="Edm.String" MaxLength="6"/>
+<Property Name="LFART" Type="Edm.String" MaxLength="4"/>
+<Property Name="LFART_VTEXT" Type="Edm.String" MaxLength="20"/>
+<Property Name="LFDAT_DATE" Type="Edm.DateTime" sap:display-format="Date"/>
+<Property Name="TRAID" Type="Edm.String" MaxLength="20"/>
+<Property Name="ZZ0S2BLNR" Type="Edm.String" MaxLength="30"/>
+<Property Name="PEND_DEL_QUAN" Type="Edm.String" MaxLength="500"/>
+<NavigationProperty Name="salesorder" Relationship="srvOpenOrders.DELIVERY_DETAILS_salesorder" FromRole="DELIVERY_DETAILS" ToRole="Results"/>
+</EntityType>
+<EntityType Name="CV_NOTES">
+<Property Name="UTCTIME" Type="Edm.Decimal" Precision="15"/>
+<Property Name="VBELN" Type="Edm.String" MaxLength="10"/>
+<Property Name="POSNR" Type="Edm.String" MaxLength="6"/>
+<Property Name="LANGUAGE" Type="Edm.String" MaxLength="1"/>
+<Property Name="NOTE_TEXT" Type="Edm.String" MaxLength="1000"/>
+<NavigationProperty Name="salesorder" Relationship="srvOpenOrders.CV_NOTES_salesorder" FromRole="CV_NOTES" ToRole="Results"/>
+</EntityType>
+<Association Name="Results_delivery">
+<End Role="Results" Type="srvOpenOrders.Results" Multiplicity="1">
+<OnDelete Action="Cascade"/>
+</End>
+<End Role="DELIVERY_DETAILS" Type="srvOpenOrders.DELIVERY_DETAILS" Multiplicity="*"/>
+</Association>
+<Association Name="Results_notes">
+<End Role="Results" Type="srvOpenOrders.Results" Multiplicity="1">
+<OnDelete Action="Cascade"/>
+</End>
+<End Role="CV_NOTES" Type="srvOpenOrders.CV_NOTES" Multiplicity="*"/>
+</Association>
+<Association Name="valueHelps_delivery">
+<End Role="valueHelps" Type="srvOpenOrders.valueHelps" Multiplicity="1">
+<OnDelete Action="Cascade"/>
+</End>
+<End Role="DELIVERY_DETAILS" Type="srvOpenOrders.DELIVERY_DETAILS" Multiplicity="*"/>
+</Association>
+<Association Name="valueHelps_notes">
+<End Role="valueHelps" Type="srvOpenOrders.valueHelps" Multiplicity="1">
+<OnDelete Action="Cascade"/>
+</End>
+<End Role="CV_NOTES" Type="srvOpenOrders.CV_NOTES" Multiplicity="*"/>
+</Association>
+<Association Name="DELIVERY_DETAILS_salesorder">
+<End Role="DELIVERY_DETAILS" Type="srvOpenOrders.DELIVERY_DETAILS" Multiplicity="*"/>
+<End Role="Results" Type="srvOpenOrders.Results" Multiplicity="0..1"/>
+</Association>
+<Association Name="CV_NOTES_salesorder">
+<End Role="CV_NOTES" Type="srvOpenOrders.CV_NOTES" Multiplicity="*"/>
+<End Role="Results" Type="srvOpenOrders.Results" Multiplicity="0..1"/>
+</Association>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results">
-<Annotation Term="UI.SelectionFields">
-<Collection>
-<PropertyPath>CREATION_DATE</PropertyPath>
-<PropertyPath>SalesOrg</PropertyPath>
-<PropertyPath>SoldtoPartyName</PropertyPath>
-<PropertyPath>ShipToPartyName</PropertyPath>
-<PropertyPath>SalesOrder</PropertyPath>
-<PropertyPath>LEVEL_TYPE</PropertyPath>
-<PropertyPath>ORDER_STATUS</PropertyPath>
-</Collection>
-</Annotation>
 <Annotation Term="UI.LineItem">
 <Collection>
 <Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="SalesOrder"/>
+<PropertyValue Property="Value" Path="VBELN"/>
 </Record>
 <Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="NEXT_ORDER"/>
+<PropertyValue Property="Value" Path="POSNR"/>
 </Record>
 <Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="FINAL_ORDER"/>
+<PropertyValue Property="Value" Path="VKORG"/>
 </Record>
 <Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="SalesOrderItem"/>
+<PropertyValue Property="Value" Path="KBETR"/>
 </Record>
 <Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="CreatedOn"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="LEVEL_TYPE"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="ORDER_STATUS"/>
-<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
-<PropertyValue Property="Criticality" Int="2"/>
-<PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="MaterialName"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="MaterialNo"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="BILLING_BLOCK_ITEM"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="LC_NUMBER"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="CREATION_DATE"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="CustomerReference"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="DELIVERY_TYPE"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="CUSTOMER_MAT_REFERENCE"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="STORAGE_LOCATION"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="Plant"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="BILLING_DOCUMENT"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="CONFIRMED_QUANTITY"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="PENDING_DEL_QTY"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="PENDING_DEL_QTY_UNIT"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="UNCONFIRMED_QUANTITY"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="SUPPLY_SITUATION"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="DELIVERY_QTY"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="PRICING_DATE"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="BILLING_DOCUMENT"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="CO_PARTNER"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="CO_PARTNER_NAME"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="NY_PARTNER"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="NY_PARTNER_NAME"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="PRICE_PER_UNIT"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="NET_AMOUNT"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="ShipmentATA"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="ShipmentATD"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="BATCH_NUMBER"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="NOTA_FISCAL"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="AM_PARTNER"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="AM_PARTNER_NAME"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="HOM_REMARK"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="ITEM_CATEGORY"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="MRP_CONTROLLER"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="SHIP_TO_COUNTRY_NAME"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="DIFF_CONF_REQ_DATE"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="SHIP_TO_CITY_NAME"/>
-</Record>
-<Record Type="UI.DataField">
-<PropertyValue Property="Value" Path="PROD_ALLOC"/>
+<PropertyValue Property="Value" Path="KWMENG"/>
 </Record>
 </Collection>
 <Annotation Term="UI.Criticality" Int="5"/>
 </Annotation>
+<Annotation Term="UI.SelectionFields">
+<Collection>
+<PropertyPath>VBELN</PropertyPath>
+<PropertyPath>POSNR</PropertyPath>
+<PropertyPath>VKORG</PropertyPath>
+<PropertyPath>MATNR</PropertyPath>
+<PropertyPath>FAKSP</PropertyPath>
+</Collection>
+</Annotation>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.EntityContainer/Results">
-<Annotation Term="Capabilities.FilterRestrictions">
-<Record Type="Capabilities.FilterRestrictionsType">
-<PropertyValue Property="FilterExpressionRestrictions">
-<Collection>
-<Record Type="Capabilities.FilterExpressionRestrictionType">
-<PropertyValue Property="Property" PropertyPath="CREATION_DATE"/>
-<PropertyValue Property="AllowedExpressions" String="SingleRange"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
 <Annotation Term="Capabilities.DeleteRestrictions">
 <Record Type="Capabilities.DeleteRestrictionsType">
 <PropertyValue Property="Deletable" Bool="false"/>
@@ -626,7 +348,10 @@
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/id">
 <Annotation Term="Core.Computed" Bool="true"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SalesOrder">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/MANDT">
+<Annotation Term="Common.Label" String="MANDT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VBELN">
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
 <PropertyValue Property="Label" String="{@i18n>salesOrder}"/>
@@ -636,33 +361,98 @@
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="SalesOrder"/>
-<PropertyValue Property="ValueListProperty" String="SalesOrder"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="VBELN"/>
+<PropertyValue Property="ValueListProperty" String="VBELN"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
+<Annotation Term="Common.Label" String="VBELN"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SalesOrderItem">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/POSNR">
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>salesOrderItem}"/>
+<PropertyValue Property="Label" String="{@i18n>salesOrder}"/>
 <PropertyValue Property="CollectionPath" String="valueHelps"/>
 <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
 <PropertyValue Property="SearchSupported" Bool="true"/>
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="SalesOrderItem"/>
-<PropertyValue Property="ValueListProperty" String="SalesOrderItem"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="POSNR"/>
+<PropertyValue Property="ValueListProperty" String="POSNR"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
+<Annotation Term="Common.Label" String="POSNR"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/MaterialNo">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ERDAT_ORDER_DATE">
+<Annotation Term="Common.Label" String="ERDAT_ORDER"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ERDAT_ITEM_DATE">
+<Annotation Term="Common.Label" String="ERDAT_ITEM"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/AUART">
+<Annotation Term="Common.ValueList">
+<Record Type="Common.ValueListType">
+<PropertyValue Property="Label" String="{@i18n>auart}"/>
+<PropertyValue Property="CollectionPath" String="valueHelps"/>
+<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+<PropertyValue Property="SearchSupported" Bool="true"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterInOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="AUART"/>
+<PropertyValue Property="ValueListProperty" String="AUART"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="Common.Label" String="AUART"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/WERKS">
+<Annotation Term="Common.ValueList">
+<Record Type="Common.ValueListType">
+<PropertyValue Property="Label" String="{@i18n>werks}"/>
+<PropertyValue Property="CollectionPath" String="valueHelps"/>
+<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+<PropertyValue Property="SearchSupported" Bool="true"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterInOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="AUART"/>
+<PropertyValue Property="ValueListProperty" String="AUART"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="Common.Label" String="WERKS"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VTWEG">
+<Annotation Term="Common.ValueList">
+<Record Type="Common.ValueListType">
+<PropertyValue Property="Label" String="{@i18n>vtweg}"/>
+<PropertyValue Property="CollectionPath" String="valueHelps"/>
+<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+<PropertyValue Property="SearchSupported" Bool="true"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterInOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="VTWEG"/>
+<PropertyValue Property="ValueListProperty" String="VTWEG"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="Common.Label" String="VTWEG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/MATNR">
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
 <PropertyValue Property="Label" String="{@i18n>MaterialNo}"/>
@@ -672,613 +462,235 @@
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="MaterialNo"/>
-<PropertyValue Property="ValueListProperty" String="MaterialNo"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="MATNR"/>
+<PropertyValue Property="ValueListProperty" String="MATNR"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
-<Annotation Term="Common.Text" Path="MaterialName">
+<Annotation Term="Common.Text" Path="MAKTX">
 <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="MATNR"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/MaterialName">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/MAKTX">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="MAKTX"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KDMAT">
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>MaterialName}"/>
+<PropertyValue Property="Label" String="{@i18n>kdmat}"/>
 <PropertyValue Property="CollectionPath" String="valueHelps"/>
 <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
 <PropertyValue Property="SearchSupported" Bool="true"/>
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="MaterialName"/>
-<PropertyValue Property="ValueListProperty" String="MaterialName"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="KDMAT"/>
+<PropertyValue Property="ValueListProperty" String="KDMAT"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
-<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="KDMAT"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SoldToParty">
-<Annotation Term="Common.Text" Path="SoldtoPartyName">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/BSTNK">
+<Annotation Term="Common.ValueList">
+<Record Type="Common.ValueListType">
+<PropertyValue Property="Label" String="{@i18n>bstnk}"/>
+<PropertyValue Property="CollectionPath" String="valueHelps"/>
+<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+<PropertyValue Property="SearchSupported" Bool="true"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterInOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="BSTNK"/>
+<PropertyValue Property="ValueListProperty" String="BSTNK"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="Common.Label" String="BSTNK"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/AG_PARTNER">
+<Annotation Term="Common.ValueList">
+<Record Type="Common.ValueListType">
+<PropertyValue Property="Label" String="{@i18n>agPartnerNo}"/>
+<PropertyValue Property="CollectionPath" String="valueHelps"/>
+<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+<PropertyValue Property="SearchSupported" Bool="true"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterInOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="AG_PARTNER"/>
+<PropertyValue Property="ValueListProperty" String="AG_PARTNER"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="Common.Text" Path="AG_PARTNER_NAME">
 <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="AG_PARTNER"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SoldtoPartyName">
-<Annotation Term="Common.TextFor" String="true"/>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ShipToParty">
-<Annotation Term="Common.Text" Path="ShipToPartyName">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/WE_PARTNER">
+<Annotation Term="Common.ValueList">
+<Record Type="Common.ValueListType">
+<PropertyValue Property="Label" String="{@i18n>wePartnerNo}"/>
+<PropertyValue Property="CollectionPath" String="valueHelps"/>
+<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+<PropertyValue Property="SearchSupported" Bool="true"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterInOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="WE_PARTNER"/>
+<PropertyValue Property="ValueListProperty" String="WE_PARTNER"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="Common.Text" Path="WE_PARTNER_NAME">
 <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="WE_PARTNER"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ShipToPartyName">
-<Annotation Term="Common.TextFor" String="true"/>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SalesOrg">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LAND1">
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>SalesOrg}"/>
+<PropertyValue Property="Label" String="{@i18n>land1}"/>
 <PropertyValue Property="CollectionPath" String="valueHelps"/>
 <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
 <PropertyValue Property="SearchSupported" Bool="true"/>
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="SalesOrg"/>
-<PropertyValue Property="ValueListProperty" String="SalesOrg"/>
-</Record>
-<Record Type="Common.ValueListParameterDisplayOnly">
-<PropertyValue Property="ValueListProperty" String="SalesOrgName"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="LAND1"/>
+<PropertyValue Property="ValueListProperty" String="LAND1"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
-<Annotation Term="Common.Text" Path="SalesOrgName">
+<Annotation Term="Common.Text" Path="LANDX">
 <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="LAND1"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SalesOrgName">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LANDX">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="LANDX"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/Note">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ORT01">
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>Note}"/>
+<PropertyValue Property="Label" String="{@i18n>ort1}"/>
 <PropertyValue Property="CollectionPath" String="valueHelps"/>
 <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
 <PropertyValue Property="SearchSupported" Bool="true"/>
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="Note"/>
-<PropertyValue Property="ValueListProperty" String="Note"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="ORT01"/>
+<PropertyValue Property="ValueListProperty" String="ORT01"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
+<Annotation Term="Common.Label" String="ORT01"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/RequestedQuantity">
-<Annotation Term="Measures.Unit" Path="RequestedQuantityUnit"/>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VKORG">
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>RequestedQuantity}"/>
+<PropertyValue Property="Label" String="{@i18n>vkorg}"/>
 <PropertyValue Property="CollectionPath" String="valueHelps"/>
 <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
 <PropertyValue Property="SearchSupported" Bool="true"/>
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="RequestedQuantity"/>
-<PropertyValue Property="ValueListProperty" String="RequestedQuantity"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="VKORG"/>
+<PropertyValue Property="ValueListProperty" String="VKORG"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/Plant">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>Plant}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="Plant"/>
-<PropertyValue Property="ValueListProperty" String="Plant"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/OrderType">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>OrderType}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="OrderType"/>
-<PropertyValue Property="ValueListProperty" String="OrderType"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/POType">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>POType}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="POType"/>
-<PropertyValue Property="ValueListProperty" String="POType"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/Incoterm1">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>Incoterm1}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="Incoterm1"/>
-<PropertyValue Property="ValueListProperty" String="Incoterm1"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/Incoterm2">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>Incoterm2}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="Incoterm2"/>
-<PropertyValue Property="ValueListProperty" String="Incoterm2"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/PaymentTerm">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>PaymentTerm}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="PaymentTerm"/>
-<PropertyValue Property="ValueListProperty" String="PaymentTerm"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/DIFF_CONF_REQ_DATE">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>SHIP_TO_COUNTRY_NAME}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="DIFF_CONF_REQ_DATE"/>
-<PropertyValue Property="ValueListProperty" String="DIFF_CONF_REQ_DATE"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/GROUP_COMPANY">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>GROUP_COMPANY}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="GROUP_COMPANY"/>
-<PropertyValue Property="ValueListProperty" String="GROUP_COMPANY"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SUPPLY_POINT">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>SUPPLY_POINT}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="SUPPLY_POINT"/>
-<PropertyValue Property="ValueListProperty" String="SUPPLY_POINT"/>
-</Record>
-<Record Type="Common.ValueListParameterDisplayOnly">
-<PropertyValue Property="ValueListProperty" String="SUPPLY_POINT_DESC"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-<Annotation Term="Common.Text" Path="SUPPLY_POINT_DESC">
+<Annotation Term="Common.Text" Path="VKORG_NAME1">
 <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="VKORG"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SUPPLY_POINT_DESC">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VKORG_NAME1">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="VKORG_NAME1"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/CUSTOMER_PRIORITY">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KNREF_HEAD">
+<Annotation Term="Common.Label" String="KNREF_HEAD"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KNREF_ITM">
+<Annotation Term="Common.Label" String="KNREF_ITM"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VBUND">
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>CUSTOMER_PRIORITY}"/>
+<PropertyValue Property="Label" String="{@i18n>VBUND}"/>
 <PropertyValue Property="CollectionPath" String="valueHelps"/>
 <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
 <PropertyValue Property="SearchSupported" Bool="true"/>
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="CUSTOMER_PRIORITY"/>
-<PropertyValue Property="ValueListProperty" String="CUSTOMER_PRIORITY"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="VBUND"/>
+<PropertyValue Property="ValueListProperty" String="VBUND"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
+<Annotation Term="Common.Label" String="VBUND"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/FORWARDER_NAME">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/EDATU_REQUESTED_DATE">
+<Annotation Term="Common.Label" String="EDATU_REQUESTED"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KWMENG">
+<Annotation Term="Measures.Unit" Path="VRKME"/>
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>FORWARDER_NAME}"/>
+<PropertyValue Property="Label" String="{@i18n>VBUND}"/>
 <PropertyValue Property="CollectionPath" String="valueHelps"/>
 <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
 <PropertyValue Property="SearchSupported" Bool="true"/>
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="FORWARDER_NAME"/>
-<PropertyValue Property="ValueListProperty" String="FORWARDER_NAME"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="KWMENG"/>
+<PropertyValue Property="ValueListProperty" String="KWMENG"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
+<Annotation Term="Common.Label" String="KWMENG"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VESSEL_NAME">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>VESSEL_NAME}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="VESSEL_NAME"/>
-<PropertyValue Property="ValueListProperty" String="VESSEL_NAME"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VRKME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="VRKME"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/CONTAINER_NO">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>CONTAINER_NO}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="CONTAINER_NO"/>
-<PropertyValue Property="ValueListProperty" String="CONTAINER_NO"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/EDATU_CONFIRMED_DATE">
+<Annotation Term="Common.Label" String="EDATU_CONFIRMED"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ShipmentETA">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>ShipmentETA}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="ShipmentETA"/>
-<PropertyValue Property="ValueListProperty" String="ShipmentETA"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ShipmentETD">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>ShipmentETD}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="ShipmentETD"/>
-<PropertyValue Property="ValueListProperty" String="ShipmentETD"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SHIPPING_TYPE">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>SHIPPING_TYPE}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="SHIPPING_TYPE"/>
-<PropertyValue Property="ValueListProperty" String="SHIPPING_TYPE"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/GUSCON_LEVEL">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>GUSCON_LEVEL}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="GUSCON_LEVEL"/>
-<PropertyValue Property="ValueListProperty" String="GUSCON_LEVEL"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LEVEL_TYPE">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>LEVEL_TYPE}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="LEVEL_TYPE"/>
-<PropertyValue Property="ValueListProperty" String="LEVEL_TYPE"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ORDER_STATUS">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>ORDER_STATUS}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="ORDER_STATUS"/>
-<PropertyValue Property="ValueListProperty" String="ORDER_STATUS"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/DISTRIBUTION_CHANNEL">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>DISTRIBUTION_CHANNEL}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="DISTRIBUTION_CHANNEL"/>
-<PropertyValue Property="ValueListProperty" String="DISTRIBUTION_CHANNEL"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/DELIVERY">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>DELIVERY}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="DELIVERY"/>
-<PropertyValue Property="ValueListProperty" String="DELIVERY"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SBU">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>SBU}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="SBU"/>
-<PropertyValue Property="ValueListProperty" String="SBU"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/INITIAL_ORDER">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>INITIAL_ORDER}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="INITIAL_ORDER"/>
-<PropertyValue Property="ValueListProperty" String="INITIAL_ORDER"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/NEXT_ORDER">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>NEXT_ORDER}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="NEXT_ORDER"/>
-<PropertyValue Property="ValueListProperty" String="NEXT_ORDER"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/FINAL_ORDER">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>FINAL_ORDER}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="FINAL_ORDER"/>
-<PropertyValue Property="ValueListProperty" String="FINAL_ORDER"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LC_NUMBER">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>LC_NUMBER}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="LC_NUMBER"/>
-<PropertyValue Property="ValueListProperty" String="LC_NUMBER"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/CUSTOMER_MAT_REFERENCE">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>CUSTOMER_MAT_REFERENCE}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="CUSTOMER_MAT_REFERENCE"/>
-<PropertyValue Property="ValueListProperty" String="CUSTOMER_MAT_REFERENCE"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/CONFIRMED_QUANTITY">
-<Annotation Term="Measures.Unit" Path="RequestedQuantityUnit"/>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KBMENG">
+<Annotation Term="Measures.Unit" Path="VRKME"/>
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
 <PropertyValue Property="Label" String="{@i18n>CONFIRMED_QUANTITY}"/>
@@ -1288,35 +700,20 @@
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="CONFIRMED_QUANTITY"/>
-<PropertyValue Property="ValueListProperty" String="CONFIRMED_QUANTITY"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="KBMENG"/>
+<PropertyValue Property="ValueListProperty" String="KBMENG"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
+<Annotation Term="Common.Label" String="KBMENG"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/PENDING_DEL_QTY">
-<Annotation Term="Measures.Unit" Path="PENDING_DEL_QTY_UNIT"/>
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>PENDING_DEL_QTY}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="PENDING_DEL_QTY"/>
-<PropertyValue Property="ValueListProperty" String="PENDING_DEL_QTY"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LDDAT_DATE">
+<Annotation Term="Common.Label" String="LDDAT"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/UNCONFIRMED_QUANTITY">
-<Annotation Term="Measures.Unit" Path="PENDING_DEL_QTY_UNIT"/>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/UNCONFIRMED_QTY">
+<Annotation Term="Measures.Unit" Path="VRKME"/>
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
 <PropertyValue Property="Label" String="{@i18n>UNCONFIRMED_QUANTITY}"/>
@@ -1326,33 +723,62 @@
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="UNCONFIRMED_QUANTITY"/>
-<PropertyValue Property="ValueListProperty" String="UNCONFIRMED_QUANTITY"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="UNCONFIRMED_QTY"/>
+<PropertyValue Property="ValueListProperty" String="UNCONFIRMED_QTY"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
+<Annotation Term="Common.Label" String="UNCONFIRMED_QTY"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/DELIVERY_TYPE">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/REQ_TEXT">
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>CUSTOMER_MAT_REFERENCE}"/>
+<PropertyValue Property="Label" String="{@i18n>REQ_TEXT}"/>
 <PropertyValue Property="CollectionPath" String="valueHelps"/>
 <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
 <PropertyValue Property="SearchSupported" Bool="true"/>
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="DELIVERY_TYPE"/>
-<PropertyValue Property="ValueListProperty" String="DELIVERY_TYPE"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="REQ_TEXT"/>
+<PropertyValue Property="ValueListProperty" String="REQ_TEXT"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
+<Annotation Term="Common.Label" String="REQ_TEXT"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/STORAGE_LOCATION">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/FAKSP">
+<Annotation Term="Common.ValueList">
+<Record Type="Common.ValueListType">
+<PropertyValue Property="Label" String="{@i18n>FAKSP}"/>
+<PropertyValue Property="CollectionPath" String="valueHelps"/>
+<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
+<PropertyValue Property="SearchSupported" Bool="true"/>
+<PropertyValue Property="Parameters">
+<Collection>
+<Record Type="Common.ValueListParameterInOut">
+<PropertyValue Property="LocalDataProperty" PropertyPath="FAKSP"/>
+<PropertyValue Property="ValueListProperty" String="FAKSP"/>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="Common.Text" Path="FAKSP_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="FAKSP"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/FAKSP_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="FAKSP_VTEXT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LGORT">
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
 <PropertyValue Property="Label" String="{@i18n>STORAGE_LOCATION}"/>
@@ -1362,31 +788,14 @@
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="STORAGE_LOCATION"/>
-<PropertyValue Property="ValueListProperty" String="STORAGE_LOCATION"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="LGORT"/>
+<PropertyValue Property="ValueListProperty" String="LGORT"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SHIP_TO_COUNTRY_NAME">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>SHIP_TO_COUNTRY_NAME}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="SHIP_TO_COUNTRY_NAME"/>
-<PropertyValue Property="ValueListProperty" String="SHIP_TO_COUNTRY_NAME"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotation Term="Common.Label" String="LGORT"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SUPPLY_SITUATION">
 <Annotation Term="Common.ValueList">
@@ -1405,299 +814,646 @@
 </PropertyValue>
 </Record>
 </Annotation>
+<Annotation Term="Common.Text" Path="SUPPLY_SITUATION_DESCR">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="SUPPLY_SITUATION"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/DELIVERY_QTY">
-<Annotation Term="Measures.Unit" Path="PENDING_DEL_QTY_UNIT"/>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SUPPLY_SITUATION_DESCR">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="SUPPLY_SITUATION_DESCR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KBETR">
+<Annotation Term="Measures.ISOCurrency" String="WAERS"/>
 <Annotation Term="Common.ValueList">
 <Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>DELIVERY_QTY}"/>
+<PropertyValue Property="Label" String="{@i18n>KBETR}"/>
 <PropertyValue Property="CollectionPath" String="valueHelps"/>
 <PropertyValue Property="DistinctValuesSupported" Bool="true"/>
 <PropertyValue Property="SearchSupported" Bool="true"/>
 <PropertyValue Property="Parameters">
 <Collection>
 <Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="DELIVERY_QTY"/>
-<PropertyValue Property="ValueListProperty" String="DELIVERY_QTY"/>
+<PropertyValue Property="LocalDataProperty" PropertyPath="KBETR"/>
+<PropertyValue Property="ValueListProperty" String="KBETR"/>
 </Record>
 </Collection>
 </PropertyValue>
 </Record>
 </Annotation>
+<Annotation Term="Common.Label" String="KBETR"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/BILLING_DOCUMENT">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>BILLING_DOCUMENT}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="BILLING_DOCUMENT"/>
-<PropertyValue Property="ValueListProperty" String="BILLING_DOCUMENT"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/WAERS">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="WAERS"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ShipmentATA">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>ShipmentATA}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="ShipmentATA"/>
-<PropertyValue Property="ValueListProperty" String="ShipmentATA"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KPEIN">
+<Annotation Term="Measures.Unit" Path="KMEIN"/>
+<Annotation Term="Common.Label" String="KPEIN"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ShipmentATD">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>ShipmentATD}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="ShipmentATD"/>
-<PropertyValue Property="ValueListProperty" String="ShipmentATD"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KMEIN">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="KMEIN"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/BATCH_NUMBER">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>BATCH_NUMBER}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="BATCH_NUMBER"/>
-<PropertyValue Property="ValueListProperty" String="BATCH_NUMBER"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/NETWR">
+<Annotation Term="Measures.ISOCurrency" Path="WAERK"/>
+<Annotation Term="Common.Label" String="NETWR"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/NOTA_FISCAL">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>NOTA_FISCAL}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="NOTA_FISCAL"/>
-<PropertyValue Property="ValueListProperty" String="NOTA_FISCAL"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/WAERK">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="WAERK"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/NET_AMOUNT">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>NET_AMOUNT}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="NET_AMOUNT"/>
-<PropertyValue Property="ValueListProperty" String="NET_AMOUNT"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/HTEXT">
+<Annotation Term="Common.Label" String="HTEXT"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/PRICE_PER_UNIT">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>PRICE_PER_UNIT}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="PRICE_PER_UNIT"/>
-<PropertyValue Property="ValueListProperty" String="PRICE_PER_UNIT"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/PSTYV">
+<Annotation Term="Common.Text" Path="PSTYV_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="PSTYV"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/MRP_CONTROLLER">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>MRP_CONTROLLER}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="MRP_CONTROLLER"/>
-<PropertyValue Property="ValueListProperty" String="MRP_CONTROLLER"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/PSTYV_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="PSTYV_VTEXT"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ITEM_CATEGORY">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>ITEM_CATEGORY}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="ITEM_CATEGORY"/>
-<PropertyValue Property="ValueListProperty" String="ITEM_CATEGORY"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/DISPO">
+<Annotation Term="Common.Label" String="DISPO"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/HOM_REMARK">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>HOM_REMARK}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="HOM_REMARK"/>
-<PropertyValue Property="ValueListProperty" String="HOM_REMARK"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
-</Annotation>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KOSCH">
+<Annotation Term="Common.Label" String="KOSCH"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SHIP_TO_CITY_NAME">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>SHIP_TO_CITY_NAME}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="SHIP_TO_CITY_NAME"/>
-<PropertyValue Property="ValueListProperty" String="SHIP_TO_CITY_NAME"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VKBUR">
+<Annotation Term="Common.Text" Path="VKBUR_BEZEI">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="VKBUR"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/PROD_ALLOC">
-<Annotation Term="Common.ValueList">
-<Record Type="Common.ValueListType">
-<PropertyValue Property="Label" String="{@i18n>PROD_ALLOC}"/>
-<PropertyValue Property="CollectionPath" String="valueHelps"/>
-<PropertyValue Property="DistinctValuesSupported" Bool="true"/>
-<PropertyValue Property="SearchSupported" Bool="true"/>
-<PropertyValue Property="Parameters">
-<Collection>
-<Record Type="Common.ValueListParameterInOut">
-<PropertyValue Property="LocalDataProperty" PropertyPath="PROD_ALLOC"/>
-<PropertyValue Property="ValueListProperty" String="PROD_ALLOC"/>
-</Record>
-</Collection>
-</PropertyValue>
-</Record>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VKBUR_BEZEI">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="VKBUR_BEZEI"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ABGRU">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="ABGRU"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ABSTA">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="ABSTA"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/KNUMV">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="KNUMV"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/SPART">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="SPART"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/CO_PARTNER">
+<Annotation Term="Common.Text" Path="CO_PARTNER_NAME">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="CO Partner"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/CO_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="CO Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/NY_PARTNER">
+<Annotation Term="Common.Text" Path="NY_PARTNER_NAME">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="NY Partner"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/NY_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="NY Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/AS_PARTNER">
+<Annotation Term="Common.Text" Path="AS_PARTNER">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="AS_PARTNER"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/AS_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="AS Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VE_PARTNER">
+<Annotation Term="Common.Text" Path="VE_PARTNER_NAME">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="VE Partner"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VE_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="VE Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/AM_PARTNER">
+<Annotation Term="Common.Text" Path="AM_PARTNER_NAME">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="AM Partner"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/AM_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="AM Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/AG_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="AG Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/WE_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="WE Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VBELN_DEL">
+<Annotation Term="Common.Label" String="VBELN_DEL"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/POSNR_DEL">
+<Annotation Term="Common.Label" String="POSNR_DEL"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/CHARG">
+<Annotation Term="Common.Label" String="CHARG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LFIMG">
+<Annotation Term="Measures.Unit" Path="VRKME_DEL"/>
+<Annotation Term="Common.Label" String="LFIMG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VRKME_DEL">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="VRKME"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/POSAR">
+<Annotation Term="Common.Label" String="POSAR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VGBEL">
+<Annotation Term="Common.Label" String="VGBEL"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/VGPOS">
+<Annotation Term="Common.Label" String="VGPOS"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LFART">
+<Annotation Term="Common.Text" Path="LFART_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="LFART"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LFART_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="LFART_VTEXT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LFDAT_DATE">
+<Annotation Term="Common.Label" String="LFDAT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/TRAID">
+<Annotation Term="Common.Label" String="TRAID"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/ZZ0S2BLNR">
+<Annotation Term="Common.Label" String="ZZ0S2BLNR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/PEND_DEL_QUAN">
+<Annotation Term="Measures.Unit" Path="VRKME_DEL"/>
+<Annotation Term="Common.Label" String="PEND_DEL_QUAN"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.Results/LAST_NOTE">
+<Annotation Term="Common.Label" String="NOTE_TEXT"/>
 </Annotations>
 <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/id">
 <Annotation Term="Core.Computed" Bool="true"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/MaterialNo">
-<Annotation Term="Common.Text" Path="MaterialName">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/MANDT">
+<Annotation Term="Common.Label" String="MANDT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VBELN">
+<Annotation Term="Common.Label" String="VBELN"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/POSNR">
+<Annotation Term="Common.Label" String="POSNR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/ERDAT_ORDER_DATE">
+<Annotation Term="Common.Label" String="ERDAT_ORDER"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/ERDAT_ITEM_DATE">
+<Annotation Term="Common.Label" String="ERDAT_ITEM"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/AUART">
+<Annotation Term="Common.Label" String="AUART"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/WERKS">
+<Annotation Term="Common.Label" String="WERKS"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VTWEG">
+<Annotation Term="Common.Label" String="VTWEG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/MATNR">
+<Annotation Term="Common.Text" Path="MAKTX">
 <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="MATNR"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/MaterialName">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/MAKTX">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="MAKTX"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/SoldToParty">
-<Annotation Term="Common.Text" Path="SoldtoPartyName">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KDMAT">
+<Annotation Term="Common.Label" String="KDMAT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/BSTNK">
+<Annotation Term="Common.Label" String="BSTNK"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/AG_PARTNER">
+<Annotation Term="Common.Text" Path="AG_PARTNER_NAME">
 <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="AG_PARTNER"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/SoldtoPartyName">
-<Annotation Term="Common.TextFor" String="true"/>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/ShipToParty">
-<Annotation Term="Common.Text" Path="ShipToPartyName">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/WE_PARTNER">
+<Annotation Term="Common.Text" Path="WE_PARTNER_NAME">
 <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="WE_PARTNER"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/ShipToPartyName">
-<Annotation Term="Common.TextFor" String="true"/>
-</Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/SalesOrg">
-<Annotation Term="Common.Text" Path="SalesOrgName">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LAND1">
+<Annotation Term="Common.Text" Path="LANDX">
 <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="LAND1"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/SalesOrgName">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LANDX">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="LANDX"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/RequestedQuantity">
-<Annotation Term="Measures.Unit" Path="RequestedQuantityUnit"/>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/ORT01">
+<Annotation Term="Common.Label" String="ORT01"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/SUPPLY_POINT">
-<Annotation Term="Common.Text" Path="SUPPLY_POINT_DESC">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VKORG">
+<Annotation Term="Common.Text" Path="VKORG_NAME1">
 <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
 </Annotation>
+<Annotation Term="Common.Label" String="VKORG"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/SUPPLY_POINT_DESC">
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VKORG_NAME1">
+<Annotation Term="UI.Hidden" Bool="true"/>
 <Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="VKORG_NAME1"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/CONFIRMED_QUANTITY">
-<Annotation Term="Measures.Unit" Path="RequestedQuantityUnit"/>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KNREF_HEAD">
+<Annotation Term="Common.Label" String="KNREF_HEAD"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/PENDING_DEL_QTY">
-<Annotation Term="Measures.Unit" Path="PENDING_DEL_QTY_UNIT"/>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KNREF_ITM">
+<Annotation Term="Common.Label" String="KNREF_ITM"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/UNCONFIRMED_QUANTITY">
-<Annotation Term="Measures.Unit" Path="PENDING_DEL_QTY_UNIT"/>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VBUND">
+<Annotation Term="Common.Label" String="VBUND"/>
 </Annotations>
-<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/DELIVERY_QTY">
-<Annotation Term="Measures.Unit" Path="PENDING_DEL_QTY_UNIT"/>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/EDATU_REQUESTED_DATE">
+<Annotation Term="Common.Label" String="EDATU_REQUESTED"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KWMENG">
+<Annotation Term="Measures.Unit" Path="VRKME"/>
+<Annotation Term="Common.Label" String="KWMENG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VRKME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="VRKME"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/EDATU_CONFIRMED_DATE">
+<Annotation Term="Common.Label" String="EDATU_CONFIRMED"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KBMENG">
+<Annotation Term="Measures.Unit" Path="VRKME"/>
+<Annotation Term="Common.Label" String="KBMENG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LDDAT_DATE">
+<Annotation Term="Common.Label" String="LDDAT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/UNCONFIRMED_QTY">
+<Annotation Term="Measures.Unit" Path="VRKME"/>
+<Annotation Term="Common.Label" String="UNCONFIRMED_QTY"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/REQ_TEXT">
+<Annotation Term="Common.Label" String="REQ_TEXT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/FAKSP">
+<Annotation Term="Common.Text" Path="FAKSP_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="FAKSP"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/FAKSP_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="FAKSP_VTEXT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LGORT">
+<Annotation Term="Common.Label" String="LGORT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/SUPPLY_SITUATION">
+<Annotation Term="Common.Text" Path="SUPPLY_SITUATION_DESCR">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="SUPPLY_SITUATION"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/SUPPLY_SITUATION_DESCR">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="SUPPLY_SITUATION_DESCR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KBETR">
+<Annotation Term="Measures.ISOCurrency" String="WAERS"/>
+<Annotation Term="Common.Label" String="KBETR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/WAERS">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="WAERS"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KPEIN">
+<Annotation Term="Measures.Unit" Path="KMEIN"/>
+<Annotation Term="Common.Label" String="KPEIN"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KMEIN">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="KMEIN"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/NETWR">
+<Annotation Term="Measures.ISOCurrency" Path="WAERK"/>
+<Annotation Term="Common.Label" String="NETWR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/WAERK">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="WAERK"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/HTEXT">
+<Annotation Term="Common.Label" String="HTEXT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/PSTYV">
+<Annotation Term="Common.Text" Path="PSTYV_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="PSTYV"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/PSTYV_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="PSTYV_VTEXT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/DISPO">
+<Annotation Term="Common.Label" String="DISPO"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KOSCH">
+<Annotation Term="Common.Label" String="KOSCH"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VKBUR">
+<Annotation Term="Common.Text" Path="VKBUR_BEZEI">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="VKBUR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VKBUR_BEZEI">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="VKBUR_BEZEI"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/ABGRU">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="ABGRU"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/ABSTA">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="ABSTA"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/KNUMV">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="KNUMV"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/SPART">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="SPART"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/CO_PARTNER">
+<Annotation Term="Common.Text" Path="CO_PARTNER_NAME">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="CO Partner"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/CO_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="CO Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/NY_PARTNER">
+<Annotation Term="Common.Text" Path="NY_PARTNER_NAME">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="NY Partner"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/NY_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="NY Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/AS_PARTNER">
+<Annotation Term="Common.Text" Path="AS_PARTNER">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="AS_PARTNER"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/AS_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="AS Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VE_PARTNER">
+<Annotation Term="Common.Text" Path="VE_PARTNER_NAME">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="VE Partner"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VE_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="VE Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/AM_PARTNER">
+<Annotation Term="Common.Text" Path="AM_PARTNER_NAME">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="AM Partner"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/AM_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="AM Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/AG_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="AG Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/WE_PARTNER_NAME">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="WE Partner Name"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VBELN_DEL">
+<Annotation Term="Common.Label" String="VBELN_DEL"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/POSNR_DEL">
+<Annotation Term="Common.Label" String="POSNR_DEL"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/CHARG">
+<Annotation Term="Common.Label" String="CHARG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LFIMG">
+<Annotation Term="Measures.Unit" Path="VRKME_DEL"/>
+<Annotation Term="Common.Label" String="LFIMG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VRKME_DEL">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.Label" String="VRKME"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/POSAR">
+<Annotation Term="Common.Label" String="POSAR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VGBEL">
+<Annotation Term="Common.Label" String="VGBEL"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/VGPOS">
+<Annotation Term="Common.Label" String="VGPOS"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LFART">
+<Annotation Term="Common.Text" Path="LFART_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="LFART"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LFART_VTEXT">
+<Annotation Term="UI.Hidden" Bool="true"/>
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="LFART_VTEXT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LFDAT_DATE">
+<Annotation Term="Common.Label" String="LFDAT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/TRAID">
+<Annotation Term="Common.Label" String="TRAID"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/ZZ0S2BLNR">
+<Annotation Term="Common.Label" String="ZZ0S2BLNR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/PEND_DEL_QUAN">
+<Annotation Term="Measures.Unit" Path="VRKME_DEL"/>
+<Annotation Term="Common.Label" String="PEND_DEL_QUAN"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.valueHelps/LAST_NOTE">
+<Annotation Term="Common.Label" String="NOTE_TEXT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.notes/CLIENT">
+<Annotation Term="Common.Label" String="Client"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.notes/ID">
+<Annotation Term="Common.Label" String="ID"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.notes/VBELN">
+<Annotation Term="Common.Label" String="VBELN"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.notes/POSNR">
+<Annotation Term="Common.Label" String="POSNR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.notes/UTCTIME">
+<Annotation Term="Common.Label" String="UTCTIME"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.notes/LANGUAGE">
+<Annotation Term="Common.Label" String="LANGUAGE"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.notes/NOTE_TITLE">
+<Annotation Term="Common.Label" String="NOTE_TITLE"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.notes/NOTE_TEXT">
+<Annotation Term="Common.Label" String="NOTE_TEXT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/MANDT">
+<Annotation Term="Common.Label" String="MANDT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/VBELN">
+<Annotation Term="Common.Label" String="VBELN"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/POSNR">
+<Annotation Term="Common.Label" String="POSNR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/VBELN_DEL">
+<Annotation Term="Common.Label" String="VBELN_DEL"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/POSNR_DEL">
+<Annotation Term="Common.Label" String="POSNR_DEL"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/CHARG">
+<Annotation Term="Common.Label" String="CHARG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/LFIMG">
+<Annotation Term="Common.Label" String="LFIMG"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/VRKME">
+<Annotation Term="Common.Label" String="VRKME"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/POSAR">
+<Annotation Term="Common.Label" String="POSAR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/VGBEL">
+<Annotation Term="Common.Label" String="VGBEL"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/VGPOS">
+<Annotation Term="Common.Label" String="VGPOS"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/LFART">
+<Annotation Term="Common.Text" Path="LFART_VTEXT">
+<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+</Annotation>
+<Annotation Term="Common.Label" String="LFART"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/LFART_VTEXT">
+<Annotation Term="Common.TextFor" String="true"/>
+<Annotation Term="Common.Label" String="LFART_VTEXT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/LFDAT_DATE">
+<Annotation Term="Common.Label" String="LFDAT"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/TRAID">
+<Annotation Term="Common.Label" String="TRAID"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/ZZ0S2BLNR">
+<Annotation Term="Common.Label" String="ZZ0S2BLNR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.DELIVERY_DETAILS/PEND_DEL_QUAN">
+<Annotation Term="Common.Label" String="PEND_DEL_QUAN"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.CV_NOTES/UTCTIME">
+<Annotation Term="Common.Label" String="UTCTIME"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.CV_NOTES/VBELN">
+<Annotation Term="Common.Label" String="VBELN"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.CV_NOTES/POSNR">
+<Annotation Term="Common.Label" String="POSNR"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.CV_NOTES/LANGUAGE">
+<Annotation Term="Common.Label" String="LANGUAGE"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="srvOpenOrders.CV_NOTES/NOTE_TEXT">
+<Annotation Term="Common.Label" String="NOTE_TEXT"/>
 </Annotations>
 </Schema>
 </edmx:DataServices>

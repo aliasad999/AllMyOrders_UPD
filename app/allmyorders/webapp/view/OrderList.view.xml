@@ -12,157 +12,159 @@
     controllerName="ordermonitoring.allmyorders.controller.OrderList"
     height="100%"
 >
-    <App id="_IDGenApp1">
-        <pages>
-            <Page
-                id="_IDGenPage1"
-                showHeader="false"
-                enableScrolling="false"
+    <f:DynamicPage
+        id="dynamicPageId"
+        toggleHeaderOnTitleClick="false"
+        showFooter="true"
+        fitContent="true"
+        class="sapUiNoContentPadding"
+    >
+        <f:content>
+            <VBox
+                id="_IDGenVBox1"
+                width="100%"
+                class="sapUiTinyMarginBottom"
+                height="105%"
             >
-                <content>
-                    <VBox
-                        id="_IDGenVBox1"
-                        fitContainer="true"
+                <sfb:SmartFilterBar
+                    id="idSmartFilter"
+                    entitySet="Results"
+                    liveMode="true"
+                    showClearOnFB="true"
+                    persistencyKey="UniqueAndStablePersistencyKey"
+                >
+                    <sfb:controlConfiguration>
+                        <sfb:ControlConfiguration
+                            id="idErdatOrder"
+                            key="ERDAT_ORDER_DATE"
+                            visibleInAdvancedArea="true"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
+                        <sfb:ControlConfiguration
+                            id="idErdatItem"
+                            key="ERDAT_ITEM_DATE"
+                            visibleInAdvancedArea="true"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
+                        <sfb:ControlConfiguration
+                            id="idEdatuRequested"
+                            key="EDATU_REQUESTED_DATE"
+                            visibleInAdvancedArea="false"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
+                        <sfb:ControlConfiguration
+                            id="idEdatuConfirmed"
+                            key="EDATU_CONFIRMED_DATE"
+                            visibleInAdvancedArea="false"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
+                        <sfb:ControlConfiguration
+                            id="idLddat"
+                            key="LDDAT_DATE"
+                            visibleInAdvancedArea="false"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
+                        <sfb:ControlConfiguration
+                            id="idLfdatDate"
+                            key="LFDAT_DATE"
+                            visibleInAdvancedArea="false"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
+                    </sfb:controlConfiguration>
+                    <sfb:layoutData>
+                        <FlexItemData
+                            id="_IDGenFlexItemData1"
+                            shrinkFactor="0"
+                        />
+                    </sfb:layoutData>
+                </sfb:SmartFilterBar>
+                <MessageStrip
+                    showIcon="true"
+                    text="{i18n>noFilterSelected}"
+                    visible="{localModel>/msgVisible}"
+                />
+                <smartTable:SmartTable
+                    id="idSmartTable"
+                    entitySet="Results"
+                    tableType="Table"
+                    
+                    showFullScreenButton="true"
+                    useVariantManagement="false"
+                    useTablePersonalisation="true"
+                    header="{i18n>allOrders}"
+                    showRowCount="true"
+                    persistencyKey="SmartTableRefApp_Explored"
+                    beforeRebindTable="onBeforeRebindTable"
+                    enableAutoBinding="true"
+                    enableAutoColumnWidth="true"
+                    smartFilterId="idSmartFilter"
+                    class="sapUiResponsiveMargin"
+                >
+                    <smartTable:customToolbar>
+                        <OverflowToolbar
+                            id="_IDGenOverflowToolbar1"
+                            design="Auto"
+                        >
+                            <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                            <Button
+                                id="_IDGenButton1"
+                                icon="sap-icon://notes"
+                                enabled="{localModel>/orderSelected}"
+                                text="{i18n>addNote}"
+                                press="onAddNewNote"
+                            />
+                            <Button
+                                id="idShowDetails"
+                                icon="sap-icon://display-more"
+                                enabled="{localModel>/orderSelectedSingle}"
+                                text="{i18n>showDetails}"
+                                press="onShowDetails"
+                            />
+                            <Button
+                                id="idShowAllNotes"
+                                icon="sap-icon://detail-more"
+                                enabled="{localModel>/orderSelectedSingle}"
+                                text="{i18n>showAllNotes}"
+                                press="onShowAllNotes"
+                            />
+                        </OverflowToolbar>
+                    </smartTable:customToolbar>
+                    <ui:Table
+                        id="_IDGenTable1"
+                        visibleRowCountMode="Auto"
+                        selectionMode="MultiToggle"
+                        rowActionCount="1"
                     >
-                        <sfb:SmartFilterBar
-                            id="idSmartFilter"
-                            entitySet="Results"
-                            liveMode="true"
-                            showClearOnFB="true"
-                            persistencyKey="UniqueAndStablePersistencyKey"
-                        >
-                            <sfb:controlConfiguration>
-                                <sfb:ControlConfiguration
-                                    id="idCreatedOn"
-                                    key="CreatedOn"
-                                    visibleInAdvancedArea="false"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idRequestedDelDate"
-                                    key="RequestedDelDate"
-                                    visibleInAdvancedArea="true"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idShipmentETA"
-                                    key="ShipmentETA"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idShipmentETD"
-                                    key="ShipmentETD"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idConfDelDate"
-                                    key="ConfDelDate"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idLoadingDate"
-                                    key="LoadingDate"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idPlannedDelDate"
-                                    key="idPlannedDelDate"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idCREATION_DATE"
-                                    key="CREATION_DATE"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType',
-									defaultOperation: 'THISQUARTER'}"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idDATE_OF_MANUF"
-                                    key="DATE_OF_MANUF"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idSHELF_LIFE_EXP_DATE"
-                                    key="SHELF_LIFE_EXP_DATE"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                                <sfb:ControlConfiguration
-                                    id="idPRICING_DATE"
-                                    key="PRICING_DATE"
-                                    conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
-                                />
-                            </sfb:controlConfiguration>
-                            <sfb:layoutData>
-                                <FlexItemData
-                                    id="_IDGenFlexItemData1"
-                                    shrinkFactor="0"
-                                />
-                            </sfb:layoutData>
-                        </sfb:SmartFilterBar>
-                        <smartTable:SmartTable
-                            id="idSmartTable"
-                            entitySet="Results"
-                            tableType="Table"
-                            showFullScreenButton="true"
-                            useVariantManagement="false"
-                            useTablePersonalisation="true"
-                            header="{i18n>allOrders}"
-                            showRowCount="true"
-                            persistencyKey="SmartTableRefApp_Explored"
-                            beforeRebindTable="onBeforeRebindTable"
-                            enableAutoBinding="true"
-                            enableAutoColumnWidth="true"
-                            smartFilterId="idSmartFilter"
-                        >
-                            <smartTable:customToolbar>
-                                <OverflowToolbar
-                                    id="_IDGenOverflowToolbar1"
-                                    design="Auto"
-                                >
-                                    <ToolbarSpacer id="_IDGenToolbarSpacer1" />
-                                    <Button
-                                        id="_IDGenButton1"
-                                        icon="sap-icon://notes"
-                                        enabled="{localModel>/orderSelected}"
-                                        text="{i18n>addNote}"
-                                        press="onAddNewNote"
-                                    />
-                                    <Button
-                                        id="idShowDetails"
-                                        icon="sap-icon://display-more"
-                                        enabled="{localModel>/orderSelected}"
-                                        text="{i18n>showDetails}"
-                                        press="onShowDetails"
-                                    />
-                                </OverflowToolbar>
-                            </smartTable:customToolbar>
-                             <ui:Table id="_IDGenTable1" visibleRowCountMode="Auto">
-                                <ui:columns>
+                    <ui:columns>
                                     <ui:Column
                                         id="idBatchNumberCol"
-                                        
+                                        sortProperty="CHARG"
+                                        filterProperty="CHARG"
+                                        width="7em"
+                                        visible="false"
                                         autoResizable="true"
                                     >
                                         <ui:customData>
                                             <core:CustomData
                                                 key="p13nData"
-                                                value='\{"columnKey": "BATCH_NUMBER", "leadingProperty": "BATCH_NUMBER", "columnIndex": 101,"sortProperty": "BATCH_NUMBER", "filterProperty": "BATCH_NUMBER"}'
+                                                value='\{"columnKey": "CHARG", "leadingProperty": "CHARG", "columnIndex": 101,"sortProperty": "CHARG", "filterProperty": "CHARG"}'
                                             />
                                         </ui:customData>
                                         <Label
                                             id="_IDGenLabel1"
-                                            text="{i18n>BATCH_NUMBER}"
+                                            text="{i18n>CHARG}"
                                         />
                                         <ui:template>
                                             <Text
                                                 id="_IDGenText1"
                                                 wrapping="false"
-                                                text="{BATCH_NUMBER}"
+                                                text="{CHARG}"
                                                 tooltip="{parts: [
 											{value: 'Manuf. Date '},
-											{path: 'DATE_OF_MANUF' },
+											{path: 'LDDAT_DATE' },
 											{value: ' / '},
 											{value: 'SLED/BBD '},
-											{path: 'SHELF_LIFE_EXP_DATE'}
+											{path: 'LFDAT_DATE'}
 										]
 										}"
                                             />
@@ -176,25 +178,51 @@
                                         </ui:layoutData>
                                     </ui:Column>
                                 </ui:columns>
-                                <ui:layoutData>
-                                    <FlexItemData
-                                        id="_IDGenFlexItemData4"
-                                        growFactor="1"
-                                        baseSize="0%"
+                        <ui:rowActionTemplate>
+                            <ui:RowAction id="_IDGenRowAction1">
+                                <ui:items>
+                                    <ui:RowActionItem
+                                        id="_IDGenRowActionItem1"
+                                        type="Navigation"
+                                        text="navigations"
+                                        press="onRowSelChange"
                                     />
-                                </ui:layoutData>
-                            </ui:Table>
-                            <smartTable:layoutData>
-                                <FlexItemData
-                                    id="_IDGenFlexItemData2"
-                                    growFactor="1"
-                                    baseSize="0%"
-                                />
-                            </smartTable:layoutData>
-                        </smartTable:SmartTable>
-                    </VBox>
-                </content>
-            </Page>
-        </pages>
-    </App>
+                                </ui:items>
+                            </ui:RowAction>
+                        </ui:rowActionTemplate>
+
+                        <ui:layoutData>
+                            <FlexItemData
+                                id="_IDGenFlexItemData4"
+                                growFactor="1"
+                                baseSize="0%"
+                            />
+                        </ui:layoutData>
+                    </ui:Table>
+                    <smartTable:layoutData>
+                        <FlexItemData
+                            id="_IDGenFlexItemData2"
+                            growFactor="1"
+                            baseSize="0%"
+                        />
+                    </smartTable:layoutData>
+                </smartTable:SmartTable>
+            </VBox>
+        </f:content>
+        <f:footer>
+            <Toolbar
+                class="sapUiResponsiveMargin"
+                id="otbFooter"
+            >
+                <Button
+                    id="idMsgManager"
+                    icon="sap-icon://alert"
+                    text="{= ${message>/}.length }"
+                    visible="{= ${message>/}.length > 0 }"
+                    type="Emphasized"
+                    press="onMessagePopoverPress"
+                />
+            </Toolbar>
+        </f:footer>
+    </f:DynamicPage>
 </mvc:View>

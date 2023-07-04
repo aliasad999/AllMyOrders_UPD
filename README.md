@@ -21,7 +21,7 @@ open terminal, and in root folder install all dependecies via
 
 ## Initial deployment
 to deploy you can open git bash terminal and use 
-``` mbt build && cf deploy mta_archives/allmyorders_1.0.0.mtar ```
+``` mbt build && cf deploy mta_archives/OrderMonitoringCockpit_1.0.0.mtar ```
 
 ## note
 make sure to access endpoints using app router. if you directly access service you will not be authorized. app router url can be found in the applications within the space
@@ -75,7 +75,7 @@ once the build has been completed, you can push your changes via following comma
 
 ## Usefull commands
 To login quickly via terminal you can use the following command
-```cf.exe login -a "https://api.cf.eu10.hana.ondemand.com" --sso-passcode "rChf5dT4UJ8wV4ZRkS0VeEyeFJa9JeMb" ```
+```cf login -a "https://api.cf.eu10.hana.ondemand.com" --sso-passcode "PASSCODE" ```
 
 you can get passcode by opening following url in browser
 https://login.cf.eu10.hana.ondemand.com/passcode#

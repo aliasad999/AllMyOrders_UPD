@@ -1,5 +1,5 @@
 <edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
-	<edmx:Reference Uri="/here/goes/your/serviceurl/$metadata">
+	<edmx:Reference Uri="https://port4004-workspaces-ws-vnpgs.eu10.applicationstudio.cloud.sap/v2/srv-open-orders/$metadata">
 		<edmx:Include Alias="Metadata" Namespace="srvOpenOrders"/>
 	</edmx:Reference>
 	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
@@ -10,239 +10,59 @@
 			<Annotations Target="Metadata.Results">
 				<Annotation Term="Common.Label"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/SalesOrder">
+			<Annotations Target="Metadata.Results/VBELN">
 				<Annotation Term="Common.Label" String="{@i18n>salesOrder}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/CreatedOn">
-				<Annotation Term="Common.Label" String="{@i18n>createdOn}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SalesOrderItem">
-				<Annotation Term="Common.Label" String="{@i18n>salesOrderItem}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/NEXT_ORDER">
-				<Annotation Term="Common.Label" String="{@i18n>NEXT_ORDER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/FINAL_ORDER">
-				<Annotation Term="Common.Label" String="{@i18n>FINAL_ORDER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/ORDER_STATUS">
-				<Annotation Term="Common.Label" String="{@i18n>ORDER_STATUS}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/MaterialNo">
-				<Annotation Term="Common.Label" String="{@i18n>MaterialNo}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SoldToParty">
-				<Annotation Term="Common.Label" String="{@i18n>SoldToParty}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SoldtoPartyName">
-				<Annotation Term="Common.Label" String="{@i18n>SoldtoPartyName}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/ShipToParty">
-				<Annotation Term="Common.Label" String="{@i18n>ShipToParty}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/ShipToPartyName">
-				<Annotation Term="Common.Label" String="{@i18n>ShipToPartyName}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/CustomerReference">
-				<Annotation Term="Common.Label" String="{@i18n>CustomerReference}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SalesOrg">
-				<Annotation Term="Common.Label" String="{@i18n>SalesOrg}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SalesOrgName">
-				<Annotation Term="Common.Label" String="{@i18n>SalesOrgName}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/Note">
-				<Annotation Term="Common.Label" String="{@i18n>Note}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/RequestedDelDate">
-				<Annotation Term="Common.Label" String="{@i18n>RequestedDelDate}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/RequestedQuantity">
-				<Annotation Term="Common.Label" String="{@i18n>RequestedQuantity}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/RequestedQuantityUnit">
-				<Annotation Term="Common.Label" String="{@i18n>RequestedQuantityUnit}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/Plant">
-				<Annotation Term="Common.Label" String="{@i18n>Plant}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/OrderType">
-				<Annotation Term="Common.Label" String="{@i18n>OrderType}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/OrderTypeDesc">
-				<Annotation Term="Common.Label" String="{@i18n>OrderTypeDesc}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/POType">
-				<Annotation Term="Common.Label" String="{@i18n>POType}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/POTypeDesc">
-				<Annotation Term="Common.Label" String="{@i18n>POTypeDesc}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/Incoterm1">
-				<Annotation Term="Common.Label" String="{@i18n>Incoterm1}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/Incoterm2">
-				<Annotation Term="Common.Label" String="{@i18n>Incoterm2}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/PaymentTerm">
-				<Annotation Term="Common.Label" String="{@i18n>PaymentTerm}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/VEPartner">
-				<Annotation Term="Common.Label" String="{@i18n>VEPartner}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/VEPartnerName">
-				<Annotation Term="Common.Label" String="{@i18n>VEPartnerName}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/ASPartner">
-				<Annotation Term="Common.Label" String="{@i18n>ASPartner}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/ASPartnerName">
-				<Annotation Term="Common.Label" String="{@i18n>ASPartnerName}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/DIFF_CONF_REQ_DATE">
-				<Annotation Term="Common.Label" String="{@i18n>DIFF_CONF_REQ_DATE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/GROUP_COMPANY">
-				<Annotation Term="Common.Label" String="{@i18n>GROUP_COMPANY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SUPPLY_POINT">
-				<Annotation Term="Common.Label" String="{@i18n>SUPPLY_POINT}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/CUSTOMER_PRIORITY">
-				<Annotation Term="Common.Label" String="{@i18n>CUSTOMER_PRIORITY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/TM_DOC_NO">
-				<Annotation Term="Common.Label" String="{@i18n>TM_DOC_NO}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/FORWARDER_NAME">
-				<Annotation Term="Common.Label" String="{@i18n>FORWARDER_NAME}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/VESSEL_NAME">
-				<Annotation Term="Common.Label" String="{@i18n>VESSEL_NAME}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/CONTAINER_NO">
-				<Annotation Term="Common.Label" String="{@i18n>CONTAINER_NO}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/ShipmentETA">
-				<Annotation Term="Common.Label" String="{@i18n>ShipmentETA}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/ShipmentETD">
-				<Annotation Term="Common.Label" String="{@i18n>ShipmentETD}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/ConfDelDate">
-				<Annotation Term="Common.Label" String="{@i18n>ConfDelDate}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SHIPPING_TYPE">
-				<Annotation Term="Common.Label" String="{@i18n>SHIPPING_TYPE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SHIP_TYPE_DESC">
-				<Annotation Term="Common.Label" String="{@i18n>SHIP_TYPE_DESC}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/LoadingDate">
-				<Annotation Term="Common.Label" String="{@i18n>LoadingDate}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SHIP_STAT_DESC">
-				<Annotation Term="Common.Label" String="{@i18n>SHIP_STAT_DESC}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SHIP_STATR_DESC">
-				<Annotation Term="Common.Label" String="{@i18n>SHIP_STATR_DESC}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/REQ_TEXT">
-				<Annotation Term="Common.Label" String="{@i18n>REQ_TEXT}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/DOCUMENT_TYPE">
-				<Annotation Term="Common.Label" String="{@i18n>DOCUMENT_TYPE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/GUSCON_LEVEL">
-				<Annotation Term="Common.Label" String="{@i18n>GUSCON_LEVEL}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/LEVEL_TYPE">
-				<Annotation Term="Common.Label" String="{@i18n>LEVEL_TYPE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SORT_ORDER">
-				<Annotation Term="Common.Label" String="{@i18n>SORT_ORDER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/DISTRIBUTION_CHANNEL">
-				<Annotation Term="Common.Label" String="{@i18n>DISTRIBUTION_CHANNEL}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/DELIVERY">
-				<Annotation Term="Common.Label" String="{@i18n>DELIVERY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SBU">
-				<Annotation Term="Common.Label" String="{@i18n>SBU}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/PlannedDelDate">
-				<Annotation Term="Common.Label" String="{@i18n>PlannedDelDate}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SORT_ORDER1">
-				<Annotation Term="Common.Label" String="{@i18n>SORT_ORDER1}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/INITIAL_ORDER">
-				<Annotation Term="Common.Label" String="{@i18n>INITIAL_ORDER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/STATUS_BIZAGI">
-				<Annotation Term="Common.Label" String="{@i18n>STATUS_BIZAGI}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/FA_TRACKING_ID">
-				<Annotation Term="Common.Label" String="{@i18n>FA_TRACKING_ID}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/TRACKING_ID">
-				<Annotation Term="Common.Label" String="{@i18n>TRACKING_ID}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/LC_NUMBER">
-				<Annotation Term="Common.Label" String="{@i18n>LC_NUMBER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/CUSTOMER_MAT_REFERENCE">
-				<Annotation Term="Common.Label" String="{@i18n>CUSTOMER_MAT_REFERENCE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/CONFIRMED_QUANTITY">
-				<Annotation Term="Common.Label" String="{@i18n>CONFIRMED_QUANTITY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/PENDING_DEL_QTY">
-				<Annotation Term="Common.Label" String="{@i18n>PENDING_DEL_QTY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/PENDING_DEL_QTY_UNIT">
-				<Annotation Term="Common.Label" String="{@i18n>PENDING_DEL_QTY_UNIT}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/UNCONFIRMED_QUANTITY">
-				<Annotation Term="Common.Label" String="{@i18n>UNCONFIRMED_QUANTITY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/DELIVERY_TYPE">
-				<Annotation Term="Common.Label" String="{@i18n>DELIVERY_TYPE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/STORAGE_LOCATION">
-				<Annotation Term="Common.Label" String="{@i18n>STORAGE_LOCATION}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SUPPLYING_PLANT">
-				<Annotation Term="Common.Label" String="{@i18n>SUPPLYING_PLANT}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SELLING_INVOICE">
-				<Annotation Term="Common.Label" String="{@i18n>SELLING_INVOICE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/CREATION_DATE">
+			<Annotations Target="Metadata.Results/ERDAT_ORDER_DATE">
 				<Annotation Term="Common.Label" String="{@i18n>CREATION_DATE}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/SHIP_TO_COUNTRY_NAME">
-				<Annotation Term="Common.Label" String="{@i18n>SHIP_TO_COUNTRY_NAME}"/>
+			<Annotations Target="Metadata.Results/ERDAT_ITEM_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>createdOn}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/SUPPLY_SITUATION">
-				<Annotation Term="Common.Label" String="{@i18n>SUPPLY_SITUATION}"/>
+			<Annotations Target="Metadata.Results/POSNR">
+				<Annotation Term="Common.Label" String="{@i18n>salesOrderItem}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/DELIVERY_QTY">
-				<Annotation Term="Common.Label" String="{@i18n>DELIVERY_QTY}"/>
+			<Annotations Target="Metadata.Results/AUART">
+				<Annotation Term="Common.Label" String="{@i18n>auart}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/SUPPLIER_PO">
-				<Annotation Term="Common.Label" String="{@i18n>SUPPLIER_PO}"/>
+			<Annotations Target="Metadata.Results/WERKS">
+				<Annotation Term="Common.Label" String="{@i18n>werks}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/COM_TRACKING_ID">
-				<Annotation Term="Common.Label" String="{@i18n>COM_TRACKING_ID}"/>
+			<Annotations Target="Metadata.Results/VTWEG">
+				<Annotation Term="Common.Label" String="{@i18n>vtweg}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/PRICING_DATE">
-				<Annotation Term="Common.Label" String="{@i18n>PRICING_DATE}"/>
+			<Annotations Target="Metadata.Results/MATNR">
+				<Annotation Term="Common.Label" String="{@i18n>MaterialNo}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/BILLING_DOCUMENT">
-				<Annotation Term="Common.Label" String="{@i18n>BILLING_DOCUMENT}"/>
+			<Annotations Target="Metadata.Results/MAKTX">
+				<Annotation Term="Common.Label" String="{@i18n>MaterialName}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/KDMAT">
+				<Annotation Term="Common.Label" String="{@i18n>kdmat}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/BSTNK">
+				<Annotation Term="Common.Label" String="{@i18n>bstnk}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/AG_PARTNER">
+				<Annotation Term="Common.Label" String="{@i18n>agPartnerNo}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/WE_PARTNER">
+				<Annotation Term="Common.Label" String="{@i18n>wePartnerNo}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/LAND1">
+				<Annotation Term="Common.Label" String="{@i18n>land1}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/LANDX">
+				<Annotation Term="Common.Label" String="{@i18n>landx}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/ORT01">
+				<Annotation Term="Common.Label" String="{@i18n>ort1}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VKORG">
+				<Annotation Term="Common.Label" String="{@i18n>vkorg}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VKORG_NAME1">
+				<Annotation Term="Common.Label" String="{@i18n>vkorgName}"/>
 			</Annotations>
 			<Annotations Target="Metadata.Results/CO_PARTNER">
 				<Annotation Term="Common.Label" String="{@i18n>CO_PARTNER}"/>
@@ -256,29 +76,17 @@
 			<Annotations Target="Metadata.Results/NY_PARTNER_NAME">
 				<Annotation Term="Common.Label" String="{@i18n>NY_PARTNER_NAME}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/SHIPMNT_ATA">
-				<Annotation Term="Common.Label" String="{@i18n>SHIPMNT_ATA}"/>
+			<Annotations Target="Metadata.Results/AS_PARTNER">
+				<Annotation Term="Common.Label" String="{@i18n>AS_PARTNER}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/SHIPMNT_ATD">
-				<Annotation Term="Common.Label" String="{@i18n>SHIPMNT_ATD}"/>
+			<Annotations Target="Metadata.Results/AS_PARTNER_NAME">
+				<Annotation Term="Common.Label" String="{@i18n>AS_PARTNER_NAME}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/ShipmentATA">
-				<Annotation Term="Common.Label" String="{@i18n>ShipmentATA}"/>
+			<Annotations Target="Metadata.Results/VE_PARTNER">
+				<Annotation Term="Common.Label" String="{@i18n>VE_PARTNER}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/ShipmentATD">
-				<Annotation Term="Common.Label" String="{@i18n>ShipmentATD}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/BATCH_NUMBER">
-				<Annotation Term="Common.Label" String="{@i18n>BATCH_NUMBER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/DATE_OF_MANUF">
-				<Annotation Term="Common.Label" String="{@i18n>DATE_OF_MANUF}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/SHELF_LIFE_EXP_DATE">
-				<Annotation Term="Common.Label" String="{@i18n>SHELF_LIFE_EXP_DATE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.Results/NOTA_FISCAL">
-				<Annotation Term="Common.Label" String="{@i18n>NOTA_FISCAL}"/>
+			<Annotations Target="Metadata.Results/VE_PARTNER_NAME">
+				<Annotation Term="Common.Label" String="{@i18n>VE_PARTNER_NAME}"/>
 			</Annotations>
 			<Annotations Target="Metadata.Results/AM_PARTNER">
 				<Annotation Term="Common.Label" String="{@i18n>AM_PARTNER}"/>
@@ -286,272 +94,210 @@
 			<Annotations Target="Metadata.Results/AM_PARTNER_NAME">
 				<Annotation Term="Common.Label" String="{@i18n>AM_PARTNER_NAME}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/NET_AMOUNT">
+			<Annotations Target="Metadata.Results/KNREF_HEAD">
+				<Annotation Term="Common.Label" String="{@i18n>KNREF}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/KNREF_ITM">
+				<Annotation Term="Common.Label" String="{@i18n>KNREF}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VBUND">
+				<Annotation Term="Common.Label" String="{@i18n>VBUND}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/EDATU_REQUESTED_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>edatu_requested}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/KWMENG">
+				<Annotation Term="Common.Label" String="{@i18n>KWMENG}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VRKME">
+				<Annotation Term="Common.Label" String="{@i18n>vrkme}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/EDATU_CONFIRMED_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>ConfDelDate}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/KBMENG">
+				<Annotation Term="Common.Label" String="{@i18n>CONFIRMED_QUANTITY}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/LDDAT_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>LoadingDate}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/UNCONFIRMED_QTY">
+				<Annotation Term="Common.Label" String="{@i18n>UNCONFIRMED_QUANTITY}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/REQ_TEXT">
+				<Annotation Term="Common.Label" String="{@i18n>REQ_TEXT}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/FAKSP">
+				<Annotation Term="Common.Label" String="{@i18n>FAKSP}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/FAKSP_VTEXT">
+				<Annotation Term="Common.Label" String="{@i18n>FAKSP_VTEXT}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/LGORT">
+				<Annotation Term="Common.Label" String="{@i18n>STORAGE_LOCATION}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/SUPPLY_SITUATION">
+				<Annotation Term="Common.Label" String="{@i18n>SUPPLY_SITUATION}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/SUPPLY_SITUATION_DESCR">
+				<Annotation Term="Common.Label" String="{@i18n>SUPPLY_SITUATION_DESCR}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/KBETR">
+				<Annotation Term="Common.Label" String="{@i18n>KBETR}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/WAERS">
+				<Annotation Term="Common.Label" String="{@i18n>WAERS}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/KPEIN">
+				<Annotation Term="Common.Label" String="{@i18n>KPEIN}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/KMEIN">
+				<Annotation Term="Common.Label" String="{@i18n>KMEIN}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/NETWR">
 				<Annotation Term="Common.Label" String="{@i18n>NET_AMOUNT}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/PRICE_PER_UNIT">
-				<Annotation Term="Common.Label" String="{@i18n>PRICE_PER_UNIT}"/>
+			<Annotations Target="Metadata.Results/WAERK">
+				<Annotation Term="Common.Label" String="{@i18n>WAERK}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/MRP_CONTROLLER">
-				<Annotation Term="Common.Label" String="{@i18n>MRP_CONTROLLER}"/>
+			<Annotations Target="Metadata.Results/HTEXT">
+				<Annotation Term="Common.Label" String="{@i18n>HTEXT}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/ITEM_CATEGORY">
+			<Annotations Target="Metadata.Results/PSTYV">
 				<Annotation Term="Common.Label" String="{@i18n>ITEM_CATEGORY}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/HOM_REMARK">
-				<Annotation Term="Common.Label" String="{@i18n>HOM_REMARK}"/>
+			<Annotations Target="Metadata.Results/PSTYV_VTEXT">
+				<Annotation Term="Common.Label" String="{@i18n>ITEM_CATEGORY_TEXT}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/SHIP_TO_CITY_NAME">
-				<Annotation Term="Common.Label" String="{@i18n>SHIP_TO_CITY_NAME}"/>
+			<Annotations Target="Metadata.Results/DISPO">
+				<Annotation Term="Common.Label" String="{@i18n>MRP_CONTROLLER}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/PROD_ALLOC">
-				<Annotation Term="Common.Label" String="{@i18n>PROD_ALLOC}"/>
+			<Annotations Target="Metadata.Results/KOSCH">
+				<Annotation Term="Common.Label" String="{@i18n>KOSCH}"/>
 			</Annotations>
-			<Annotations Target="Metadata.Results/BILLING_BLOCK_ITEM">
-				<Annotation Term="Common.Label" String="{@i18n>BILLING_BLOCK_ITEM}"/>
+			<Annotations Target="Metadata.Results/VKBUR">
+				<Annotation Term="Common.Label" String="{@i18n>VKBUR}"/>
 			</Annotations>
-            <Annotations Target="Metadata.Results/MaterialName">
-				<Annotation Term="Common.Label" String="{@i18n>MaterialName}"/>
+			<Annotations Target="Metadata.Results/VKBUR_BEZEI">
+				<Annotation Term="Common.Label" String="{@i18n>VKBUR_BEZEI}"/>
 			</Annotations>
+			<Annotations Target="Metadata.Results/ABGRU">
+				<Annotation Term="Common.Label" String="{@i18n>ABGRU}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/ABSTA">
+				<Annotation Term="Common.Label" String="{@i18n>ABSTA}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/KNUMV">
+				<Annotation Term="Common.Label" String="{@i18n>KNUMV}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/SPART">
+				<Annotation Term="Common.Label" String="{@i18n>SPART}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VBELN_DEL">
+				<Annotation Term="Common.Label" String="{@i18n>VBELN_DEL}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/POSNR_DEL">
+				<Annotation Term="Common.Label" String="{@i18n>POSNR_DEL}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/CHARG">
+				<Annotation Term="Common.Label" String="{@i18n>CHARG}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/LFIMG">
+				<Annotation Term="Common.Label" String="{@i18n>LFIMG}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VRKME_DEL">
+				<Annotation Term="Common.Label" String="{@i18n>vrkme_del}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/POSAR">
+				<Annotation Term="Common.Label" String="{@i18n>POSAR}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VGBEL">
+				<Annotation Term="Common.Label" String="{@i18n>VGBEL}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VGPOS">
+				<Annotation Term="Common.Label" String="{@i18n>VGPOS}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/LFART">
+				<Annotation Term="Common.Label" String="{@i18n>DELIVERY_TYPE}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/LFART_VTEXT">
+				<Annotation Term="Common.Label" String="{@i18n>DELIVERY_TYPE_TEXT}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/LFDAT_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>lfdat}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/TRAID">
+				<Annotation Term="Common.Label" String="{@i18n>TRAID}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/ZZ0S2BLNR">
+				<Annotation Term="Common.Label" String="{@i18n>ZZ0S2BLNR}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/PEND_DEL_QUAN">
+				<Annotation Term="Common.Label" String="{@i18n>PENDING_DEL_QTY}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/LAST_NOTE">
+				<Annotation Term="Common.Label" String="{@i18n>LAST_NOTE}"/>
+			</Annotations>
+			
 			
 		</Schema>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ordermonitoring.annotations.srvOpenOrders">
 			<Annotations Target="Metadata.valueHelps">
 				<Annotation Term="Common.Label"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SalesOrder">
+						<Annotations Target="Metadata.valueHelps/VBELN">
 				<Annotation Term="Common.Label" String="{@i18n>salesOrder}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/CreatedOn">
-				<Annotation Term="Common.Label" String="{@i18n>createdOn}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SalesOrderItem">
-				<Annotation Term="Common.Label" String="{@i18n>salesOrderItem}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/NEXT_ORDER">
-				<Annotation Term="Common.Label" String="{@i18n>NEXT_ORDER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/FINAL_ORDER">
-				<Annotation Term="Common.Label" String="{@i18n>FINAL_ORDER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/ORDER_STATUS">
-				<Annotation Term="Common.Label" String="{@i18n>ORDER_STATUS}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/MaterialNo">
-				<Annotation Term="Common.Label" String="{@i18n>MaterialNo}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SoldToParty">
-				<Annotation Term="Common.Label" String="{@i18n>SoldToParty}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SoldtoPartyName">
-				<Annotation Term="Common.Label" String="{@i18n>SoldtoPartyName}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/ShipToParty">
-				<Annotation Term="Common.Label" String="{@i18n>ShipToParty}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/ShipToPartyName">
-				<Annotation Term="Common.Label" String="{@i18n>ShipToPartyName}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/CustomerReference">
-				<Annotation Term="Common.Label" String="{@i18n>CustomerReference}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SalesOrg">
-				<Annotation Term="Common.Label" String="{@i18n>SalesOrg}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SalesOrgName">
-				<Annotation Term="Common.Label" String="{@i18n>SalesOrgName}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/Note">
-				<Annotation Term="Common.Label" String="{@i18n>Note}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/RequestedDelDate">
-				<Annotation Term="Common.Label" String="{@i18n>RequestedDelDate}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/RequestedQuantity">
-				<Annotation Term="Common.Label" String="{@i18n>RequestedQuantity}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/RequestedQuantityUnit">
-				<Annotation Term="Common.Label" String="{@i18n>RequestedQuantityUnit}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/Plant">
-				<Annotation Term="Common.Label" String="{@i18n>Plant}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/OrderType">
-				<Annotation Term="Common.Label" String="{@i18n>OrderType}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/OrderTypeDesc">
-				<Annotation Term="Common.Label" String="{@i18n>OrderTypeDesc}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/POType">
-				<Annotation Term="Common.Label" String="{@i18n>POType}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/POTypeDesc">
-				<Annotation Term="Common.Label" String="{@i18n>POTypeDesc}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/Incoterm1">
-				<Annotation Term="Common.Label" String="{@i18n>Incoterm1}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/Incoterm2">
-				<Annotation Term="Common.Label" String="{@i18n>Incoterm2}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/PaymentTerm">
-				<Annotation Term="Common.Label" String="{@i18n>PaymentTerm}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/VEPartner">
-				<Annotation Term="Common.Label" String="{@i18n>VEPartner}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/VEPartnerName">
-				<Annotation Term="Common.Label" String="{@i18n>VEPartnerName}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/ASPartner">
-				<Annotation Term="Common.Label" String="{@i18n>ASPartner}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/ASPartnerName">
-				<Annotation Term="Common.Label" String="{@i18n>ASPartnerName}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/DIFF_CONF_REQ_DATE">
-				<Annotation Term="Common.Label" String="{@i18n>DIFF_CONF_REQ_DATE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/GROUP_COMPANY">
-				<Annotation Term="Common.Label" String="{@i18n>GROUP_COMPANY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SUPPLY_POINT">
-				<Annotation Term="Common.Label" String="{@i18n>SUPPLY_POINT}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/CUSTOMER_PRIORITY">
-				<Annotation Term="Common.Label" String="{@i18n>CUSTOMER_PRIORITY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/TM_DOC_NO">
-				<Annotation Term="Common.Label" String="{@i18n>TM_DOC_NO}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/FORWARDER_NAME">
-				<Annotation Term="Common.Label" String="{@i18n>FORWARDER_NAME}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/VESSEL_NAME">
-				<Annotation Term="Common.Label" String="{@i18n>VESSEL_NAME}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/CONTAINER_NO">
-				<Annotation Term="Common.Label" String="{@i18n>CONTAINER_NO}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/ShipmentETA">
-				<Annotation Term="Common.Label" String="{@i18n>ShipmentETA}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/ShipmentETD">
-				<Annotation Term="Common.Label" String="{@i18n>ShipmentETD}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/ConfDelDate">
-				<Annotation Term="Common.Label" String="{@i18n>ConfDelDate}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SHIPPING_TYPE">
-				<Annotation Term="Common.Label" String="{@i18n>SHIPPING_TYPE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SHIP_TYPE_DESC">
-				<Annotation Term="Common.Label" String="{@i18n>SHIP_TYPE_DESC}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/LoadingDate">
-				<Annotation Term="Common.Label" String="{@i18n>LoadingDate}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SHIP_STAT_DESC">
-				<Annotation Term="Common.Label" String="{@i18n>SHIP_STAT_DESC}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SHIP_STATR_DESC">
-				<Annotation Term="Common.Label" String="{@i18n>SHIP_STATR_DESC}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/REQ_TEXT">
-				<Annotation Term="Common.Label" String="{@i18n>REQ_TEXT}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/DOCUMENT_TYPE">
-				<Annotation Term="Common.Label" String="{@i18n>DOCUMENT_TYPE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/GUSCON_LEVEL">
-				<Annotation Term="Common.Label" String="{@i18n>GUSCON_LEVEL}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/LEVEL_TYPE">
-				<Annotation Term="Common.Label" String="{@i18n>LEVEL_TYPE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SORT_ORDER">
-				<Annotation Term="Common.Label" String="{@i18n>SORT_ORDER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/DISTRIBUTION_CHANNEL">
-				<Annotation Term="Common.Label" String="{@i18n>DISTRIBUTION_CHANNEL}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/DELIVERY">
-				<Annotation Term="Common.Label" String="{@i18n>DELIVERY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SBU">
-				<Annotation Term="Common.Label" String="{@i18n>SBU}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/PlannedDelDate">
-				<Annotation Term="Common.Label" String="{@i18n>PlannedDelDate}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SORT_ORDER1">
-				<Annotation Term="Common.Label" String="{@i18n>SORT_ORDER1}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/INITIAL_ORDER">
-				<Annotation Term="Common.Label" String="{@i18n>INITIAL_ORDER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/STATUS_BIZAGI">
-				<Annotation Term="Common.Label" String="{@i18n>STATUS_BIZAGI}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/FA_TRACKING_ID">
-				<Annotation Term="Common.Label" String="{@i18n>FA_TRACKING_ID}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/TRACKING_ID">
-				<Annotation Term="Common.Label" String="{@i18n>TRACKING_ID}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/LC_NUMBER">
-				<Annotation Term="Common.Label" String="{@i18n>LC_NUMBER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/CUSTOMER_MAT_REFERENCE">
-				<Annotation Term="Common.Label" String="{@i18n>CUSTOMER_MAT_REFERENCE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/CONFIRMED_QUANTITY">
-				<Annotation Term="Common.Label" String="{@i18n>CONFIRMED_QUANTITY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/PENDING_DEL_QTY">
-				<Annotation Term="Common.Label" String="{@i18n>PENDING_DEL_QTY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/PENDING_DEL_QTY_UNIT">
-				<Annotation Term="Common.Label" String="{@i18n>PENDING_DEL_QTY_UNIT}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/UNCONFIRMED_QUANTITY">
-				<Annotation Term="Common.Label" String="{@i18n>UNCONFIRMED_QUANTITY}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/DELIVERY_TYPE">
-				<Annotation Term="Common.Label" String="{@i18n>DELIVERY_TYPE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/STORAGE_LOCATION">
-				<Annotation Term="Common.Label" String="{@i18n>STORAGE_LOCATION}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SUPPLYING_PLANT">
-				<Annotation Term="Common.Label" String="{@i18n>SUPPLYING_PLANT}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SELLING_INVOICE">
-				<Annotation Term="Common.Label" String="{@i18n>SELLING_INVOICE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/CREATION_DATE">
+			<Annotations Target="Metadata.valueHelps/ERDAT_ORDER_DATE">
 				<Annotation Term="Common.Label" String="{@i18n>CREATION_DATE}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SHIP_TO_COUNTRY_NAME">
-				<Annotation Term="Common.Label" String="{@i18n>SHIP_TO_COUNTRY_NAME}"/>
+			<Annotations Target="Metadata.valueHelps/ERDAT_ITEM_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>createdOn}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SUPPLY_SITUATION">
-				<Annotation Term="Common.Label" String="{@i18n>SUPPLY_SITUATION}"/>
+			<Annotations Target="Metadata.valueHelps/POSNR">
+				<Annotation Term="Common.Label" String="{@i18n>salesOrderItem}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/DELIVERY_QTY">
-				<Annotation Term="Common.Label" String="{@i18n>DELIVERY_QTY}"/>
+			<Annotations Target="Metadata.valueHelps/AUART">
+				<Annotation Term="Common.Label" String="{@i18n>auart}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SUPPLIER_PO">
-				<Annotation Term="Common.Label" String="{@i18n>SUPPLIER_PO}"/>
+			<Annotations Target="Metadata.valueHelps/WERKS">
+				<Annotation Term="Common.Label" String="{@i18n>werks}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/COM_TRACKING_ID">
-				<Annotation Term="Common.Label" String="{@i18n>COM_TRACKING_ID}"/>
+			<Annotations Target="Metadata.valueHelps/VTWEG">
+				<Annotation Term="Common.Label" String="{@i18n>vtweg}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/PRICING_DATE">
-				<Annotation Term="Common.Label" String="{@i18n>PRICING_DATE}"/>
+			<Annotations Target="Metadata.valueHelps/MATNR">
+				<Annotation Term="Common.Label" String="{@i18n>MaterialNo}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/BILLING_DOCUMENT">
-				<Annotation Term="Common.Label" String="{@i18n>BILLING_DOCUMENT}"/>
+			<Annotations Target="Metadata.valueHelps/MAKTX">
+				<Annotation Term="Common.Label" String="{@i18n>MaterialName}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/KDMAT">
+				<Annotation Term="Common.Label" String="{@i18n>kdmat}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/BSTNK">
+				<Annotation Term="Common.Label" String="{@i18n>bstnk}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/AG_PARTNER">
+				<Annotation Term="Common.Label" String="{@i18n>agPartnerNo}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/WE_PARTNER">
+				<Annotation Term="Common.Label" String="{@i18n>wePartnerNo}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/LAND1">
+				<Annotation Term="Common.Label" String="{@i18n>land1}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/LANDX">
+				<Annotation Term="Common.Label" String="{@i18n>landx}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/ORT01">
+				<Annotation Term="Common.Label" String="{@i18n>ort1}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/VKORG">
+				<Annotation Term="Common.Label" String="{@i18n>vkorg}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/VKORG_NAME1">
+				<Annotation Term="Common.Label" String="{@i18n>vkorgName}"/>
 			</Annotations>
 			<Annotations Target="Metadata.valueHelps/CO_PARTNER">
 				<Annotation Term="Common.Label" String="{@i18n>CO_PARTNER}"/>
@@ -565,29 +311,17 @@
 			<Annotations Target="Metadata.valueHelps/NY_PARTNER_NAME">
 				<Annotation Term="Common.Label" String="{@i18n>NY_PARTNER_NAME}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SHIPMNT_ATA">
-				<Annotation Term="Common.Label" String="{@i18n>SHIPMNT_ATA}"/>
+			<Annotations Target="Metadata.valueHelps/AS_PARTNER">
+				<Annotation Term="Common.Label" String="{@i18n>AS_PARTNER}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SHIPMNT_ATD">
-				<Annotation Term="Common.Label" String="{@i18n>SHIPMNT_ATD}"/>
+			<Annotations Target="Metadata.valueHelps/AS_PARTNER_NAME">
+				<Annotation Term="Common.Label" String="{@i18n>AS_PARTNER_NAME}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/ShipmentATA">
-				<Annotation Term="Common.Label" String="{@i18n>ShipmentATA}"/>
+			<Annotations Target="Metadata.valueHelps/VE_PARTNER">
+				<Annotation Term="Common.Label" String="{@i18n>VE_PARTNER}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/ShipmentATD">
-				<Annotation Term="Common.Label" String="{@i18n>ShipmentATD}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/BATCH_NUMBER">
-				<Annotation Term="Common.Label" String="{@i18n>BATCH_NUMBER}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/DATE_OF_MANUF">
-				<Annotation Term="Common.Label" String="{@i18n>DATE_OF_MANUF}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SHELF_LIFE_EXP_DATE">
-				<Annotation Term="Common.Label" String="{@i18n>SHELF_LIFE_EXP_DATE}"/>
-			</Annotations>
-			<Annotations Target="Metadata.valueHelps/NOTA_FISCAL">
-				<Annotation Term="Common.Label" String="{@i18n>NOTA_FISCAL}"/>
+			<Annotations Target="Metadata.valueHelps/VE_PARTNER_NAME">
+				<Annotation Term="Common.Label" String="{@i18n>VE_PARTNER_NAME}"/>
 			</Annotations>
 			<Annotations Target="Metadata.valueHelps/AM_PARTNER">
 				<Annotation Term="Common.Label" String="{@i18n>AM_PARTNER}"/>
@@ -595,33 +329,148 @@
 			<Annotations Target="Metadata.valueHelps/AM_PARTNER_NAME">
 				<Annotation Term="Common.Label" String="{@i18n>AM_PARTNER_NAME}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/NET_AMOUNT">
+			<Annotations Target="Metadata.valueHelps/KNREF_HEAD">
+				<Annotation Term="Common.Label" String="{@i18n>KNREF}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/KNREF_ITM">
+				<Annotation Term="Common.Label" String="{@i18n>KNREF}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/VBUND">
+				<Annotation Term="Common.Label" String="{@i18n>VBUND}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/EDATU_REQUESTED_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>edatu_requested}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/KWMENG">
+				<Annotation Term="Common.Label" String="{@i18n>KWMENG}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/VRKME">
+				<Annotation Term="Common.Label" String="{@i18n>vrkme}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/EDATU_CONFIRMED_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>ConfDelDate}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/KBMENG">
+				<Annotation Term="Common.Label" String="{@i18n>CONFIRMED_QUANTITY}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/LDDAT_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>LoadingDate}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/UNCONFIRMED_QTY">
+				<Annotation Term="Common.Label" String="{@i18n>UNCONFIRMED_QUANTITY}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/REQ_TEXT">
+				<Annotation Term="Common.Label" String="{@i18n>REQ_TEXT}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/FAKSP">
+				<Annotation Term="Common.Label" String="{@i18n>FAKSP}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/FAKSP_VTEXT">
+				<Annotation Term="Common.Label" String="{@i18n>FAKSP_VTEXT}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/LGORT">
+				<Annotation Term="Common.Label" String="{@i18n>STORAGE_LOCATION}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/SUPPLY_SITUATION">
+				<Annotation Term="Common.Label" String="{@i18n>SUPPLY_SITUATION}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/SUPPLY_SITUATION_DESCR">
+				<Annotation Term="Common.Label" String="{@i18n>SUPPLY_SITUATION_DESCR}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/KBETR">
+				<Annotation Term="Common.Label" String="{@i18n>KBETR}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/WAERS">
+				<Annotation Term="Common.Label" String="{@i18n>WAERS}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/KPEIN">
+				<Annotation Term="Common.Label" String="{@i18n>KPEIN}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/KMEIN">
+				<Annotation Term="Common.Label" String="{@i18n>KMEIN}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/NETWR">
 				<Annotation Term="Common.Label" String="{@i18n>NET_AMOUNT}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/PRICE_PER_UNIT">
-				<Annotation Term="Common.Label" String="{@i18n>PRICE_PER_UNIT}"/>
+			<Annotations Target="Metadata.valueHelps/WAERK">
+				<Annotation Term="Common.Label" String="{@i18n>WAERK}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/MRP_CONTROLLER">
-				<Annotation Term="Common.Label" String="{@i18n>MRP_CONTROLLER}"/>
+			<Annotations Target="Metadata.valueHelps/HTEXT">
+				<Annotation Term="Common.Label" String="{@i18n>HTEXT}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/ITEM_CATEGORY">
+			<Annotations Target="Metadata.valueHelps/PSTYV">
 				<Annotation Term="Common.Label" String="{@i18n>ITEM_CATEGORY}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/HOM_REMARK">
-				<Annotation Term="Common.Label" String="{@i18n>HOM_REMARK}"/>
+			<Annotations Target="Metadata.valueHelps/PSTYV_VTEXT">
+				<Annotation Term="Common.Label" String="{@i18n>ITEM_CATEGORY_TEXT}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/SHIP_TO_CITY_NAME">
-				<Annotation Term="Common.Label" String="{@i18n>SHIP_TO_CITY_NAME}"/>
+			<Annotations Target="Metadata.valueHelps/DISPO">
+				<Annotation Term="Common.Label" String="{@i18n>MRP_CONTROLLER}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/PROD_ALLOC">
-				<Annotation Term="Common.Label" String="{@i18n>PROD_ALLOC}"/>
+			<Annotations Target="Metadata.valueHelps/KOSCH">
+				<Annotation Term="Common.Label" String="{@i18n>KOSCH}"/>
 			</Annotations>
-			<Annotations Target="Metadata.valueHelps/BILLING_BLOCK_ITEM">
-				<Annotation Term="Common.Label" String="{@i18n>BILLING_BLOCK_ITEM}"/>
+			<Annotations Target="Metadata.valueHelps/VKBUR">
+				<Annotation Term="Common.Label" String="{@i18n>VKBUR}"/>
 			</Annotations>
-            <Annotations Target="Metadata.valueHelps/MaterialName">
-				<Annotation Term="Common.Label" String="{@i18n>MaterialName}"/>
+			<Annotations Target="Metadata.valueHelps/VKBUR_BEZEI">
+				<Annotation Term="Common.Label" String="{@i18n>VKBUR_BEZEI}"/>
 			</Annotations>
+			<Annotations Target="Metadata.valueHelps/ABGRU">
+				<Annotation Term="Common.Label" String="{@i18n>ABGRU}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/ABSTA">
+				<Annotation Term="Common.Label" String="{@i18n>ABSTA}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/KNUMV">
+				<Annotation Term="Common.Label" String="{@i18n>KNUMV}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/SPART">
+				<Annotation Term="Common.Label" String="{@i18n>SPART}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/VBELN_DEL">
+				<Annotation Term="Common.Label" String="{@i18n>VBELN_DEL}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/POSNR_DEL">
+				<Annotation Term="Common.Label" String="{@i18n>POSNR_DEL}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/CHARG">
+				<Annotation Term="Common.Label" String="{@i18n>CHARG}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/LFIMG">
+				<Annotation Term="Common.Label" String="{@i18n>LFIMG}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/VRKME_DEL">
+				<Annotation Term="Common.Label" String="{@i18n>vrkme_del}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/POSAR">
+				<Annotation Term="Common.Label" String="{@i18n>POSAR}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/VGBEL">
+				<Annotation Term="Common.Label" String="{@i18n>VGBEL}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/VGPOS">
+				<Annotation Term="Common.Label" String="{@i18n>VGPOS}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/LFART">
+				<Annotation Term="Common.Label" String="{@i18n>DELIVERY_TYPE}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/LFART_VTEXT">
+				<Annotation Term="Common.Label" String="{@i18n>DELIVERY_TYPE_TEXT}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/LFDAT_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>lfdat}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/TRAID">
+				<Annotation Term="Common.Label" String="{@i18n>TRAID}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/ZZ0S2BLNR">
+				<Annotation Term="Common.Label" String="{@i18n>ZZ0S2BLNR}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/PEND_DEL_QUAN">
+				<Annotation Term="Common.Label" String="{@i18n>PENDING_DEL_QTY}"/>
+			</Annotations>
+			
 			
 		</Schema>
 	</edmx:DataServices>

@@ -1,6 +1,6 @@
 _schema-version: "3.1"
-ID: allmyorders
-description: CAP Project for All my orders
+ID: OrderMonitoringCockpit
+description: Order Monitoring Cockpit
 version: 1.0.0
 modules:
 #
@@ -12,7 +12,7 @@ modules:
   type: nodejs
   path: gen/srv
   requires:
-  - name: otc-ordermonitoring-hdi-container
+  - name: otc-csc-cap
   - name: ordermonitoring-xsuaa
   provides:
   - name: srv-api
@@ -20,6 +20,9 @@ modules:
       srv-url: ${default-url}
   parameters:
     buildpack: nodejs_buildpack
+    keep-existing-routes: true
+    disk-quota: 4096MB
+    memory: 4096MB
   build-parameters:
     builder: npm-ci
   #
@@ -30,8 +33,11 @@ modules:
 - name: otc-db-deployer
   type: hdb
   path: gen/db
+  properties:
+    TARGET_CONTAINER: otc-csc-cap
   requires:
-  - name: otc-ordermonitoring-hdi-container
+  - name: otc-csc-hdi
+  - name: otc-csc-cap
   parameters:
     buildpack: nodejs_buildpack
   #
@@ -82,28 +88,10 @@ modules:
     build-result: resources
     requires:
     - artifacts:
-      - ordermonitoringallorders.zip
-      name: ordermonitoringallorders
-      target-path: resources/
-    - artifacts:
       - ordermonitoringallmyorders.zip
       name: ordermonitoringallmyorders
       target-path: resources/
-  # 
-  #   ┌─────────────────────────────────────┐   #
-  #   │         All Orders HTML5 app        │   #
-  #   └─────────────────────────────────────┘   #
-  #
-- name: ordermonitoringallorders
-  type: html5
-  path: app/allorders
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
+  
   # 
   #   ┌─────────────────────────────────────┐   #
   #   │         All Orders Freestyle app    │   #
@@ -147,11 +135,18 @@ resources:
   #   │         HDI Container Instance      │   #
   #   └─────────────────────────────────────┘   #
   #
-- name: otc-ordermonitoring-hdi-container
+- name: otc-csc-hdi
   type: org.cloudfoundry.existing-service
   parameters:
     service: hana
+
+- name: otc-csc-cap
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana  
     service-plan: hdi-shared
+  properties:
+    hdi-service-name: ${service-name}
   #
   #   ┌─────────────────────────────────────┐   #
   #   │         Destination Instance        │   #

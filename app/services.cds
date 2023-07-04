@@ -1,158 +1,160 @@
 using srvOpenOrders as service from '../srv/allOrders-srv';
 
 annotate service.Results with {
-    RequestedQuantity @Measures.Unit : RequestedQuantityUnit;
-    RequestedQuantityUnit @Semantics.unitOfMeasure :'unit-of-measure';
-    CONFIRMED_QUANTITY @Measures.Unit : RequestedQuantityUnit;
-    PENDING_DEL_QTY @Measures.Unit : PENDING_DEL_QTY_UNIT;
-    PENDING_DEL_QTY_UNIT @Semantics.unitOfMeasure :'unit-of-measure';
-    UNCONFIRMED_QUANTITY @Measures.Unit : PENDING_DEL_QTY_UNIT;
-    DELIVERY_QTY @Measures.Unit : PENDING_DEL_QTY_UNIT;
-    PENDING_DEL_QTY_UNIT  @UI : {Hidden : true };
-    RequestedQuantityUnit  @UI : {Hidden : true };
-    MaterialName @UI : {Hidden : true };
-    SoldtoPartyName @UI : {Hidden : true };
-    ShipToPartyName @UI : {Hidden : true };
-    SalesOrgName @UI : {Hidden : true };
-    OrderTypeDesc @UI : {Hidden : true };
-    POTypeDesc @UI : {Hidden : true };
-    VEPartnerName @UI : {Hidden : true };
-    ASPartnerName @UI : {Hidden : true };
-    SUPPLY_POINT_DESC @UI : {Hidden : true };
-    AM_PARTNER_NAME @UI : {Hidden : true };
+    KWMENG @Measures.Unit : VRKME ;
+    VRKME @Semantics.unitOfMeasure :'unit-of-measure';
+    KBMENG @Measures.Unit : VRKME;
+    UNCONFIRMED_QTY @Measures.Unit : VRKME;
+    KBETR @Measures.ISOCurrency : 'WAERS';
+    WAERS @Semantics.currencyCode;
+    KPEIN @Measures.Unit : KMEIN;
+    KMEIN @Semantics.unitOfMeasure :'unit-of-measure';
+    NETWR @Measures.ISOCurrency : WAERK;
+    WAERK @Semantics.currencyCode;
+    LFIMG @Measures.Unit : VRKME_DEL;
+    VRKME_DEL @Semantics.unitOfMeasure :'unit-of-measure';
+    PEND_DEL_QUAN @Measures.Unit : VRKME_DEL;
     CO_PARTNER_NAME @UI : {Hidden : true };
     NY_PARTNER_NAME @UI : {Hidden : true };
+    AS_PARTNER_NAME @UI : {Hidden : true };
+    VE_PARTNER_NAME @UI : {Hidden : true };
+    AM_PARTNER_NAME @UI : {Hidden : true };
+    AG_PARTNER_NAME @UI : {Hidden : true };
+    WE_PARTNER_NAME @UI : {Hidden : true };
+    MAKTX @UI : {Hidden : true };
+    LANDX @UI : {Hidden : true };
+    VKORG_NAME1 @UI : {Hidden : true };
+    FAKSP_VTEXT @UI : {Hidden : true };
+    SUPPLY_SITUATION_DESCR @UI : {Hidden : true };
+    PSTYV_VTEXT @UI : {Hidden : true };
+    VKBUR_BEZEI @UI : {Hidden : true };
+    LFART_VTEXT @UI : {Hidden : true };
+    id @UI : {Hidden : true };
+    MANDT @UI : {Hidden : true };
+    ABGRU @UI : {Hidden : true };
+    ABSTA @UI : {Hidden : true };
+    KNUMV @UI : {Hidden : true };
+    SPART @UI : {Hidden : true };
+    LANGUAGE @UI : {Hidden : true };
+
 }
+
 annotate service.valueHelps with {
-    RequestedQuantity @Measures.Unit : RequestedQuantityUnit;
-    RequestedQuantityUnit @Semantics.unitOfMeasure :'unit-of-measure';
-    CONFIRMED_QUANTITY @Measures.Unit : RequestedQuantityUnit;
-    PENDING_DEL_QTY @Measures.Unit : PENDING_DEL_QTY_UNIT;
-    PENDING_DEL_QTY_UNIT @Semantics.unitOfMeasure :'unit-of-measure';
-    UNCONFIRMED_QUANTITY @Measures.Unit : PENDING_DEL_QTY_UNIT;
-    DELIVERY_QTY @Measures.Unit : PENDING_DEL_QTY_UNIT;
-    PENDING_DEL_QTY_UNIT  @UI : {Hidden : true };
-    RequestedQuantityUnit  @UI : {Hidden : true };
-    MaterialName @UI : {Hidden : true };
-    SoldtoPartyName @UI : {Hidden : true };
-    ShipToPartyName @UI : {Hidden : true };
-    SalesOrgName @UI : {Hidden : true };
-    OrderTypeDesc @UI : {Hidden : true };
-    POTypeDesc @UI : {Hidden : true };
-    VEPartnerName @UI : {Hidden : true };
-    ASPartnerName @UI : {Hidden : true };
-    SUPPLY_POINT_DESC @UI : {Hidden : true };
-    AM_PARTNER_NAME @UI : {Hidden : true };
+    KWMENG @Measures.Unit : VRKME;
+    VRKME @Semantics.unitOfMeasure :'unit-of-measure';
+    KBMENG @Measures.Unit : VRKME;
+    UNCONFIRMED_QTY @Measures.Unit : VRKME;
+    KBETR @Measures.ISOCurrency : 'WAERS';
+    WAERS @Semantics.currencyCode;
+    KPEIN @Measures.Unit : KMEIN;
+    KMEIN @Semantics.unitOfMeasure :'unit-of-measure';
+    NETWR @Measures.ISOCurrency : WAERK;
+    WAERK @Semantics.currencyCode;
+    LFIMG @Measures.Unit : VRKME_DEL;
+    VRKME_DEL @Semantics.unitOfMeasure :'unit-of-measure';
+    PEND_DEL_QUAN @Measures.Unit : VRKME_DEL;
     CO_PARTNER_NAME @UI : {Hidden : true };
     NY_PARTNER_NAME @UI : {Hidden : true };
+    AS_PARTNER_NAME @UI : {Hidden : true };
+    VE_PARTNER_NAME @UI : {Hidden : true };
+    AM_PARTNER_NAME @UI : {Hidden : true };
+    AG_PARTNER_NAME @UI : {Hidden : true };
+    WE_PARTNER_NAME @UI : {Hidden : true };
+    MAKTX @UI : {Hidden : true };
+    LANDX @UI : {Hidden : true };
+    VKORG_NAME1 @UI : {Hidden : true };
+    FAKSP_VTEXT @UI : {Hidden : true };
+    SUPPLY_SITUATION_DESCR @UI : {Hidden : true };
+    PSTYV_VTEXT @UI : {Hidden : true };
+    VKBUR_BEZEI @UI : {Hidden : true };
+    LFART_VTEXT @UI : {Hidden : true };
+    
+    ABGRU @UI : {Hidden : true };
+    ABSTA @UI : {Hidden : true };
+    KNUMV @UI : {Hidden : true };
+    SPART @UI : {Hidden : true };
+    LANGUAGE @UI : {Hidden : true };
 }
-annotate service.Results with @Capabilities: {FilterRestrictions: {FilterExpressionRestrictions: [{
-    Property          : 'CREATION_DATE',
-    AllowedExpressions: 'SingleRange'
-}]}};
-
-annotate service.Results with @(UI: {SelectionFields: [
-    CREATION_DATE,
-    SalesOrg,
-    SoldtoPartyName,
-    ShipToPartyName,
-    SalesOrder,
-    LEVEL_TYPE,
-    ORDER_STATUS
-],
-
-});
-
-
-annotate service.Results with @UI.LineItem: {
-    ![@UI.Criticality]: 5,
-    $value            : [
-        {Value: SalesOrder},
-        {Value: NEXT_ORDER},
-        {Value: FINAL_ORDER},
-        {Value: SalesOrderItem},
-        {Value: CreatedOn},
-        {Value: LEVEL_TYPE},
-        {
-            $Type                    : 'UI.DataField',
-            Value                    : ORDER_STATUS,
-            ![@UI.Importance]        : #High,
-            Criticality              : 2,
-            CriticalityRepresentation: #WithoutIcon
-        },
-
-        {Value: MaterialName},
-        {Value: MaterialNo},
-        {Value: BILLING_BLOCK_ITEM},
-        {Value: LC_NUMBER},
-        {Value: CREATION_DATE},
-        {Value: CustomerReference},
-        {Value: DELIVERY_TYPE},
-        {Value: CUSTOMER_MAT_REFERENCE},
-        {Value: STORAGE_LOCATION},
-        {Value: Plant},
-        {Value: BILLING_DOCUMENT},
-        {Value: CONFIRMED_QUANTITY},
-        {Value: PENDING_DEL_QTY},
-        {Value: PENDING_DEL_QTY_UNIT},
-        {Value: UNCONFIRMED_QUANTITY},
-        {Value: SUPPLY_SITUATION},
-        {Value: DELIVERY_QTY},
-        {Value: PRICING_DATE},
-        {Value: BILLING_DOCUMENT},
-        {Value: CO_PARTNER},
-        {Value: CO_PARTNER_NAME},
-        {Value: NY_PARTNER},
-        {Value: NY_PARTNER_NAME},
-        {Value: PRICE_PER_UNIT},
-        {Value: NET_AMOUNT},
-        {Value: ShipmentATA},
-        {Value: ShipmentATD},
-        {
-            $Type                    : 'UI.DataFieldForAnnotation',
-            Target:'@UI.DataPoint#BatchWithTooltip'
-            
-        },
-        {Value: NOTA_FISCAL},
-        {Value: AM_PARTNER},
-        {Value: AM_PARTNER_NAME},
-        {Value: HOM_REMARK},
-        {Value: ITEM_CATEGORY},
-        {Value: MRP_CONTROLLER},
-        {Value: SHIP_TO_COUNTRY_NAME},
-        {Value: DIFF_CONF_REQ_DATE},
-        {Value: SHIP_TO_CITY_NAME},
-        {Value: PROD_ALLOC},
-
-    ]
-};
 
 annotate service.Results with {
-    SUPPLY_POINT
+    VRKME
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>SUPPLY_POINT}',
+        Label                  : '{@i18n>VRKME}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: SUPPLY_POINT,
-                ValueListProperty: 'SUPPLY_POINT'
-            },
-            {
-                $Type            : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty: 'SUPPLY_POINT_DESC'
-            }
-        ]
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: VRKME,
+            ValueListProperty: 'VRKME'
+        }]
     }
+}
+annotate service.Results with {
+    KMEIN
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>KMEIN}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: KMEIN,
+            ValueListProperty: 'KMEIN'
+        }]
+    }
+}
+annotate service.Results with {
+    VRKME_DEL
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>VRKME_DEL}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: VRKME_DEL,
+            ValueListProperty: 'VRKME_DEL'
+        }]
+    }
+}
+annotate service.Results with {
+    WAERK
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>WAERK}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: WAERK,
+            ValueListProperty: 'WAERK'
+        }]
+    }
+}
+annotate service.Results with {
+    WAERS
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>WAERS}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: WAERS,
+            ValueListProperty: 'WAERS'
+        }]
+    }
+}
 
-
-};
 
 annotate service.Results with {
-    SalesOrder
+    VBELN
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
         Label                  : '{@i18n>salesOrder}',
@@ -161,590 +163,346 @@ annotate service.Results with {
         SearchSupported        : true,
         Parameters             : [{
             $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: SalesOrder,
-            ValueListProperty: 'SalesOrder'
+            LocalDataProperty: VBELN,
+            ValueListProperty: 'VBELN'
         }]
     }
 }
 
 annotate service.Results with {
-    SalesOrderItem
+    POSNR
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>salesOrderItem}',
+        Label                  : '{@i18n>salesOrder}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
         Parameters             : [{
             $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: SalesOrderItem,
-            ValueListProperty: 'SalesOrderItem'
+            LocalDataProperty: POSNR,
+            ValueListProperty: 'POSNR'
         }]
     }
 }
-
 annotate service.Results with {
-    MaterialNo
+    AUART
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>MaterialNo}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: MaterialNo,
-            ValueListProperty: 'MaterialNo'
-        }]
-    }
-}
-
-annotate service.Results with {
-    MaterialName
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>MaterialName}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: MaterialName,
-            ValueListProperty: 'MaterialName'
-        }]
-    }
-}
-
-annotate service.Results with {
-    NEXT_ORDER
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>NEXT_ORDER}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: NEXT_ORDER,
-            ValueListProperty: 'NEXT_ORDER'
-        }]
-    }
-}
-
-annotate service.Results with {
-    INITIAL_ORDER
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>INITIAL_ORDER}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: INITIAL_ORDER,
-            ValueListProperty: 'INITIAL_ORDER'
-        }]
-    }
-}
-
-annotate service.Results with {
-    FINAL_ORDER
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>FINAL_ORDER}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: FINAL_ORDER,
-            ValueListProperty: 'FINAL_ORDER'
-        }]
-    }
-
-}
-
-annotate service.Results with {
-    DISTRIBUTION_CHANNEL
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>DISTRIBUTION_CHANNEL}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: DISTRIBUTION_CHANNEL,
-            ValueListProperty: 'DISTRIBUTION_CHANNEL'
-        }]
-    }
-}
-
-annotate service.Results with {
-    SBU
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>SBU}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: SBU,
-            ValueListProperty: 'SBU'
-        }]
-    }
-}
-
-annotate service.Results with {
-    DELIVERY
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>DELIVERY}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: DELIVERY,
-            ValueListProperty: 'DELIVERY'
-        }]
-    }
-}
-
-annotate service.Results with {
-    GUSCON_LEVEL
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>GUSCON_LEVEL}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: GUSCON_LEVEL,
-            ValueListProperty: 'GUSCON_LEVEL'
-        }]
-    }
-
-}
-
-annotate service.Results with {
-    LEVEL_TYPE
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>LEVEL_TYPE}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: LEVEL_TYPE,
-            ValueListProperty: 'LEVEL_TYPE'
-        }]
-    }
-}
-
-annotate service.Results with {
-    ORDER_STATUS
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>ORDER_STATUS}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: ORDER_STATUS,
-            ValueListProperty: 'ORDER_STATUS'
-        }]
-    }
-}
-
-annotate service.Results with {
-    SalesOrg
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>SalesOrg}',
+        Label                  : '{@i18n>auart}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
         Parameters             : [
             {
                 $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: SalesOrg,
-                ValueListProperty: 'SalesOrg'
+                LocalDataProperty: AUART,
+                ValueListProperty: 'AUART'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    WERKS
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>werks}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: AUART,
+                ValueListProperty: 'AUART'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    VTWEG
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>vtweg}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: VTWEG,
+                ValueListProperty: 'VTWEG'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    MATNR
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>MaterialNo}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: MATNR,
+                ValueListProperty: 'MATNR'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    KDMAT
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>kdmat}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: KDMAT,
+                ValueListProperty: 'KDMAT'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    BSTNK
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>bstnk}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: BSTNK,
+                ValueListProperty: 'BSTNK'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    AG_PARTNER
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>agPartnerNo}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: AG_PARTNER,
+                ValueListProperty: 'AG_PARTNER'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    WE_PARTNER
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>wePartnerNo}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: WE_PARTNER,
+                ValueListProperty: 'WE_PARTNER'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    LAND1
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>land1}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: LAND1,
+                ValueListProperty: 'LAND1'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    ORT01
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>ort1}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: ORT01,
+                ValueListProperty: 'ORT01'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    VKORG
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>vkorg}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: VKORG,
+                ValueListProperty: 'VKORG'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    VBUND
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>VBUND}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: VBUND,
+                ValueListProperty: 'VBUND'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    KWMENG 
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>KWMENG}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: KWMENG,
+                ValueListProperty: 'KWMENG'
             },
             {
                 $Type            : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty: 'SalesOrgName'
-            }
+                ValueListProperty: 'VRKME'
+            },
+           
         ]
-    }
-}
-
+    }};
 annotate service.Results with {
-    Note
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>Note}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: Note,
-            ValueListProperty: 'Note'
-        }]
-    }
-}
-
-annotate service.Results with {
-    RequestedQuantity 
-	@Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>RequestedQuantity}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: RequestedQuantity,
-            ValueListProperty: 'RequestedQuantity'
-        },
-        {
-            $Type            : 'Common.ValueListParameterDisplayOnly',
-            ValueListProperty: 'RequestedQuantityUnit'
-        }]
-    }
-}
-annotate service.Results with {
-    Plant
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>Plant}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: Plant,
-            ValueListProperty: 'Plant'
-        }]
-    }
-}
-annotate service.Results with {
-    OrderType
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>OrderType}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: OrderType,
-            ValueListProperty: 'OrderType'
-        }]
-    }
-}
-annotate service.Results with {
-    POType
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>POType}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: POType,
-            ValueListProperty: 'POType'
-        }]
-    }
-}
-annotate service.Results with {
-    Incoterm1
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>Incoterm1}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: Incoterm1,
-            ValueListProperty: 'Incoterm1'
-        }]
-    }}
-	annotate service.Results with {
-    Incoterm2
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>Incoterm2}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: Incoterm2,
-            ValueListProperty: 'Incoterm2'
-        }]
-    }}
-	annotate service.Results with {
-    PaymentTerm
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>PaymentTerm}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: PaymentTerm,
-            ValueListProperty: 'PaymentTerm'
-        }]
-    }}
-	annotate service.Results with {
-    GROUP_COMPANY
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>GROUP_COMPANY}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: GROUP_COMPANY,
-            ValueListProperty: 'GROUP_COMPANY'
-        }]
-    }}
-	annotate service.Results with {
-    CUSTOMER_PRIORITY
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>CUSTOMER_PRIORITY}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: CUSTOMER_PRIORITY,
-            ValueListProperty: 'CUSTOMER_PRIORITY'
-        }]
-    }}
-    annotate service.Results with {
-    FORWARDER_NAME
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>FORWARDER_NAME}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: FORWARDER_NAME,
-            ValueListProperty: 'FORWARDER_NAME'
-        }]
-    }}
-    annotate service.Results with {
-    VESSEL_NAME
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>VESSEL_NAME}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: VESSEL_NAME,
-            ValueListProperty: 'VESSEL_NAME'
-        }]
-    }}
-    annotate service.Results with {
-    ShipmentETA
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>ShipmentETA}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: ShipmentETA,
-            ValueListProperty: 'ShipmentETA'
-        }]
-    }}
-	
-    annotate service.Results with {
-    ShipmentETD
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>ShipmentETD}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: ShipmentETD,
-            ValueListProperty: 'ShipmentETD'
-        }]
-    }}
-    annotate service.Results with {
-    CONTAINER_NO
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>CONTAINER_NO}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: CONTAINER_NO,
-            ValueListProperty: 'CONTAINER_NO'
-        }]
-    }}
-    annotate service.Results with {
-    SHIPPING_TYPE
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>SHIPPING_TYPE}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: SHIPPING_TYPE,
-            ValueListProperty: 'SHIPPING_TYPE'
-        }]
-    }}
-    annotate service.Results with {
-    LC_NUMBER
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>LC_NUMBER}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: LC_NUMBER,
-            ValueListProperty: 'LC_NUMBER'
-        }]
-    }}
-    annotate service.Results with {
-    CUSTOMER_MAT_REFERENCE
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>CUSTOMER_MAT_REFERENCE}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: CUSTOMER_MAT_REFERENCE,
-            ValueListProperty: 'CUSTOMER_MAT_REFERENCE'
-        }]
-    }}
-    annotate service.Results with {
-    DELIVERY_TYPE
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>CUSTOMER_MAT_REFERENCE}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: DELIVERY_TYPE,
-            ValueListProperty: 'DELIVERY_TYPE'
-        }]
-    }}
-    annotate service.Results with {
-    STORAGE_LOCATION
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>STORAGE_LOCATION}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: STORAGE_LOCATION,
-            ValueListProperty: 'STORAGE_LOCATION'
-        }]
-    }}
-    
-    annotate service.Results with {
-    BILLING_DOCUMENT
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>BILLING_DOCUMENT}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: BILLING_DOCUMENT,
-            ValueListProperty: 'BILLING_DOCUMENT'
-        }]
-    }}
-    annotate service.Results with {
-    CONFIRMED_QUANTITY
+    KBMENG
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
         Label                  : '{@i18n>CONFIRMED_QUANTITY}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: CONFIRMED_QUANTITY,
-            ValueListProperty: 'CONFIRMED_QUANTITY'
-        },
-        {
-            $Type            : 'Common.ValueListParameterDisplayOnly',
-            ValueListProperty: 'RequestedQuantityUnit'
-        }]
-    }}
-    annotate service.Results with {
-    PENDING_DEL_QTY
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>PENDING_DEL_QTY}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: PENDING_DEL_QTY,
-            ValueListProperty: 'PENDING_DEL_QTY'
-        },
-        {
-            $Type            : 'Common.ValueListParameterDisplayOnly',
-            
-            ValueListProperty: 'PENDING_DEL_QTY_UNIT'
-        }]
-    }}
-    annotate service.Results with {
-    UNCONFIRMED_QUANTITY
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: KBMENG,
+                ValueListProperty: 'KBMENG'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'VRKME'
+            },
+           
+        ]
+    }};
+annotate service.Results with {
+    UNCONFIRMED_QTY
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
         Label                  : '{@i18n>UNCONFIRMED_QUANTITY}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: UNCONFIRMED_QUANTITY,
-            ValueListProperty: 'UNCONFIRMED_QUANTITY'
-        },
-        {
-            $Type            : 'Common.ValueListParameterDisplayOnly',
-            ValueListProperty: 'PENDING_DEL_QTY_UNIT'
-        }]
-    }}
-    annotate service.Results with {
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: UNCONFIRMED_QTY,
+                ValueListProperty: 'UNCONFIRMED_QTY'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'VRKME'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    REQ_TEXT
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>REQ_TEXT}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: REQ_TEXT,
+                ValueListProperty: 'REQ_TEXT'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    FAKSP
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>FAKSP}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: FAKSP,
+                ValueListProperty: 'FAKSP'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    LGORT
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>STORAGE_LOCATION}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: LGORT,
+                ValueListProperty: 'LGORT'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
     SUPPLY_SITUATION
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -752,250 +510,163 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: SUPPLY_SITUATION,
-            ValueListProperty: 'SUPPLY_SITUATION'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: SUPPLY_SITUATION,
+                ValueListProperty: 'SUPPLY_SITUATION'
+            }
+           
+        ]
+    }};
     annotate service.Results with {
-    DELIVERY_QTY
+    KBETR
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>DELIVERY_QTY}',
+        Label                  : '{@i18n>KBETR}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: DELIVERY_QTY,
-            ValueListProperty: 'DELIVERY_QTY'
-        },
-        {
-            $Type            : 'Common.ValueListParameterDisplayOnly',
-            ValueListProperty: 'PENDING_DEL_QTY_UNIT'
-        }]
-    }}
-    
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: KBETR,
+                ValueListProperty: 'KBETR'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'WAERS'
+            }
+           
+        ]
+    }};
     annotate service.Results with {
-    PRICE_PER_UNIT
+    KPEIN
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>PRICE_PER_UNIT}',
+        Label                  : '{@i18n>KPEIN}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: PRICE_PER_UNIT,
-            ValueListProperty: 'PRICE_PER_UNIT'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: KPEIN,
+                ValueListProperty: 'KPEIN'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'KMEIN'
+            }
+           
+        ]
+    }};
     annotate service.Results with {
-    NET_AMOUNT
+    NETWR
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
         Label                  : '{@i18n>NET_AMOUNT}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: NET_AMOUNT,
-            ValueListProperty: 'NET_AMOUNT'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: NETWR,
+                ValueListProperty: 'NETWR' 
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'WAERK' 
+            }
+          
+        ]
+    }};
     annotate service.Results with {
-    ShipmentATA
+    HTEXT
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>ShipmentATA}',
+        Label                  : '{@i18n>HTEXT}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: ShipmentATA,
-            ValueListProperty: 'ShipmentATA'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: HTEXT,
+                ValueListProperty: 'HTEXT'
+            }
+           
+        ]
+    }};
     annotate service.Results with {
-    ShipmentATD
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>ShipmentATD}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: ShipmentATD,
-            ValueListProperty: 'ShipmentATD'
-        }]
-    }}
-    annotate service.Results with {
-    BATCH_NUMBER
-    
-    /*parts: [
-											{value: 'Manuf. Date '},
-											{path: 'orderList>DateOfManufacturing', formatter:'.formatDates' },
-											{value: ' / '},
-											{value: 'SLED/BBD '},
-											{path: 'orderList>ShelfLifeExpDate', formatter:'.formatDates'}
-										]
-										}"*/
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>BATCH_NUMBER}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: BATCH_NUMBER,
-            ValueListProperty: 'BATCH_NUMBER'
-        }]
-    }}
-    annotate service.Results with {
-    NOTA_FISCAL
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>NOTA_FISCAL}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: NOTA_FISCAL,
-            ValueListProperty: 'NOTA_FISCAL'
-        }]
-    }}
-    annotate service.Results with {
-    HOM_REMARK
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>HOM_REMARK}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: HOM_REMARK,
-            ValueListProperty: 'HOM_REMARK'
-        }]
-    }}
-    annotate service.Results with {
-    ITEM_CATEGORY
+    PSTYV
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
         Label                  : '{@i18n>ITEM_CATEGORY}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: ITEM_CATEGORY,
-            ValueListProperty: 'ITEM_CATEGORY'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: PSTYV,
+                ValueListProperty: 'PSTYV'
+            }
+           
+        ]
+    }};
     annotate service.Results with {
-    MRP_CONTROLLER
+    DISPO
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
         Label                  : '{@i18n>MRP_CONTROLLER}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: MRP_CONTROLLER,
-            ValueListProperty: 'MRP_CONTROLLER'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: DISPO,
+                ValueListProperty: 'DISPO'
+            }
+           
+        ]
+    }};
     annotate service.Results with {
-    SHIP_TO_COUNTRY_NAME
+    KOSCH
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>SHIP_TO_COUNTRY_NAME}',
+        Label                  : '{@i18n>KOSCH}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: SHIP_TO_COUNTRY_NAME,
-            ValueListProperty: 'SHIP_TO_COUNTRY_NAME'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: KOSCH,
+                ValueListProperty: 'KOSCH'
+            }
+           
+        ]
+    }};
     annotate service.Results with {
-    DIFF_CONF_REQ_DATE
+    VKBUR
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>SHIP_TO_COUNTRY_NAME}',
+        Label                  : '{@i18n>VKBUR}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: DIFF_CONF_REQ_DATE,
-            ValueListProperty: 'DIFF_CONF_REQ_DATE'
-        }]
-    }}
-    annotate service.Results with {
-    SHIP_TO_CITY_NAME
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>SHIP_TO_CITY_NAME}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: SHIP_TO_CITY_NAME,
-            ValueListProperty: 'SHIP_TO_CITY_NAME'
-        }]
-    }}
-    annotate service.Results with {
-    PROD_ALLOC
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>PROD_ALLOC}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: PROD_ALLOC,
-            ValueListProperty: 'PROD_ALLOC'
-        }]
-    }}
-    annotate service.Results with {
-    AM_PARTNER
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>AM_PARTNER}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: AM_PARTNER,
-            ValueListProperty: 'AM_PARTNER'
-        }]
-    }}
-    annotate service.Results with {
-    VEPartner
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>VEPartner}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: VEPartner,
-            ValueListProperty: 'VEPartner'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: VKBUR,
+                ValueListProperty: 'VKBUR'
+            }
+           
+        ]
+    }};
     annotate service.Results with {
     CO_PARTNER
     @Common.ValueList: {
@@ -1004,26 +675,15 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: CO_PARTNER,
-            ValueListProperty: 'CO_PARTNER'
-        }]
-    }}
-    annotate service.Results with {
-    ASPartner
-    @Common.ValueList: {
-        $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>ASPartner}',
-        CollectionPath         : 'valueHelps',
-        DistinctValuesSupported: true,
-        SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: ASPartner,
-            ValueListProperty: 'ASPartner'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: CO_PARTNER,
+                ValueListProperty: 'CO_PARTNER'
+            }
+           
+        ]
+    }};
     annotate service.Results with {
     NY_PARTNER
     @Common.ValueList: {
@@ -1032,44 +692,281 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: NY_PARTNER,
-            ValueListProperty: 'NY_PARTNER'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: NY_PARTNER,
+                ValueListProperty: 'NY_PARTNER'
+            }
+           
+        ]
+    }};
     annotate service.Results with {
-    SoldToParty
+    AS_PARTNER
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>SoldToParty}',
+        Label                  : '{@i18n>AS_PARTNER}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: SoldToParty,
-            ValueListProperty: 'SoldToParty'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: AS_PARTNER,
+                ValueListProperty: 'AS_PARTNER'
+            }
+           
+        ]
+    }};
     annotate service.Results with {
-    ShipToParty
+    VE_PARTNER
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
-        Label                  : '{@i18n>ShipToParty}',
+        Label                  : '{@i18n>VE_PARTNER}',
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: ShipToParty,
-            ValueListProperty: 'ShipToParty'
-        }]
-    }}
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: VE_PARTNER,
+                ValueListProperty: 'VE_PARTNER'
+            }
+           
+        ]
+    }};
+    annotate service.Results with {
+    AM_PARTNER
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>AM_PARTNER}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: AM_PARTNER,
+                ValueListProperty: 'AM_PARTNER'
+            }
+           
+        ]
+    }};
+    annotate service.Results with {
+    VBELN_DEL
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>VBELN_DEL}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: VBELN_DEL,
+                ValueListProperty: 'VBELN_DEL'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    POSNR_DEL
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>POSNR_DEL}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: POSNR_DEL,
+                ValueListProperty: 'POSNR_DEL'
+            }
+           
+        ]
+    }};
+    annotate service.Results with {
+    CHARG
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>CHARG}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: CHARG,
+                ValueListProperty: 'CHARG'
+            }
+           
+        ]
+    }};
+    annotate service.Results with {
+    LFIMG
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>LFIMG}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: LFIMG,
+                ValueListProperty: 'LFIMG'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'VRKME_DEL'
+            }
+           
+        ]
+    }};
+    annotate service.Results with {
+    POSAR
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>POSAR}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: POSAR,
+                ValueListProperty: 'POSAR'
+            }
+           
+        ]
+    }};
+     annotate service.Results with {
+    VGBEL
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>VGBEL}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: VGBEL,
+                ValueListProperty: 'VGBEL'
+            }
+           
+        ]
+    }};
+annotate service.Results with {
+    VGPOS
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>VGPOS}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: VGPOS,
+                ValueListProperty: 'VGPOS'
+            }
+           
+        ]
+    }};
+    annotate service.Results with {
+    LFART
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>LFART}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: LFART,
+                ValueListProperty: 'LFART'
+            }
+           
+        ]
+    }};
+    annotate service.Results with {
+    TRAID
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>TRAID}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: TRAID,
+                ValueListProperty: 'TRAID'
+            }
+           
+        ]
+    }};
+    annotate service.Results with {
+    ZZ0S2BLNR
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>ZZ0S2BLNR}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: ZZ0S2BLNR,
+                ValueListProperty: 'ZZ0S2BLNR'
+            }
+           
+        ]
+    }};
+    annotate service.Results with {
+    PEND_DEL_QUAN
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>PEND_DEL_QUAN}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: PEND_DEL_QUAN,
+                ValueListProperty: 'PEND_DEL_QUAN'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'VRKME_DEL'
+            }
+           
+        ]
+    }};
+annotate service.Results with @UI.LineItem: {
+    ![@UI.Criticality]: 5,
+    $value            : [
+        { Value: VBELN },
+        { Value: POSNR},
+        { Value: VKORG},
+        { Value: KBETR},
+        { Value: KWMENG}
+     
+    ]
+};
+
+annotate service.Results with @(UI: {SelectionFields: [
+    VBELN,
+    POSNR,
+    VKORG,
+    MATNR,
+    FAKSP
+
     
-    annotate service.Results with @(
-        UI.DataPoint #BatchWithTooltip: {
-            Value: BATCH_NUMBER,
-            ![@Common.QuickInfo]: 'this is a tooltip!!'
-        }
-    );
+],
+
+});
