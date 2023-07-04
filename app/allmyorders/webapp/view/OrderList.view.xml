@@ -135,6 +135,49 @@
                         selectionMode="MultiToggle"
                         rowActionCount="1"
                     >
+                    <ui:columns>
+                                    <ui:Column
+                                        id="idBatchNumberCol"
+                                        sortProperty="CHARG"
+                                        filterProperty="CHARG"
+                                        width="7em"
+                                        visible="false"
+                                        autoResizable="true"
+                                    >
+                                        <ui:customData>
+                                            <core:CustomData
+                                                key="p13nData"
+                                                value='\{"columnKey": "CHARG", "leadingProperty": "CHARG", "columnIndex": 101,"sortProperty": "CHARG", "filterProperty": "CHARG"}'
+                                            />
+                                        </ui:customData>
+                                        <Label
+                                            id="_IDGenLabel1"
+                                            text="{i18n>CHARG}"
+                                        />
+                                        <ui:template>
+                                            <Text
+                                                id="_IDGenText1"
+                                                wrapping="false"
+                                                text="{CHARG}"
+                                                tooltip="{parts: [
+											{value: 'Manuf. Date '},
+											{path: 'LDDAT_DATE' },
+											{value: ' / '},
+											{value: 'SLED/BBD '},
+											{path: 'LFDAT_DATE'}
+										]
+										}"
+                                            />
+                                        </ui:template>
+                                        <ui:layoutData>
+                                            <FlexItemData
+                                                id="_IDGenFlexItemData3"
+                                                growFactor="1"
+                                                baseSize="0%"
+                                            />
+                                        </ui:layoutData>
+                                    </ui:Column>
+                                </ui:columns>
                         <ui:rowActionTemplate>
                             <ui:RowAction id="_IDGenRowAction1">
                                 <ui:items>

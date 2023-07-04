@@ -14,10 +14,7 @@
 				"i18n": "i18n/i18n.properties"
 			},
 			"payload": {
-				"appDescriptors": [{
-                    "id": "ordermonitoring.allorders",
-                    "intentHintId": "allorders-display"
-                },
+				"appDescriptors": [
 				{
                     "id": "ordermonitoring.allmyorders",
                     "intentHintId": "allmyorders-display"
@@ -33,11 +30,7 @@
 				"i18n": "i18n/i18n.properties"
 			},
 			"payload": {
-				"tiles": [{
-					"id": "allorders",
-					"appId": "ordermonitoring.allorders",
-					"intentHintId": "allorders-display"
-				},
+				"tiles": [
 				{
 					"id": "allmyorders",
 					"appId": "ordermonitoring.allmyorders",

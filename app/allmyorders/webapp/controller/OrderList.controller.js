@@ -120,6 +120,20 @@ sap.ui.define([
 			}
 
 			this.getView().getModel().setHeaders({ 'select': oEvent.getParameter('bindingParams').parameters.select })
+			if (oEvent.getParameter('bindingParams').parameters.select.includes('CHARG')){
+				if (oEvent.getParameter('bindingParams').parameters.select.includes('LDDAT_DATE') && oEvent.getParameter('bindingParams').parameters.select.includes('LFDAT_DATE')){
+					
+				} else{
+					oEvent.getParameter('bindingParams').preventTableBind = true
+					let oMessage = new Message({
+						message: this._getText('selectDates'),
+						type: MessageType.Warning,
+						target: "/Dummy",
+						processor: this.getView().getModel()
+					});
+					sap.ui.getCore().getMessageManager().addMessages(oMessage);
+				}
+			}
 			this.addBindingListener(oBindingParams, "dataRequested", this._onBindingDataRequestedListener.bind(this))
 			this.addBindingListener(oBindingParams, "dataReceived", this._onBindingDataRecievedListener.bind(this))
 		},
