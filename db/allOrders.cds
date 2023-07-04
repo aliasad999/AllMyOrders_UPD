@@ -23,7 +23,6 @@ entity![SALESORDER_DETAILS]  {
         @Common.Text           : WE_PARTNER_NAME
         @Common.TextArrangement: #TextLast
         WE_PARTNER: String(10)  @title: 'WE_PARTNER' ; 
-         
         @Common.Text           : LANDX
         @Common.TextArrangement: #TextLast
         LAND1: String(3)  @title: 'LAND1' ;
@@ -64,14 +63,20 @@ entity![SALESORDER_DETAILS]  {
         NETWR: Decimal(15, 2)  @title: 'NETWR' ; 
         WAERK: String(5)  @title: 'WAERK' ; 
         HTEXT: String(4000)  @title: 'HTEXT' ; 
+        @Common.Text           : PSTYV_VTEXT
+        @Common.TextArrangement: #TextLast
         PSTYV: String(4)  @title: 'PSTYV' ; 
+        @Common.TextFor 
         PSTYV_VTEXT: String(20)  @title: 'PSTYV_VTEXT' ; 
         DISPO: String(3)  @title: 'DISPO' ; 
         KOSCH: String(18)  @title: 'KOSCH' ; 
+        @Common.Text           : VKBUR_BEZEI
+        @Common.TextArrangement: #TextLast
         VKBUR: String(4)  @title: 'VKBUR' ; 
+        @Common.TextFor 
         VKBUR_BEZEI: String(20)  @title: 'VKBUR_BEZEI' ; 
-        ABGRU: String(2)  @title: 'ABGRU' ; 
-        ABSTA: String(1)  @title: 'ABSTA' ; 
+        ABGRU: String(2)  @title: 'ABGRU' ;
+        ABSTA: String(1)  @title: 'ABSTA' ;
         KNUMV: String(10)  @title: 'KNUMV' ; 
         SPART: String(2)  @title: 'SPART' ; 
         @Common.Text           : CO_PARTNER_NAME
@@ -122,7 +127,10 @@ entity ![DELIVERY_DETAILS]{
         POSAR: String(1)  @title: 'POSAR' ; 
         VGBEL: String(10)  @title: 'VGBEL' ; 
         VGPOS: String(6)  @title: 'VGPOS' ; 
+        @Common.Text           : LFART_VTEXT
+        @Common.TextArrangement: #TextLast
         LFART: String(4)  @title: 'LFART' ; 
+        @Common.TextFor
         LFART_VTEXT: String(20)  @title: 'LFART_VTEXT' ; 
         LFDAT_DATE: Date  @title: 'LFDAT' ; 
         TRAID: String(20)  @title: 'TRAID' ; 
@@ -137,7 +145,7 @@ entity ![CV_NOTES] {
         UTCTIME: Decimal(15)  @title: 'UTCTIME' ; 
         VBELN: String(10)  @title: 'VBELN' ; 
         POSNR: String(6)  @title: 'POSNR' ; 
-        LANGUAGE: String(1)  @title: 'LANGUAGE' ; 
+        LANGUAGE: String(2)  @title: 'LANGUAGE' ; 
         NOTE_TEXT: String(1000)  @title: 'NOTE_TEXT' ; 
         salesorder: Association to one SALESORDER_DETAILS on $self.VBELN = salesorder.VBELN and $self.POSNR = salesorder.POSNR
 }
@@ -149,7 +157,7 @@ entity ![ST_NOTES] {
         VBELN: String(10)  @title: 'VBELN' ; 
         POSNR: String(6)  @title: 'POSNR' ; 
         UTCTIME: Decimal(15) not null  @title: 'UTCTIME' ; 
-        LANGUAGE: String(1)  @title: 'LANGUAGE' ; 
+        LANGUAGE: String(2)  @title: 'LANGUAGE' ; 
         NOTE_TITLE: String(60)  @title: 'NOTE_TITLE' ; 
         NOTE_TEXT: String(1000)  @title: 'NOTE_TEXT' ; 
 }

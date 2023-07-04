@@ -10,7 +10,6 @@ module.exports = cds.service.impl(async (service) => {
         req.query._suppressLocalization = true
         req.query.SELECT.distinct = true
     });
-
     service.after("READ", "Results", async (data, req) => {
         let lt_count = 0;
         let sessionID = req.headers['authorization'] || req.headers['x-username'];

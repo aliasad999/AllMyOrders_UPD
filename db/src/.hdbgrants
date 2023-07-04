@@ -2,20 +2,18 @@
     "otc-csc-hdi": {
         "object_owner": {
             "container_roles": [
-                "otc.csc.db.base.roles::EXTERNAL_ACCESS_DELIVERY_G#",
-                "otc.csc.db.base.roles::EXTERNAL_ACCESS_SALESORDER_G#",
-                "otc.csc.db.base.roles::EXTERNAL_ACCESS_NOTES_VIEW_G#",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_DEL_G#",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CV_NOTES_G#",
                 "otc.csc.db.base.roles::EXTERNAL_ACCESS_NOTES_G#",
-                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CALCULATION_VIEW_G#"
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CALCULATION_VIEW_SO_G#"
             ]
         },
         "application_user": {
             "container_roles": [
-                "otc.csc.db.base.roles::EXTERNAL_ACCESS_DELIVERY",
-                "otc.csc.db.base.roles::EXTERNAL_ACCESS_SALESORDER",
-                "otc.csc.db.base.roles::EXTERNAL_ACCESS_NOTES_VIEW",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_DEL",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CV_NOTES",
                 "otc.csc.db.base.roles::EXTERNAL_ACCESS_NOTES",
-                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CALCULATION_VIEW"
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CALCULATION_VIEW_SO"
             ]
         }
     }
