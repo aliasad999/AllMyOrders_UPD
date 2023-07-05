@@ -36,7 +36,8 @@ annotate service.Results with {
     KNUMV @UI : {Hidden : true };
     SPART @UI : {Hidden : true };
     LANGUAGE @UI : {Hidden : true };
-
+    HSDAT_DATE @UI : {Hidden : true };
+    VFDAT_DATE @UI : {Hidden : true };
 }
 
 annotate service.valueHelps with {
@@ -74,6 +75,8 @@ annotate service.valueHelps with {
     KNUMV @UI : {Hidden : true };
     SPART @UI : {Hidden : true };
     LANGUAGE @UI : {Hidden : true };
+    HSDAT_DATE @UI : {Hidden : true };
+    VFDAT_DATE @UI : {Hidden : true };
 }
 
 annotate service.Results with {

@@ -133,6 +133,8 @@ entity ![DELIVERY_DETAILS]{
         @Common.TextFor
         LFART_VTEXT: String(20)  @title: 'LFART_VTEXT' ; 
         LFDAT_DATE: Date  @title: 'LFDAT' ; 
+        HSDAT_DATE: Date @title:'HSDAT';
+        VFDAT_DATE: Date @title:'HSDAT';
         TRAID: String(20)  @title: 'TRAID' ; 
         ZZ0S2BLNR: String(30)  @title: 'ZZ0S2BLNR' ; 
         PEND_DEL_QUAN: String(500)  @title: 'PEND_DEL_QUAN' ;
