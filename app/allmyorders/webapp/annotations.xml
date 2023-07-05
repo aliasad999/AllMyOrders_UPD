@@ -226,6 +226,12 @@
 			<Annotations Target="Metadata.Results/LFDAT_DATE">
 				<Annotation Term="Common.Label" String="{@i18n>lfdat}"/>
 			</Annotations>
+			<Annotations Target="Metadata.Results/HSDAT_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>HSDAT_DATE}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VFDAT_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>VFDAT_DATE}"/>
+			</Annotations>
 			<Annotations Target="Metadata.Results/TRAID">
 				<Annotation Term="Common.Label" String="{@i18n>TRAID}"/>
 			</Annotations>
@@ -460,6 +466,12 @@
 			</Annotations>
 			<Annotations Target="Metadata.valueHelps/LFDAT_DATE">
 				<Annotation Term="Common.Label" String="{@i18n>lfdat}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/HSDAT_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>HSDAT_DATE}"/>
+			</Annotations>
+			<Annotations Target="Metadata.valueHelps/VFDAT_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>VFDAT_DATE}"/>
 			</Annotations>
 			<Annotations Target="Metadata.valueHelps/TRAID">
 				<Annotation Term="Common.Label" String="{@i18n>TRAID}"/>

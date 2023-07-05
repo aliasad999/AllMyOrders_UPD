@@ -61,10 +61,7 @@ module.exports = cds.service.impl(async (service) => {
                 lt_count = removeDuplicates([req._query["search-focus"]], lt_count);
                 lt_result.push({ $count: lt_count.length })
             }
-            if (lt_result.length === 0) {
-                req.query.SELECT.distinct = true;
-                lt_result = await cds.run(req.query);
-            }
+            
         } else {
             if (req.query.SELECT.columns[0].as !== '$count') {
                 req.query.SELECT.distinct = true;

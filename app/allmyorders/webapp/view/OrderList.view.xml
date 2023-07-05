@@ -70,6 +70,20 @@
                             visibleInAdvancedArea="false"
                             conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
                         />
+                    
+                    <sfb:ControlConfiguration
+                            id="idHSdatDate"
+                            key="HSDAT_DATE"
+                            visibleInAdvancedArea="false"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
+                    
+                    <sfb:ControlConfiguration
+                            id="idVFdatDate"
+                            key="VFDAT_DATE"
+                            visibleInAdvancedArea="false"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
                     </sfb:controlConfiguration>
                     <sfb:layoutData>
                         <FlexItemData
@@ -161,10 +175,10 @@
                                                 text="{CHARG}"
                                                 tooltip="{parts: [
 											{value: 'Manuf. Date '},
-											{path: 'LDDAT_DATE' },
+											{path: 'HSDAT_DATE' },
 											{value: ' / '},
 											{value: 'SLED/BBD '},
-											{path: 'LFDAT_DATE'}
+											{path: 'VFDAT_DATE'}
 										]
 										}"
                                             />
