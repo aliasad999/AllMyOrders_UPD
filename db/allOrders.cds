@@ -110,6 +110,7 @@ entity![SALESORDER_DETAILS]  {
         WE_PARTNER_NAME: String(70)  @title: 'WE Partner Name' ; 
         delivery: Composition of many DELIVERY_DETAILS on $self.VBELN = delivery.VBELN and $self.POSNR = delivery.POSNR;
         notes: Composition of many CV_NOTES on $self.VBELN = notes.VBELN and $self.POSNR = notes.POSNR;
+        shipment: Composition of many SHIPMENT_DETAILS on $self.VBELN = shipment.VBELN and $self.POSNR = shipment.POSNR;
         
 	
     
@@ -138,7 +139,7 @@ entity ![DELIVERY_DETAILS]{
         TRAID: String(20)  @title: 'TRAID' ; 
         ZZ0S2BLNR: String(30)  @title: 'ZZ0S2BLNR' ; 
         PEND_DEL_QUAN: String(500)  @title: 'PEND_DEL_QUAN' ;
-        salesorder: Association to one SALESORDER_DETAILS on $self.VBELN = salesorder.VBELN and $self.POSNR = salesorder.POSNR
+        salesorder: Association to one SALESORDER_DETAILS on $self.VBELN = salesorder.VBELN and $self.POSNR = salesorder.POSNR;
 }
 
 @cds.persistence.exists 
@@ -162,4 +163,38 @@ entity ![ST_NOTES] {
         LANGUAGE: String(2)  @title: 'LANGUAGE' ; 
         NOTE_TITLE: String(60)  @title: 'NOTE_TITLE' ; 
         NOTE_TEXT: String(1000)  @title: 'NOTE_TEXT' ; 
+}
+
+@cds.persistence.exists
+entity ![SHIPMENT_DETAILS] {
+        MANDT: String(3)  @title: 'MANDT' ; 
+        VBELN: String(10)  @title: 'VBELN' ; 
+        POSNR: String(6)  @title: 'POSNR' ; 
+        VBELN_DEL: String(10)  @title: 'VBELN_DEL' ; 
+        POSNR_DEL: String(6)  @title: 'POSNR_DEL' ; 
+        TKNUM: String(10) @title: 'TKNUM';
+        VSART: String(2) @title: 'VSART';
+        VSART_BEZEI: String(20) @title: 'VSART_BEZEI';
+        EXTI1: String(20) @title: 'EXTI1';
+	TDLNR: String(10) @title: 'TDLNR';
+	TDLNR_NAME1: String(35) @title: 'TDLNR_NAME1';
+	STATUS_CODE_ELEM: String(3) @title: 'STATUS_CODE_ELEM';
+	STATUS_REASON_CODE_ELEM: String(3) @title : 'STATUS_REASON_CODE_ELEM';
+	STATUS_CODE_TEXT_ELEM: String(255) @title : 'STATUS_CODE_TEXT_ELEM';
+	STATUS_REASON_CODE_TEXT_ELEM: String(255) @title : 'STATUS_REASON_CODE_TEXT_ELEM';
+	TRACKING_ID_ELEM: String(12) @title : 'TRACKING_ID_ELEM';
+	ALERT_STATUS_CODE_ELEM: String(3) @title : 'ALERT_STATUS_CODE_ELEM';
+	ALERT_STATUS_REASON_CODE_ELEM: String(3) @title : 'ALERT_STATUS_REASON_CODE_ELEM';
+	ALERT_STATUS_CODE_TEXT_ELEM: String(255) @title : 'ALERT_STATUS_CODE_TEXT_ELEM';
+	ALERT_STATUS_REASON_CODE_TEXT_ELEM: String(255) @title : 'ALERT_STATUS_REASON_CODE_TEXT_ELEM';
+	STATUS_CODE_COMP: String(3) @title : 'STATUS_CODE_COMP';
+	REASON_CODE_COMP: String(17) @title : 'REASON_CODE_COMP';
+	STATUS_CODE_TEXT_COMP: String(100) @title : 'STATUS_CODE_TEXT_COMP';
+	REASON_CODE_TEXT_COMP: String(100) @title : 'REASON_CODE_TEXT_COMP';
+	TRACKING_ID_COMP: String(50) @title : 'TRACKING_ID_COMP';
+	DPTBG_DATE: Date @title : 'DPTBG_DATE';
+        DATBG_DATE: Date @title : 'DATBG_DATE';
+        DPTEN_DATE: Date @title: 'DPTEN_DATE';
+        DATEN_DATE: Date @title: 'DATEN_DATE';
+        salesorder: Association to one SALESORDER_DETAILS on $self.VBELN = salesorder.VBELN and $self.POSNR = salesorder.POSNR;
 }
