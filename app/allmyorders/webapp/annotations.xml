@@ -244,6 +244,60 @@
 			<Annotations Target="Metadata.Results/LAST_NOTE">
 				<Annotation Term="Common.Label" String="{@i18n>LAST_NOTE}"/>
 			</Annotations>
+			<Annotations Target="Metadata.Results/TKNUM">
+				<Annotation Term="Common.Label" String="{@i18n>TKNUM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/TKNUM">
+				<Annotation Term="Common.Label" String="{@i18n>TKNUM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VSART">
+				<Annotation Term="Common.Label" String="{@i18n>VSART}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VSART_BEZEI">
+				<Annotation Term="Common.Label" String="{@i18n>VSART_BEZEI}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/EXTI1">
+				<Annotation Term="Common.Label" String="{@i18n>EXTI1}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/TDLNR">
+				<Annotation Term="Common.Label" String="{@i18n>TDLNR}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/STATUS_CODE_ELEM">
+				<Annotation Term="Common.Label" String="{@i18n>STATUS_CODE_ELEM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/STATUS_REASON_CODE_ELEM">
+				<Annotation Term="Common.Label" String="{@i18n>STATUS_REASON_CODE_ELEM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/TRACKING_ID_ELEM">
+				<Annotation Term="Common.Label" String="{@i18n>TRACKING_ID_ELEM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/ALERT_STATUS_CODE_ELEM">
+				<Annotation Term="Common.Label" String="{@i18n>ALERT_STATUS_CODE_ELEM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/ALERT_STATUS_REASON_CODE_ELEM">
+				<Annotation Term="Common.Label" String="{@i18n>ALERT_STATUS_REASON_CODE_ELEM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/STATUS_CODE_COMP">
+				<Annotation Term="Common.Label" String="{@i18n>STATUS_CODE_COMP}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/REASON_CODE_COMP">
+				<Annotation Term="Common.Label" String="{@i18n>REASON_CODE_COMP}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/TRACKING_ID_COMP">
+				<Annotation Term="Common.Label" String="{@i18n>TRACKING_ID_COMP}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/DPTBG_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>DPTBG_DATE}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/DATBG_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>DATBG_DATE}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/DPTEN_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>DPTEN_DATE}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/DATEN_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>DATEN_DATE}"/>
+			</Annotations>
 			
 			
 		</Schema>
@@ -481,6 +535,60 @@
 			</Annotations>
 			<Annotations Target="Metadata.valueHelps/PEND_DEL_QUAN">
 				<Annotation Term="Common.Label" String="{@i18n>PENDING_DEL_QTY}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/TKNUM">
+				<Annotation Term="Common.Label" String="{@i18n>TKNUM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/TKNUM">
+				<Annotation Term="Common.Label" String="{@i18n>TKNUM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VSART">
+				<Annotation Term="Common.Label" String="{@i18n>VSART}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/VSART_BEZEI">
+				<Annotation Term="Common.Label" String="{@i18n>VSART_BEZEI}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/EXTI1">
+				<Annotation Term="Common.Label" String="{@i18n>EXTI1}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/TDLNR">
+				<Annotation Term="Common.Label" String="{@i18n>TDLNR}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/STATUS_CODE_ELEM">
+				<Annotation Term="Common.Label" String="{@i18n>STATUS_CODE_ELEM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/STATUS_REASON_CODE_ELEM">
+				<Annotation Term="Common.Label" String="{@i18n>STATUS_REASON_CODE_ELEM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/TRACKING_ID_ELEM">
+				<Annotation Term="Common.Label" String="{@i18n>TRACKING_ID_ELEM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/ALERT_STATUS_CODE_ELEM">
+				<Annotation Term="Common.Label" String="{@i18n>ALERT_STATUS_CODE_ELEM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/ALERT_STATUS_REASON_CODE_ELEM">
+				<Annotation Term="Common.Label" String="{@i18n>ALERT_STATUS_REASON_CODE_ELEM}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/STATUS_CODE_COMP">
+				<Annotation Term="Common.Label" String="{@i18n>STATUS_CODE_COMP}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/REASON_CODE_COMP">
+				<Annotation Term="Common.Label" String="{@i18n>REASON_CODE_COMP}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/TRACKING_ID_COMP">
+				<Annotation Term="Common.Label" String="{@i18n>TRACKING_ID_COMP}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/DPTBG_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>DPTBG_DATE}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/DATBG_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>DATBG_DATE}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/DPTEN_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>DPTEN_DATE}"/>
+			</Annotations>
+			<Annotations Target="Metadata.Results/DATEN_DATE">
+				<Annotation Term="Common.Label" String="{@i18n>DATEN_DATE}"/>
 			</Annotations>
 			
 			
