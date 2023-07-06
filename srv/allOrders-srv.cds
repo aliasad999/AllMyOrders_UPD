@@ -45,11 +45,11 @@ service srvOpenOrders {
           shipment.REASON_CODE_COMP                   as REASON_CODE_COMP,
           shipment.STATUS_CODE_TEXT_COMP              as STATUS_CODE_TEXT_COMP,
           shipment.REASON_CODE_TEXT_COMP              as REASON_CODE_TEXT_COMP,
-          shipment.TRACKING_ID_COMP                   as TRACKING_ID_COMP
-    // shipment.DPTBG_DATE                         as DPTBG_DATE
-    // shipment.DATBG_DATE                         as DATBG_DATE,
-    // shipment.DPTEN_DATE                         as DPTEN_DATE,
-    // shipment.DATEN_DATE                         as DATEN_DATE
+          shipment.TRACKING_ID_COMP                   as TRACKING_ID_COMP,
+          shipment.DPTBG_DATE                         as DPTBG_DATE,
+          shipment.DATBG_DATE                         as DATBG_DATE,
+          shipment.DPTEN_DATE                         as DPTEN_DATE,
+          shipment.DATEN_DATE                         as DATEN_DATE
     };
 
   entity valueHelps as projection on db.SALESORDER_DETAILS {
@@ -92,11 +92,11 @@ service srvOpenOrders {
         shipment.REASON_CODE_COMP                   as REASON_CODE_COMP,
         shipment.STATUS_CODE_TEXT_COMP              as STATUS_CODE_TEXT_COMP,
         shipment.REASON_CODE_TEXT_COMP              as REASON_CODE_TEXT_COMP,
-        shipment.TRACKING_ID_COMP                   as TRACKING_ID_COMP
-        // shipment.DPTBG_DATE                         as DPTBG_DATE
-        // shipment.DATBG_DATE                         as DATBG_DATE,
-        // shipment.DPTEN_DATE                         as DPTEN_DATE,
-        // shipment.DATEN_DATE                         as DATEN_DATE
+        shipment.TRACKING_ID_COMP                   as TRACKING_ID_COMP,
+        shipment.DPTBG_DATE                         as DPTBG_DATE,
+        shipment.DATBG_DATE                         as DATBG_DATE,
+        shipment.DPTEN_DATE                         as DPTEN_DATE,
+        shipment.DATEN_DATE                         as DATEN_DATE
   }
 
   entity notes      as
