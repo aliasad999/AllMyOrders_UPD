@@ -84,7 +84,38 @@
                             visibleInAdvancedArea="false"
                             conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
                         />
+
+                    <sfb:ControlConfiguration
+                            id="idDPTBGDate"
+                            key="DPTBG_DATE"
+                            visibleInAdvancedArea="false"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
+
+                    <sfb:ControlConfiguration
+                            id="idDATBGDate"
+                            key="DATBG_DATE"
+                            visibleInAdvancedArea="false"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
+                    
+                    <sfb:ControlConfiguration
+                            id="idDPTENDate"
+                            key="DPTEN_DATE"
+                            visibleInAdvancedArea="false"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
+                    
+                    <sfb:ControlConfiguration
+                            id="idDATENDate"
+                            key="DATEN_DATE"
+                            visibleInAdvancedArea="false"
+                            conditionType="{ module: 'sap.ui.comp.config.condition.DateRangeType' }"
+                        />
+
                     </sfb:controlConfiguration>
+                    
+
                     <sfb:layoutData>
                         <FlexItemData
                             id="_IDGenFlexItemData1"

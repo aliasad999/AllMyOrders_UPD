@@ -173,23 +173,47 @@ entity ![SHIPMENT_DETAILS] {
         VBELN_DEL: String(10)  @title: 'VBELN_DEL' ; 
         POSNR_DEL: String(6)  @title: 'POSNR_DEL' ; 
         TKNUM: String(10) @title: 'TKNUM';
+        @Common.Text           : VSART_BEZEI
+        @Common.TextArrangement: #TextLast
         VSART: String(2) @title: 'VSART';
+        @Common.TextFor
         VSART_BEZEI: String(20) @title: 'VSART_BEZEI';
         EXTI1: String(20) @title: 'EXTI1';
+        @Common.Text           : TDLNR_NAME1
+        @Common.TextArrangement: #TextLast
 	TDLNR: String(10) @title: 'TDLNR';
+        @Common.TextFor
 	TDLNR_NAME1: String(35) @title: 'TDLNR_NAME1';
+        @Common.Text           : STATUS_CODE_TEXT_ELEM
+        @Common.TextArrangement: #TextLast
 	STATUS_CODE_ELEM: String(3) @title: 'STATUS_CODE_ELEM';
+        @Common.Text           : STATUS_REASON_CODE_TEXT_ELEM
+        @Common.TextArrangement: #TextLast
 	STATUS_REASON_CODE_ELEM: String(3) @title : 'STATUS_REASON_CODE_ELEM';
+        @Common.TextFor
 	STATUS_CODE_TEXT_ELEM: String(255) @title : 'STATUS_CODE_TEXT_ELEM';
+        @Common.TextFor
 	STATUS_REASON_CODE_TEXT_ELEM: String(255) @title : 'STATUS_REASON_CODE_TEXT_ELEM';
 	TRACKING_ID_ELEM: String(12) @title : 'TRACKING_ID_ELEM';
+        @Common.Text           : ALERT_STATUS_CODE_TEXT_ELEM
+        @Common.TextArrangement: #TextLast
 	ALERT_STATUS_CODE_ELEM: String(3) @title : 'ALERT_STATUS_CODE_ELEM';
+        @Common.Text           : ALERT_STATUS_REASON_CODE_TEXT_ELEM
+        @Common.TextArrangement: #TextLast
 	ALERT_STATUS_REASON_CODE_ELEM: String(3) @title : 'ALERT_STATUS_REASON_CODE_ELEM';
+        @Common.TextFor
 	ALERT_STATUS_CODE_TEXT_ELEM: String(255) @title : 'ALERT_STATUS_CODE_TEXT_ELEM';
+        @Common.TextFor
 	ALERT_STATUS_REASON_CODE_TEXT_ELEM: String(255) @title : 'ALERT_STATUS_REASON_CODE_TEXT_ELEM';
+        @Common.Text           : STATUS_CODE_TEXT_COMP
+        @Common.TextArrangement: #TextLast
 	STATUS_CODE_COMP: String(3) @title : 'STATUS_CODE_COMP';
+        @Common.Text           : REASON_CODE_TEXT_COMP
+        @Common.TextArrangement: #TextLast
 	REASON_CODE_COMP: String(17) @title : 'REASON_CODE_COMP';
+        @Common.TextFor
 	STATUS_CODE_TEXT_COMP: String(100) @title : 'STATUS_CODE_TEXT_COMP';
+        @Common.TextFor
 	REASON_CODE_TEXT_COMP: String(100) @title : 'REASON_CODE_TEXT_COMP';
 	TRACKING_ID_COMP: String(50) @title : 'TRACKING_ID_COMP';
 	DPTBG_DATE: Date @title : 'DPTBG_DATE';
