@@ -321,6 +321,10 @@ sap.ui.define([
 						});
 						sap.ui.getCore().getMessageManager().addMessages(oMessage);
 					}
+					// added because the list is refreshed.. and that might change the index of the previously selected row.. 
+					this.getView().byId('idSmartTable').getTable().setSelectedIndex(-1)
+					this.getView().getModel('localModel').setProperty('/salesOrderTable', []);
+					// added because the list is refreshed.. and that might change the index of the previously selected row.. 
 				}),
 				error: ((error) => {
 					var msg = JSON.parse(error.responseText).error.message.value;

@@ -34,12 +34,10 @@ if you dont have default-env plugin installed
 please install using following command
 ``` cf install-plugin DefaultEnv ```
 
-### running approuter locally
+### running app locally
 open a new git bash terminal and execute
-``` cd approuter && cf default-env ordermonitoring-approuter ```
-this will create a default-env.json file in approuter folder with credential details from BTP
-now you just need to run the approuter using the following command
-``` npm run start ```
+``` cd app/allmyorders && npm run start:local ```
+this will open the app in sandbox lauchpad  on port8080
 ### running service locally
 to run service locally, first update default-env.json in the root folder using the following command
 ``` cf default-env allmyorders-srv ```
@@ -75,7 +73,7 @@ once the build has been completed, you can push your changes via following comma
 
 ## Usefull commands
 To login quickly via terminal you can use the following command
-```cf login -a "https://api.cf.eu10.hana.ondemand.com" --sso-passcode "PASSCODE" ```
+```cf login -a "https://api.cf.eu10.hana.ondemand.com" --sso-passcode "CRn7foZZQtry8yckoqOi0unjDmORtPWG" ```
 
 you can get passcode by opening following url in browser
 https://login.cf.eu10.hana.ondemand.com/passcode#
