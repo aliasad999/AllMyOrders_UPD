@@ -10,17 +10,23 @@ module.exports = cds.service.impl(async (service) => {
         req.query._suppressLocalization = true
         req.query.SELECT.distinct = true
     });
-    service.after("READ", "Results", async (data, req) => {
-        let lt_count = 0;
-        let sessionID = req.headers['authorization'] || req.headers['x-username'];
-        if (req.query.SELECT.columns[0].as === '$count' && req.headers?.select) {
-            const queryCount = `${sessionID}QueryCount`
+    service.on("READ", "Results", async (req,next) => {
+        if (req.query.SELECT.columns && req.query.SELECT?.columns[0].as === '$count' && req.headers?.select) {
+            
             const db = cds.transaction(req);
             const fields = req.headers.select.split(',')
+            const lt_count = await db.run(SELECT.distinct(true).from('srvOpenOrders_Results').columns( `count(*)`).groupBy(...fields).where(req.query.SELECT.where))
+            let lt_result = []
+            lt_result.push({$count:lt_count.length})
 
-            lt_count = await db.run(SELECT.distinct(true).from('srvOpenOrders_Results').columns(...fields, `count(*)`).groupBy(...fields).where(req.query.SELECT.where))
-            sessionCache.set(queryCount, lt_count.length);
-            if (data.length) data[0].$count = lt_count.length;
+        } 
+        await next();
+    });
+    service.after("READ", "Results", async (data, req) => {
+        
+        let sessionID = req.headers['authorization'] || req.headers['x-username'];
+        if (req.query.SELECT.columns && req.query.SELECT?.columns[0].as === '$count' && req.headers?.select) {
+            
         } else {
 
             const queryString = JSON.stringify(req.query);
