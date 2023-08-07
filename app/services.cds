@@ -1,82 +1,92 @@
 using srvOpenOrders as service from '../srv/allOrders-srv';
 
 annotate service.Results with {
-    KWMENG @Measures.Unit : VRKME ;
-    VRKME @Semantics.unitOfMeasure :'unit-of-measure';
-    KBMENG @Measures.Unit : VRKME;
-    UNCONFIRMED_QTY @Measures.Unit : VRKME;
-    KBETR @Measures.ISOCurrency : 'WAERS';
-    WAERS @Semantics.currencyCode;
-    KPEIN @Measures.Unit : KMEIN;
-    KMEIN @Semantics.unitOfMeasure :'unit-of-measure';
-    NETWR @Measures.ISOCurrency : WAERK;
-    WAERK @Semantics.currencyCode;
-    LFIMG @Measures.Unit : VRKME_DEL;
-    VRKME_DEL @Semantics.unitOfMeasure :'unit-of-measure';
-    PEND_DEL_QUAN @Measures.Unit : VRKME_DEL;
-    CO_PARTNER_NAME @UI : {Hidden : true };
-    NY_PARTNER_NAME @UI : {Hidden : true };
-    AS_PARTNER_NAME @UI : {Hidden : true };
-    VE_PARTNER_NAME @UI : {Hidden : true };
-    AM_PARTNER_NAME @UI : {Hidden : true };
-    AG_PARTNER_NAME @UI : {Hidden : true };
-    WE_PARTNER_NAME @UI : {Hidden : true };
-    MAKTX @UI : {Hidden : true };
-    LANDX @UI : {Hidden : true };
-    VKORG_NAME1 @UI : {Hidden : true };
-    FAKSP_VTEXT @UI : {Hidden : true };
-    SUPPLY_SITUATION_DESCR @UI : {Hidden : true };
-    PSTYV_VTEXT @UI : {Hidden : true };
-    VKBUR_BEZEI @UI : {Hidden : true };
-    LFART_VTEXT @UI : {Hidden : true };
-    id @UI : {Hidden : true };
-    MANDT @UI : {Hidden : true };
-    ABGRU @UI : {Hidden : true };
-    ABSTA @UI : {Hidden : true };
-    KNUMV @UI : {Hidden : true };
-    SPART @UI : {Hidden : true };
-    LANGUAGE @UI : {Hidden : true };
-    HSDAT_DATE @UI : {Hidden : true };
-    VFDAT_DATE @UI : {Hidden : true };
+    KWMENG                             @Measures.Unit          : VRKME;
+    VRKME                              @Semantics.unitOfMeasure: 'unit-of-measure';
+    KBMENG                             @Measures.Unit          : VRKME;
+    UNCONFIRMED_QTY                    @Measures.Unit          : VRKME;
+    KBETR                              @Measures.ISOCurrency   : 'WAERS';
+    WAERS                              @Semantics.currencyCode;
+    KPEIN                              @Measures.Unit          : KMEIN;
+    KMEIN                              @Semantics.unitOfMeasure: 'unit-of-measure';
+    NETWR                              @Measures.ISOCurrency   : WAERK;
+    WAERK                              @Semantics.currencyCode;
+    LFIMG                              @Measures.Unit          : VRKME_DEL;
+    VRKME_DEL                          @Semantics.unitOfMeasure: 'unit-of-measure';
+    PEND_DEL_QUAN                      @Measures.Unit          : VRKME_DEL;
+    CO_PARTNER_NAME                    @UI                     : {Hidden: true};
+    NY_PARTNER_NAME                    @UI                     : {Hidden: true};
+    AS_PARTNER_NAME                    @UI                     : {Hidden: true};
+    VE_PARTNER_NAME                    @UI                     : {Hidden: true};
+    AM_PARTNER_NAME                    @UI                     : {Hidden: true};
+    AG_PARTNER_NAME                    @UI                     : {Hidden: true};
+    WE_PARTNER_NAME                    @UI                     : {Hidden: true};
+    MAKTX                              @UI                     : {Hidden: true};
+    LANDX                              @UI                     : {Hidden: true};
+    VKORG_NAME1                        @UI                     : {Hidden: true};
+    FAKSP_VTEXT                        @UI                     : {Hidden: true};
+    SUPPLY_SITUATION_DESCR             @UI                     : {Hidden: true};
+    PSTYV_VTEXT                        @UI                     : {Hidden: true};
+    VKBUR_BEZEI                        @UI                     : {Hidden: true};
+    LFART_VTEXT                        @UI                     : {Hidden: true};
+    id                                 @UI                     : {Hidden: true};
+    MANDT                              @UI                     : {Hidden: true};
+    ABGRU                              @UI                     : {Hidden: true};
+    ABSTA                              @UI                     : {Hidden: true};
+    KNUMV                              @UI                     : {Hidden: true};
+    SPART                              @UI                     : {Hidden: true};
+    LANGUAGE                           @UI                     : {Hidden: true};
+    HSDAT_DATE                         @UI                     : {Hidden: true};
+    VFDAT_DATE                         @UI                     : {Hidden: true};
+    // Shipment Details Texts
+    VSART_BEZEI                        @UI                     : {Hidden};
+    TDLNR_NAME1                        @UI                     : {Hidden};
+    STATUS_CODE_TEXT_ELEM              @UI                     : {Hidden};
+    STATUS_REASON_CODE_TEXT_ELEM       @UI                     : {Hidden};
+    ALERT_STATUS_CODE_TEXT_ELEM        @UI                     : {Hidden};
+    ALERT_STATUS_REASON_CODE_TEXT_ELEM @UI                     : {Hidden};
+    STATUS_CODE_TEXT_COMP              @UI                     : {Hidden};
+    REASON_CODE_TEXT_COMP              @UI                     : {Hidden};
 }
 
 annotate service.valueHelps with {
-    KWMENG @Measures.Unit : VRKME;
-    VRKME @Semantics.unitOfMeasure :'unit-of-measure';
-    KBMENG @Measures.Unit : VRKME;
-    UNCONFIRMED_QTY @Measures.Unit : VRKME;
-    KBETR @Measures.ISOCurrency : 'WAERS';
-    WAERS @Semantics.currencyCode;
-    KPEIN @Measures.Unit : KMEIN;
-    KMEIN @Semantics.unitOfMeasure :'unit-of-measure';
-    NETWR @Measures.ISOCurrency : WAERK;
-    WAERK @Semantics.currencyCode;
-    LFIMG @Measures.Unit : VRKME_DEL;
-    VRKME_DEL @Semantics.unitOfMeasure :'unit-of-measure';
-    PEND_DEL_QUAN @Measures.Unit : VRKME_DEL;
-    CO_PARTNER_NAME @UI : {Hidden : true };
-    NY_PARTNER_NAME @UI : {Hidden : true };
-    AS_PARTNER_NAME @UI : {Hidden : true };
-    VE_PARTNER_NAME @UI : {Hidden : true };
-    AM_PARTNER_NAME @UI : {Hidden : true };
-    AG_PARTNER_NAME @UI : {Hidden : true };
-    WE_PARTNER_NAME @UI : {Hidden : true };
-    MAKTX @UI : {Hidden : true };
-    LANDX @UI : {Hidden : true };
-    VKORG_NAME1 @UI : {Hidden : true };
-    FAKSP_VTEXT @UI : {Hidden : true };
-    SUPPLY_SITUATION_DESCR @UI : {Hidden : true };
-    PSTYV_VTEXT @UI : {Hidden : true };
-    VKBUR_BEZEI @UI : {Hidden : true };
-    LFART_VTEXT @UI : {Hidden : true };
-    
-    ABGRU @UI : {Hidden : true };
-    ABSTA @UI : {Hidden : true };
-    KNUMV @UI : {Hidden : true };
-    SPART @UI : {Hidden : true };
-    LANGUAGE @UI : {Hidden : true };
-    HSDAT_DATE @UI : {Hidden : true };
-    VFDAT_DATE @UI : {Hidden : true };
+    KWMENG                 @Measures.Unit          : VRKME;
+    VRKME                  @Semantics.unitOfMeasure: 'unit-of-measure';
+    KBMENG                 @Measures.Unit          : VRKME;
+    UNCONFIRMED_QTY        @Measures.Unit          : VRKME;
+    KBETR                  @Measures.ISOCurrency   : 'WAERS';
+    WAERS                  @Semantics.currencyCode;
+    KPEIN                  @Measures.Unit          : KMEIN;
+    KMEIN                  @Semantics.unitOfMeasure: 'unit-of-measure';
+    NETWR                  @Measures.ISOCurrency   : WAERK;
+    WAERK                  @Semantics.currencyCode;
+    LFIMG                  @Measures.Unit          : VRKME_DEL;
+    VRKME_DEL              @Semantics.unitOfMeasure: 'unit-of-measure';
+    PEND_DEL_QUAN          @Measures.Unit          : VRKME_DEL;
+    CO_PARTNER_NAME        @UI                     : {Hidden: true};
+    NY_PARTNER_NAME        @UI                     : {Hidden: true};
+    AS_PARTNER_NAME        @UI                     : {Hidden: true};
+    VE_PARTNER_NAME        @UI                     : {Hidden: true};
+    AM_PARTNER_NAME        @UI                     : {Hidden: true};
+    AG_PARTNER_NAME        @UI                     : {Hidden: true};
+    WE_PARTNER_NAME        @UI                     : {Hidden: true};
+    MAKTX                  @UI                     : {Hidden: true};
+    LANDX                  @UI                     : {Hidden: true};
+    VKORG_NAME1            @UI                     : {Hidden: true};
+    FAKSP_VTEXT            @UI                     : {Hidden: true};
+    SUPPLY_SITUATION_DESCR @UI                     : {Hidden: true};
+    PSTYV_VTEXT            @UI                     : {Hidden: true};
+    VKBUR_BEZEI            @UI                     : {Hidden: true};
+    LFART_VTEXT            @UI                     : {Hidden: true};
+    ABGRU                  @UI                     : {Hidden: true};
+    ABSTA                  @UI                     : {Hidden: true};
+    KNUMV                  @UI                     : {Hidden: true};
+    SPART                  @UI                     : {Hidden: true};
+    LANGUAGE               @UI                     : {Hidden: true};
+    HSDAT_DATE             @UI                     : {Hidden: true};
+    VFDAT_DATE             @UI                     : {Hidden: true};
+
+
 }
 
 annotate service.Results with {
@@ -94,6 +104,7 @@ annotate service.Results with {
         }]
     }
 }
+
 annotate service.Results with {
     KMEIN
     @Common.ValueList: {
@@ -109,6 +120,7 @@ annotate service.Results with {
         }]
     }
 }
+
 annotate service.Results with {
     VRKME_DEL
     @Common.ValueList: {
@@ -124,6 +136,7 @@ annotate service.Results with {
         }]
     }
 }
+
 annotate service.Results with {
     WAERK
     @Common.ValueList: {
@@ -139,6 +152,7 @@ annotate service.Results with {
         }]
     }
 }
+
 annotate service.Results with {
     WAERS
     @Common.ValueList: {
@@ -187,6 +201,7 @@ annotate service.Results with {
         }]
     }
 }
+
 annotate service.Results with {
     AUART
     @Common.ValueList: {
@@ -195,15 +210,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: AUART,
-                ValueListProperty: 'AUART'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: AUART,
+            ValueListProperty: 'AUART'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     WERKS
     @Common.ValueList: {
@@ -212,15 +228,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: AUART,
-                ValueListProperty: 'AUART'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: AUART,
+            ValueListProperty: 'AUART'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     VTWEG
     @Common.ValueList: {
@@ -229,15 +246,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: VTWEG,
-                ValueListProperty: 'VTWEG'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: VTWEG,
+            ValueListProperty: 'VTWEG'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     MATNR
     @Common.ValueList: {
@@ -246,15 +264,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: MATNR,
-                ValueListProperty: 'MATNR'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: MATNR,
+            ValueListProperty: 'MATNR'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     KDMAT
     @Common.ValueList: {
@@ -263,15 +282,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: KDMAT,
-                ValueListProperty: 'KDMAT'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: KDMAT,
+            ValueListProperty: 'KDMAT'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     BSTNK
     @Common.ValueList: {
@@ -280,15 +300,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: BSTNK,
-                ValueListProperty: 'BSTNK'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: BSTNK,
+            ValueListProperty: 'BSTNK'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     AG_PARTNER
     @Common.ValueList: {
@@ -297,15 +318,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: AG_PARTNER,
-                ValueListProperty: 'AG_PARTNER'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: AG_PARTNER,
+            ValueListProperty: 'AG_PARTNER'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     WE_PARTNER
     @Common.ValueList: {
@@ -314,15 +336,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: WE_PARTNER,
-                ValueListProperty: 'WE_PARTNER'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: WE_PARTNER,
+            ValueListProperty: 'WE_PARTNER'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     LAND1
     @Common.ValueList: {
@@ -331,15 +354,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: LAND1,
-                ValueListProperty: 'LAND1'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: LAND1,
+            ValueListProperty: 'LAND1'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     ORT01
     @Common.ValueList: {
@@ -348,15 +372,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: ORT01,
-                ValueListProperty: 'ORT01'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: ORT01,
+            ValueListProperty: 'ORT01'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     VKORG
     @Common.ValueList: {
@@ -365,15 +390,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: VKORG,
-                ValueListProperty: 'VKORG'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: VKORG,
+            ValueListProperty: 'VKORG'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     VBUND
     @Common.ValueList: {
@@ -382,17 +408,18 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: VBUND,
-                ValueListProperty: 'VBUND'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: VBUND,
+            ValueListProperty: 'VBUND'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
-    KWMENG 
+    KWMENG
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
         Label                  : '{@i18n>KWMENG}',
@@ -409,9 +436,11 @@ annotate service.Results with {
                 $Type            : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty: 'VRKME'
             },
-           
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     KBMENG
     @Common.ValueList: {
@@ -430,9 +459,11 @@ annotate service.Results with {
                 $Type            : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty: 'VRKME'
             },
-           
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     UNCONFIRMED_QTY
     @Common.ValueList: {
@@ -451,9 +482,11 @@ annotate service.Results with {
                 $Type            : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty: 'VRKME'
             }
-           
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     REQ_TEXT
     @Common.ValueList: {
@@ -462,15 +495,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: REQ_TEXT,
-                ValueListProperty: 'REQ_TEXT'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: REQ_TEXT,
+            ValueListProperty: 'REQ_TEXT'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     FAKSP
     @Common.ValueList: {
@@ -479,15 +513,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: FAKSP,
-                ValueListProperty: 'FAKSP'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: FAKSP,
+            ValueListProperty: 'FAKSP'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     LGORT
     @Common.ValueList: {
@@ -496,15 +531,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: LGORT,
-                ValueListProperty: 'LGORT'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: LGORT,
+            ValueListProperty: 'LGORT'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     SUPPLY_SITUATION
     @Common.ValueList: {
@@ -513,16 +549,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: SUPPLY_SITUATION,
-                ValueListProperty: 'SUPPLY_SITUATION'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: SUPPLY_SITUATION,
+            ValueListProperty: 'SUPPLY_SITUATION'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     KBETR
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -540,10 +577,12 @@ annotate service.Results with {
                 $Type            : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty: 'WAERS'
             }
-           
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     KPEIN
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -561,10 +600,12 @@ annotate service.Results with {
                 $Type            : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty: 'KMEIN'
             }
-           
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     NETWR
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -576,16 +617,18 @@ annotate service.Results with {
             {
                 $Type            : 'Common.ValueListParameterInOut',
                 LocalDataProperty: NETWR,
-                ValueListProperty: 'NETWR' 
+                ValueListProperty: 'NETWR'
             },
             {
                 $Type            : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty: 'WAERK' 
+                ValueListProperty: 'WAERK'
             }
-          
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     HTEXT
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -593,16 +636,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: HTEXT,
-                ValueListProperty: 'HTEXT'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: HTEXT,
+            ValueListProperty: 'HTEXT'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     PSTYV
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -610,16 +654,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: PSTYV,
-                ValueListProperty: 'PSTYV'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: PSTYV,
+            ValueListProperty: 'PSTYV'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     DISPO
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -627,16 +672,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: DISPO,
-                ValueListProperty: 'DISPO'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: DISPO,
+            ValueListProperty: 'DISPO'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     KOSCH
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -644,16 +690,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: KOSCH,
-                ValueListProperty: 'KOSCH'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: KOSCH,
+            ValueListProperty: 'KOSCH'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     VKBUR
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -661,16 +708,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: VKBUR,
-                ValueListProperty: 'VKBUR'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: VKBUR,
+            ValueListProperty: 'VKBUR'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     CO_PARTNER
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -678,16 +726,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: CO_PARTNER,
-                ValueListProperty: 'CO_PARTNER'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: CO_PARTNER,
+            ValueListProperty: 'CO_PARTNER'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     NY_PARTNER
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -695,16 +744,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: NY_PARTNER,
-                ValueListProperty: 'NY_PARTNER'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: NY_PARTNER,
+            ValueListProperty: 'NY_PARTNER'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     AS_PARTNER
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -712,16 +762,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: AS_PARTNER,
-                ValueListProperty: 'AS_PARTNER'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: AS_PARTNER,
+            ValueListProperty: 'AS_PARTNER'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     VE_PARTNER
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -729,16 +780,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: VE_PARTNER,
-                ValueListProperty: 'VE_PARTNER'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: VE_PARTNER,
+            ValueListProperty: 'VE_PARTNER'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     AM_PARTNER
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -746,16 +798,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: AM_PARTNER,
-                ValueListProperty: 'AM_PARTNER'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: AM_PARTNER,
+            ValueListProperty: 'AM_PARTNER'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     VBELN_DEL
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -763,15 +816,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: VBELN_DEL,
-                ValueListProperty: 'VBELN_DEL'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: VBELN_DEL,
+            ValueListProperty: 'VBELN_DEL'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     POSNR_DEL
     @Common.ValueList: {
@@ -780,16 +834,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: POSNR_DEL,
-                ValueListProperty: 'POSNR_DEL'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: POSNR_DEL,
+            ValueListProperty: 'POSNR_DEL'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     CHARG
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -797,16 +852,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: CHARG,
-                ValueListProperty: 'CHARG'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: CHARG,
+            ValueListProperty: 'CHARG'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     LFIMG
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -824,10 +880,12 @@ annotate service.Results with {
                 $Type            : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty: 'VRKME_DEL'
             }
-           
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     POSAR
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -835,16 +893,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: POSAR,
-                ValueListProperty: 'POSAR'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: POSAR,
+            ValueListProperty: 'POSAR'
+        }
+
         ]
-    }};
-     annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     VGBEL
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -852,15 +911,16 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: VGBEL,
-                ValueListProperty: 'VGBEL'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: VGBEL,
+            ValueListProperty: 'VGBEL'
+        }
+
         ]
-    }};
+    }
+};
+
 annotate service.Results with {
     VGPOS
     @Common.ValueList: {
@@ -869,16 +929,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: VGPOS,
-                ValueListProperty: 'VGPOS'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: VGPOS,
+            ValueListProperty: 'VGPOS'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     LFART
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -886,16 +947,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: LFART,
-                ValueListProperty: 'LFART'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: LFART,
+            ValueListProperty: 'LFART'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     TRAID
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -903,16 +965,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: TRAID,
-                ValueListProperty: 'TRAID'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: TRAID,
+            ValueListProperty: 'TRAID'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     ZZ0S2BLNR
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -920,16 +983,17 @@ annotate service.Results with {
         CollectionPath         : 'valueHelps',
         DistinctValuesSupported: true,
         SearchSupported        : true,
-        Parameters             : [
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: ZZ0S2BLNR,
-                ValueListProperty: 'ZZ0S2BLNR'
-            }
-           
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: ZZ0S2BLNR,
+            ValueListProperty: 'ZZ0S2BLNR'
+        }
+
         ]
-    }};
-    annotate service.Results with {
+    }
+};
+
+annotate service.Results with {
     PEND_DEL_QUAN
     @Common.ValueList: {
         $Type                  : 'Common.ValueListType',
@@ -947,18 +1011,215 @@ annotate service.Results with {
                 $Type            : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty: 'VRKME_DEL'
             }
-           
+
         ]
-    }};
+    }
+};
+
+annotate service.Results with {
+    TKNUM
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>TKNUM}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: TKNUM,
+            ValueListProperty: 'TKNUM'
+        }]
+    }
+};
+
+annotate service.Results with {
+    VSART
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>VSART}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: VSART,
+            ValueListProperty: 'VSART'
+        }]
+    }
+};
+
+annotate service.Results with {
+    EXTI1
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>EXTI1}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: EXTI1,
+            ValueListProperty: 'EXTI1'
+        }]
+    }
+};
+
+annotate service.Results with {
+    TDLNR
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>TDLNR}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: TDLNR,
+            ValueListProperty: 'TDLNR'
+        }]
+    }
+};
+
+annotate service.Results with {
+    STATUS_CODE_ELEM
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>STATUS_CODE_ELEM}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: STATUS_CODE_ELEM,
+            ValueListProperty: 'STATUS_CODE_ELEM'
+        }]
+    }
+};
+
+annotate service.Results with {
+    STATUS_REASON_CODE_ELEM
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>STATUS_REASON_CODE_ELEM}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: STATUS_REASON_CODE_ELEM,
+            ValueListProperty: 'STATUS_REASON_CODE_ELEM'
+        }]
+    }
+};
+
+annotate service.Results with {
+    TRACKING_ID_ELEM
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>TRACKING_ID_ELEM}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: TRACKING_ID_ELEM,
+            ValueListProperty: 'TRACKING_ID_ELEM'
+        }]
+    }
+};
+
+annotate service.Results with {
+    ALERT_STATUS_CODE_ELEM
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>ALERT_STATUS_CODE_ELEM}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: ALERT_STATUS_CODE_ELEM,
+            ValueListProperty: 'ALERT_STATUS_CODE_ELEM'
+        }]
+    }
+};
+
+annotate service.Results with {
+    ALERT_STATUS_REASON_CODE_ELEM
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>ALERT_STATUS_REASON_CODE_ELEM}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: ALERT_STATUS_REASON_CODE_ELEM,
+            ValueListProperty: 'ALERT_STATUS_REASON_CODE_ELEM'
+        }]
+    }
+};
+
+annotate service.Results with {
+    STATUS_CODE_COMP
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>STATUS_CODE_COMP}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: STATUS_CODE_COMP,
+            ValueListProperty: 'STATUS_CODE_COMP'
+        }]
+    }
+};
+
+annotate service.Results with {
+    REASON_CODE_COMP
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>REASON_CODE_COMP}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: REASON_CODE_COMP,
+            ValueListProperty: 'REASON_CODE_COMP'
+        }]
+    }
+};
+
+annotate service.Results with {
+    TRACKING_ID_COMP
+    @Common.ValueList: {
+        $Type                  : 'Common.ValueListType',
+        Label                  : '{@i18n>TRACKING_ID_COMP}',
+        CollectionPath         : 'valueHelps',
+        DistinctValuesSupported: true,
+        SearchSupported        : true,
+        Parameters             : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: TRACKING_ID_COMP,
+            ValueListProperty: 'TRACKING_ID_COMP'
+        }]
+    }
+};
+
+
+
+
 annotate service.Results with @UI.LineItem: {
     ![@UI.Criticality]: 5,
     $value            : [
-        { Value: VBELN },
-        { Value: POSNR},
-        { Value: VKORG},
-        { Value: KBETR},
-        { Value: KWMENG}
-     
+        {Value: VBELN},
+        {Value: POSNR},
+        {Value: VKORG},
+        {Value: KBETR},
+        {Value: KWMENG}
+
     ]
 };
 
@@ -969,7 +1230,7 @@ annotate service.Results with @(UI: {SelectionFields: [
     MATNR,
     FAKSP
 
-    
+
 ],
 
 });

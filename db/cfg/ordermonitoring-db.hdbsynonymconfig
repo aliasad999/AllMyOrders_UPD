@@ -22,5 +22,11 @@
       "object": "otc.csc.db.base.tables::ST_NOTES",
       "schema.configure": "otc-csc-hdi/schema"
     }
+  },
+  "ALLORDERS_DB_SHIPMENT_DETAILS": {
+    "target": {
+      "object": "otc.csc.db.all_my_orders.views::CV_SHIPMENT_DETAILS",
+      "schema.configure": "otc-csc-hdi/schema"
+    }
   }
 }

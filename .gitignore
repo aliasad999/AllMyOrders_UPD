@@ -32,3 +32,6 @@ cf-html5*
 # IDEs
 # .vscode
 # .idea
+
+# auto generated wildcard
+db/.env
