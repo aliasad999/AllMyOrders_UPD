@@ -222,3 +222,13 @@ entity ![SHIPMENT_DETAILS] {
         DATEN_DATE: Date @title: 'DATEN_DATE';
         salesorder: Association to one SALESORDER_DETAILS on $self.VBELN = salesorder.VBELN and $self.POSNR = salesorder.POSNR;
 }
+
+@cds.persistence.exists
+entity ![PARTNER_SETTINGS] {
+        CLIENT: String(3);
+        BASF_USER: String(12);
+        PARTNER_ROLE: String(2);
+        PARTNER_NUMBER: String(8);
+        ACTIVE: String(1);
+        COMMT: String(50)
+}

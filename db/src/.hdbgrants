@@ -5,7 +5,8 @@
                 "otc.csc.db.base.roles::EXTERNAL_ACCESS_DEL_G#",
                 "otc.csc.db.base.roles::EXTERNAL_ACCESS_CV_NOTES_G#",
                 "otc.csc.db.base.roles::EXTERNAL_ACCESS_NOTES_G#",
-                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CALCULATION_VIEW_SO_G#"
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CALCULATION_VIEW_SO_G#",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_PARTNER_SETTINGS_G#"
             ]
         },
         "application_user": {
@@ -13,7 +14,8 @@
                 "otc.csc.db.base.roles::EXTERNAL_ACCESS_DEL",
                 "otc.csc.db.base.roles::EXTERNAL_ACCESS_CV_NOTES",
                 "otc.csc.db.base.roles::EXTERNAL_ACCESS_NOTES",
-                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CALCULATION_VIEW_SO"
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_CALCULATION_VIEW_SO",
+                "otc.csc.db.base.roles::EXTERNAL_ACCESS_PARTNER_SETTINGS"
             ]
         }
     }

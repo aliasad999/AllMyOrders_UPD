@@ -107,4 +107,6 @@ service srvOpenOrders {
       key POSNR,
           *
     };
+  
+  entity PartnerSettings as projection on db.PARTNER_SETTINGS;
 }

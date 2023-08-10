@@ -28,5 +28,12 @@
       "object": "otc.csc.db.all_my_orders.views::CV_SHIPMENT_DETAILS",
       "schema.configure": "otc-csc-hdi/schema"
     }
+  },
+  "ALLORDERS_DB_PARTNER_SETTINGS": {
+    "target": {
+      "object": "otc.csc.db.base.views::CV_PARTNER_SETTINGS",
+      "schema.configure": "otc-csc-hdi/schema"
+    }
   }
+
 }
