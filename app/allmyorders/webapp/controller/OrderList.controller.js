@@ -9,7 +9,9 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/ui/core/message/Message",
 	"sap/ui/core/library",
-	"sap/m/MessageStrip"
+	"sap/m/MessageStrip",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
 ], function (
 	Controller,
 	JSONModel,
@@ -21,7 +23,9 @@ sap.ui.define([
 	MessageBox,
 	Message,
 	library,
-	MessageStrip
+	MessageStrip,
+	Filter,
+	FilterOperator
 
 ) {
 	"use strict";
@@ -45,9 +49,13 @@ sap.ui.define([
 				})
 			}))
 			let oModel = new JSONModel();
-
 			oModel.setProperty('/orderSelected', false);
 			oModel.setProperty('/orderSelectedSingle', false);
+			// Partner Settings Button, enabled only when the partner settings for the user have been fetched in onBeforeRendering
+			oModel.setProperty('/IsPartnerSettingEnabled', false);
+			oModel.setProperty('/PartnerSettingBusy', true);
+			oModel.setProperty('/CurrentUser', sap.ushell.Container.getService("UserInfo").getUser().getId());
+
 			this.getView().setModel(oModel, 'localModel');
 			let oTable = this.getView().byId('idSmartTable').getTable();
 			this.getView().getModel('localModel').setProperty('/salesOrderTable', [])
@@ -87,7 +95,44 @@ sap.ui.define([
 				}
 				this.getView().getModel('localModel').setProperty('/salesOrderTable', aSalesOrderTable);
 			});
+
 		},
+
+		onBeforeRendering: function (ctx) {
+			// Get the partner settings for the current user and store it in the model
+			let mainModel = this.getView().getModel();
+			let userID = this.getView().getModel('localModel').getProperty("/CurrentUser");
+			let userFilter = new Filter({
+				path: 'BASF_USER',
+				operator: FilterOperator.EQ,
+				value1: (userID === 'DEFAULT_USER' ? 'LOWZH' : userID)
+			})
+			mainModel.read('/PartnerSettings', {
+				filters: [userFilter],
+				success: (response) => {
+					let partnerSettingsModel = new JSONModel();
+					this.getView().setModel(partnerSettingsModel, "PartnerSettingsModel");
+					this.getView().getModel("PartnerSettingsModel").setProperty("/CurrentUserPartnerSettings", response.results);
+					this.getView().getModel("localModel").setProperty('/PartnerSettingBusy', false);
+					this.getView().getModel("localModel").setProperty('/IsPartnerSettingEnabled', true);
+				},
+				error: (error) => {
+					console.error(error);
+				}
+			})
+
+			mainModel.read('/ActiveUsers', {
+				success: (response) => {
+					this.getView().getModel("PartnerSettingsModel").setProperty("/ActiveUsers", response.results);
+				},
+				error: (error) => {
+					console.error(error);
+				}
+			})
+		},
+
+		onAfterRendering: function (ctx) { },
+
 		onMessagePopoverPress: function (oEvent) {
 			var oSourceControl = oEvent.getSource();
 			this._getMessagePopover().then(function (oMessagePopover) {
@@ -120,7 +165,10 @@ sap.ui.define([
 			}
 
 			this.getView().getModel().setHeaders({ 'select': oEvent.getParameter('bindingParams').parameters.select })
-			if (oEvent.getParameter('bindingParams').parameters.select.includes('CHARG')){
+
+
+
+			if (oEvent.getParameter('bindingParams').parameters.select.includes('CHARG')) {
 				oEvent.getParameter('bindingParams').parameters.select = `${oEvent.getParameter('bindingParams').parameters.select},HSDAT_DATE,VFDAT_DATE`
 			}
 			this.addBindingListener(oBindingParams, "dataRequested", this._onBindingDataRequestedListener.bind(this))
@@ -139,10 +187,10 @@ sap.ui.define([
 				};
 			}
 		},
-		onRowSelChange: function(oEvent){
+		onRowSelChange: function (oEvent) {
 			let salesOrder = this.getView().getModel().getProperty(oEvent.getParameter("row").getBindingContext().sPath).VBELN
 			let orderItem = this.getView().getModel().getProperty(oEvent.getParameter("row").getBindingContext().sPath).POSNR
-			this._navToNotes(salesOrder,orderItem);
+			this._navToNotes(salesOrder, orderItem);
 		},
 		onAddNewNote: function (aContext, aaContext) {
 			let oDialog = new Dialog({
@@ -151,8 +199,8 @@ sap.ui.define([
 				content: new VBox({
 					items: [
 						new MessageStrip({
-							text:this._getText('langInfo'),
-							showIcon:true
+							text: this._getText('langInfo'),
+							showIcon: true
 						}),
 						new TextArea({
 							id: "idTextArea",
@@ -169,7 +217,7 @@ sap.ui.define([
 						oDialog.close();
 					}
 				}),
-				endButton:new Button({
+				endButton: new Button({
 					text: this._getText('save'),
 					enabled: true,
 					type: "Emphasized",
@@ -214,6 +262,40 @@ sap.ui.define([
 			let oBinding = oEvent.getParameter("itemsBinding");
 			oBinding.filter([oFilter]);
 		},
+
+		onConfigurePartnerSettingsPress: function (ctx) {
+			this.getView().setBusy(true);
+			if (!this._partnerSettingsDialog) {
+				this._partnerSettingsDialog = sap.ui.core.Fragment.load({
+					id: "idPartnerSettings",
+					name: "ordermonitoring.allmyorders.fragment.PartnerSettings",
+					controller: this
+				}).then((dialog) => {
+					return dialog;
+				})
+			}
+			this._partnerSettingsDialog.then(async (dialog) => {
+				this.getView().addDependent(dialog);
+				let dialogModel = new JSONModel();
+				dialog.setModel(dialogModel, "PartnerSettingsDialogModel");
+				let currentUserPartnerSettings = this.getView().getModel("PartnerSettingsModel").getProperty("/CurrentUserPartnerSettings")
+				let activeUsers = this.getView().getModel("PartnerSettingsModel").getProperty("/ActiveUsers");
+				if (currentUserPartnerSettings) {
+					dialog.getModel("PartnerSettingsDialogModel").setProperty("/Partners", currentUserPartnerSettings);
+					dialog.getModel("PartnerSettingsDialogModel").setProperty("/ActiveUsers", activeUsers);
+					dialog.getModel("PartnerSettingsDialogModel").setProperty("/ActiveUser", this.getView().getModel('localModel').getProperty('/CurrentUser'));
+					dialog.open();
+				} else {
+					// Show warning message
+					dialog.open();
+					MessageBox.warning("No partner settings maintained. Add some.");
+				}
+
+				this.getView().setBusy(false);
+			})
+		},
+
+
 		_openDetailsDialog: function () {
 			if (!this._showDetailsDialog) {
 				this._showDetailsDialog = sap.ui.core.Fragment.load({
@@ -278,8 +360,8 @@ sap.ui.define([
 		onShowAllNotes: function (oEvent) {
 			let salesOrder = this.getView().getModel('localModel').getProperty('/salesOrderTable')[0].salesOrder;
 			let orderItem = this.getView().getModel('localModel').getProperty('/salesOrderTable')[0].salesOrderItem;
-			this._navToNotes(salesOrder,orderItem)
-			
+			this._navToNotes(salesOrder, orderItem)
+
 		},
 		_onAddComment: function () {
 			let oSalesTable = this.getView().getModel('localModel').getProperty('/salesOrderTable');
@@ -339,8 +421,8 @@ sap.ui.define([
 				})
 			});
 		},
-		_navToNotes: function(salesOrder,orderItem){
-			this.oRouter.navTo("notes", { salesOrder: salesOrder, orderItem: orderItem});
+		_navToNotes: function (salesOrder, orderItem) {
+			this.oRouter.navTo("notes", { salesOrder: salesOrder, orderItem: orderItem });
 		}
 	});
 });

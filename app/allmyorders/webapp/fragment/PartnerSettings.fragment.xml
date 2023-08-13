@@ -1,0 +1,137 @@
+<core:FragmentDefinition
+        xmlns:core="sap.ui.core"
+        xmlns="sap.m"
+        xmlns:table="sap.ui.table"
+        xmlns:form="sap.ui.layout.form"
+        xmlns:layout="sap.ui.layout">
+    <Dialog
+            title="Configure Partner Settings"
+            titleAlignment="Center"
+            contentWidth="90%"
+            contentHeight="50%"
+            resizable="true"
+            class="sapUiResponsivePadding--content sapUiResponsivePadding--header sapUiResponsivePadding--footer sapUiResponsivePadding--subHeader">
+        <VBox>
+            <HBox class="sapUiMediumMarginBottom">
+                <form:SimpleForm
+                        layout="ResponsiveGridLayout"
+                        title="Active User">
+                    <form:content>
+                        <Label text="Current Active User"></Label>
+                        <Text text="{PartnerSettingsDialogModel>/ActiveUser}"></Text>
+
+                    </form:content>
+                </form:SimpleForm>
+            </HBox>
+            <HBox height="50%">
+                <table:Table
+                        rows="{PartnerSettingsDialogModel>/Partners}"
+                        selectionMode="Single"
+                        visibleRowCount="10">
+                    <table:columns>
+                        <table:Column
+                                width="10%"
+                                hAlign="Center">
+                            <Label text="Partner Role"></Label>
+                            <table:template>
+                                <Text text="{PartnerSettingsDialogModel>PARTNER_ROLE}"></Text>
+                            </table:template>
+                        </table:Column>
+                        <table:Column
+                                width="10%"
+                                hAlign="Center">
+                            <Label text="Partner Number"></Label>
+                            <table:template>
+                                <Text text="{PartnerSettingsDialogModel>PARTNER_NUMBER}"></Text>
+                            </table:template>
+                        </table:Column>
+                        <table:Column
+                                width="5%"
+                                hAlign="Center">
+                            <Label text="Active"></Label>
+                            <table:template>
+                                <CheckBox
+                                        selected="{= ${PartnerSettingsDialogModel>ACTIVE} === 'X'}"
+                                        enabled="true"
+                                        select="onItemActivated" />
+                            </table:template>
+                        </table:Column>
+                        <table:Column width="20%">
+                            <Label text="Comment"></Label>
+                            <table:template>
+                                <Text text="{PartnerSettingsDialogModel>COMMT}"></Text>
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                </table:Table>
+            </HBox>
+        </VBox>
+
+        <!-- <FlexBox
+                width="100%"
+                justifyContent="Center">
+
+        <Label text="Active Partners"></Label>
+            <HBox>
+                <Button
+                        id="addButton"
+                        text="{i18n>add}"
+                        press="onPressAdd" />
+                <Button
+                        id="changeButton"
+                        text="{i18n>change}"
+                        enabled="{tableHeaderModel>/changeButtonEnable}"
+                        press="onPressChange"
+                        class="sapUiSmallMarginBegin" />
+                <Button
+                        id="deleteButton"
+                        text="{i18n>delete}"
+                        enabled="{tableHeaderModel>/deleteButtonEnable}"
+                        press="onPressDelete"
+                        class="sapUiSmallMarginBegin" />
+            </HBox>
+
+        </FlexBox> -->
+        <!-- <Table
+                items="{PartnerSettingsDialogModel>/Partners}"
+                mode="SingleSelect">
+            <columns>
+                <Column width="auto">
+                    <Label text="Partner Role" />
+                </Column>
+                <Column width="auto">
+                    <Label text="Partner Number" />
+                </Column>
+                <Column
+                        hAlign="Center"
+                        width="auto">
+                    <Label text="Active" />
+                </Column>
+                <Column width="auto">
+                    <Label text="Comment" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text
+                                text="{PartnerSettingsDialogModel>PARTNER_ROLE}"
+                                wrapping="false" />
+                        <Text text="{PartnerSettingsDialogModel>PARTNER_NUMBER}" />
+                        <CheckBox
+                                selected="{= ${PartnerSettingsDialogModel>ACTIVE} === 'X'}"
+                                enabled="true"
+                                select="onItemActivated" />
+                        <Text text="{PartnerSettingsDialogModel>COMMT}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table> -->
+        <beginButton>
+            <Button text="Confirm"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
