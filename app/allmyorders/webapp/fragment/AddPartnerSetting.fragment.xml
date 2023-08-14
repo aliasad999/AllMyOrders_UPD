@@ -1,0 +1,52 @@
+<core:FragmentDefinition
+                xmlns:core="sap.ui.core"
+                xmlns="sap.m"
+                xmlns:table="sap.ui.table"
+                xmlns:form="sap.ui.layout.form"
+                xmlns:layout="sap.ui.layout">
+        <Dialog
+                        id="idAddPartnerSetting"
+                        titleAlignment="Center"
+                        class="sapUiResponsivePadding--content sapUiResponsivePadding--header sapUiResponsivePadding--footer sapUiResponsivePadding--subHeader">
+                <form:SimpleForm
+                                layout="ResponsiveGridLayout"
+                                title="New Partner Setting">
+                        <form:content>
+                                <Label text="Partner Role"></Label>
+                                <Input
+                                                id="idPartnerRole"
+                                                value="{NewPartnerSetting>/PartnerRole}"
+                                                valueLiveUpdate="true"
+                                                maxLength="2"></Input>
+                                <Label text="Partner Number"></Label>
+                                <Input
+                                                id="idPartnerNumber"
+                                                value="{NewPartnerSetting>/PartnerNumber}"
+                                                valueLiveUpdate="true"
+                                                maxLength="8"></Input>
+                                <Label text="Active"></Label>
+                                <Switch
+                                                type="AcceptReject"
+                                                state="{NewPartnerSetting>/SettingActive}"></Switch>
+                                <Label text="Comment"></Label>
+                                <TextArea
+                                                maxLength="50"
+                                                value="{NewPartnerSetting>/Comment}"
+                                                valueLiveUpdate="true"></TextArea>
+
+                        </form:content>
+                </form:SimpleForm>
+                <beginButton>
+                        <Button
+                                        icon="sap-icon://save"
+                                        text="Save"
+                                        press="onSaveNewPartnerSettingPress"></Button>
+                </beginButton>
+                <endButton>
+                        <Button
+                                        icon="sap-icon://cancel"
+                                        text="Cancel"
+                                        press="onCancelNewPartnerSettingPress"></Button>
+                </endButton>
+        </Dialog>
+</core:FragmentDefinition>

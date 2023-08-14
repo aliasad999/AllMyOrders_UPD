@@ -4,7 +4,7 @@ using {allorders.db as db} from '../db/allOrders.cds';
 service srvOpenOrders {
   @readonly
   @cds.redirection.target: true
-  entity Results    as
+  entity Results         as
     select from db.SALESORDER_DETAILS {
       key null                                        as id : UUID,
           *,
@@ -52,7 +52,7 @@ service srvOpenOrders {
           shipment.DATEN_DATE                         as DATEN_DATE
     };
 
-  entity valueHelps as projection on db.SALESORDER_DETAILS {
+  entity valueHelps      as projection on db.SALESORDER_DETAILS {
     key null                                        as id : UUID,
         *,
         delivery.VBELN_DEL                          as VBELN_DEL,
@@ -99,7 +99,7 @@ service srvOpenOrders {
         shipment.DATEN_DATE                         as DATEN_DATE
   }
 
-  entity notes      as
+  entity notes           as
     select from db.ST_NOTES {
       key CLIENT,
       key ID,
@@ -107,4 +107,18 @@ service srvOpenOrders {
       key POSNR,
           *
     };
+
+  entity PartnerSettings as
+    select from db.PARTNER_SETTINGS {
+      key CLIENT,
+      key BASF_USER,
+      key PARTNER_ROLE,
+      key PARTNER_NUMBER,
+          *
+    };
+
+// entity ActiveUsers     as
+//   select from db.PARTNER_SETTINGS distinct {
+//     key BASF_USER
+//   }
 }

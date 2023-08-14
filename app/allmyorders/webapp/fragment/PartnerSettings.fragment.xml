@@ -1,0 +1,112 @@
+<core:FragmentDefinition
+        xmlns:core="sap.ui.core"
+        xmlns="sap.m"
+        xmlns:table="sap.ui.table"
+        xmlns:form="sap.ui.layout.form"
+        xmlns:layout="sap.ui.layout">
+    <Dialog
+            id="idPartnerSettings"
+            busy="{PartnerSettingsDialogModel>/IsBusy}"
+            busyIndicatorDelay="0"
+            title="Configure Partner Settings"
+            titleAlignment="Center"
+            contentWidth="90%"
+            contentHeight="50%"
+            resizable="true"
+            class="sapUiResponsivePadding--content sapUiResponsivePadding--header sapUiResponsivePadding--footer sapUiResponsivePadding--subHeader">
+        <VBox>
+            <HBox class="sapUiSmallMarginBottom">
+                <form:SimpleForm
+                        layout="ResponsiveGridLayout"
+                        title="Active User">
+                    <form:content>
+                        <Label text="Current Active User"></Label>
+                        <Text
+                                id="idActiveUser"
+                                text="{PartnerSettingsDialogModel>/ActiveUser}"></Text>
+                        <!-- <Button
+                                width="50%"
+                                text="Change Active User"
+                                press="onPartnerSettingsChangeUserPress"></Button> -->
+
+                    </form:content>
+                </form:SimpleForm>
+            </HBox>
+            <HBox height="50%">
+                <table:Table
+                        id="idPartnerSettingsTable"
+                        rows="{PartnerSettingsDialogModel>/Partners}"
+                        selectionMode="MultiToggle"
+                        visibleRowCount="10">
+                    <table:extension>
+                        <OverflowToolbar style="Clear">
+                            <Title text="Active Partner Settings"></Title>
+                            <ToolbarSpacer></ToolbarSpacer>
+                            <Button
+                                    icon="sap-icon://add"
+                                    press="onPartnerSettingAdd"></Button>
+                            <Button
+                                    icon="sap-icon://delete"
+                                    press="onPartnerSettingDelete"></Button>
+                        </OverflowToolbar>
+                    </table:extension>
+                    <table:columns>
+                        <table:Column
+                                width="4%"
+                                hAlign="Center">
+                            <Label
+                                    text="Partner Role"
+                                    wrapping="true"></Label>
+                            <table:template>
+                                <Text text="{PartnerSettingsDialogModel>PARTNER_ROLE}"></Text>
+                            </table:template>
+                        </table:Column>
+                        <table:Column
+                                width="7%"
+                                hAlign="Center">
+                            <Label
+                                    text="Partner Number"
+                                    wrapping="true"></Label>
+                            <table:template>
+                                <Text text="{PartnerSettingsDialogModel>PARTNER_NUMBER}"></Text>
+                            </table:template>
+                        </table:Column>
+                        <table:Column
+                                width="20%"
+                                hAlign="Center">
+                            <Label text="Comment"></Label>
+                            <table:template>
+                                <TextArea
+                                        width="80%"
+                                        value="{PartnerSettingsDialogModel>COMMT}">
+                                </TextArea>
+                            </table:template>
+                        </table:Column>
+                        <table:Column
+                                width="2%"
+                                hAlign="Center">
+                            <table:template>
+                                <Switch
+                                        busy="{PartnerSettingsDialogModel>/IsActiveSwitchBusy}"
+                                        busyIndicatorDelay="0"
+                                        type="AcceptReject"
+                                        state="{= ${PartnerSettingsDialogModel>ACTIVE} === 'X'}"
+                                        change="onPartnerActiveStateChanged"></Switch>
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                </table:Table>
+            </HBox>
+        </VBox>
+        <beginButton>
+            <Button
+                    text="Confirm"
+                    press="onConfirmPartnerSettings"></Button>
+        </beginButton>
+        <endButton>
+            <Button
+                    text="Cancel"
+                    press="onCancelPartnerSettings"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

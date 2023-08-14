@@ -1,0 +1,16 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core">
+    <SelectDialog
+            id="idActiveUsersSelect"
+            noDataText="No Active Users"
+            title="Change Active User"
+            search="onActiveUserSelectSearch"
+            items="{ActiveUsersDialogModel>/ActiveUsers}"
+            confirm="onActiveUserSelected">
+        <DisplayListItem
+                label="User"
+                value="{ActiveUsersDialogModel>BASF_USER}"
+                type="Active"></DisplayListItem>
+    </SelectDialog>
+</core:FragmentDefinition>

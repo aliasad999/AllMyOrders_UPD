@@ -3,30 +3,78 @@ const cds = require("@sap/cds");
 const NodeCache = require('node-cache');
 const sessionCache = new NodeCache();
 const uuid = require('uuid');
+const { part } = require('hdb/lib/protocol');
 
 
 module.exports = cds.service.impl(async (service) => {
     service.before("READ", "Results", async (req, next) => {
         req.query._suppressLocalization = true
         req.query.SELECT.distinct = true
+
     });
-    service.on("READ", "Results", async (req,next) => {
+    service.on("READ", "Results", async (req, next) => {
         if (req.query.SELECT.columns && req.query.SELECT?.columns[0].as === '$count' && req.headers?.select) {
-            
+
             const db = cds.transaction(req);
             const fields = req.headers.select.split(',')
-            const lt_count = await db.run(SELECT.distinct(true).from('srvOpenOrders_Results').columns( `count(*)`).groupBy(...fields).where(req.query.SELECT.where))
+            const lt_count = await db.run(SELECT.distinct(true).from('srvOpenOrders_Results').columns(`count(*)`).groupBy(...fields).where(req.query.SELECT.where))
             let lt_result = []
-            lt_result.push({$count:lt_count.length})
+            lt_result.push({ $count: lt_count.length })
 
-        } 
+        }
+
+        // Consider also partner settings, if they are maintained
+        let db = cds.transaction(req);
+        let currentUser = req.headers['active-user']
+        if (currentUser) {
+            let partnerSettingsQuery = cds.parse.cql(`SELECT from srvOpenOrders_PartnerSettings where BASF_USER = '${currentUser}' and ACTIVE = 'X'`);
+            let partnerSettings = await db.run(partnerSettingsQuery);
+            if (partnerSettings.length !== 0) {
+                let VEPartners = [];
+                let ASPartners = [];
+                let AMPartners = [];
+                for (let settingsEntry of partnerSettings) {
+                    let partnerNumber = settingsEntry.PARTNER_NUMBER;
+                    switch (settingsEntry.PARTNER_ROLE) {
+                        case 'VE':
+                            VEPartners.push(`VE_PARTNER = ${partnerNumber}`);
+                            break;
+
+                        case 'AS':
+                            ASPartners.push(`AS_PARTNER = ${partnerNumber}`);
+                            break;
+
+                        case 'AM':
+                            AMPartners.push(`AM_PARTNER = ${partnerNumber}`);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                // Construct queries 
+                let VEQuery = VEPartners.length !== 0 ? cds.parse.expr(VEPartners.join(' or ')) : null;
+                let ASQuery = ASPartners.length !== 0 ? cds.parse.expr(ASPartners.join(' or ')) : null;
+                let AMQuery = AMPartners.length !== 0 ? cds.parse.expr(AMPartners.join(' or ')) : null;
+
+                // Add queries to request
+                let requestQuery = req.query.SELECT.where;
+                VEQuery && requestQuery.push('and');
+                VEQuery && requestQuery.push(VEQuery);
+                ASQuery && requestQuery.push('and');
+                ASQuery && requestQuery.push(ASQuery);
+                AMQuery && requestQuery.push('and');
+                AMQuery && requestQuery.push(AMQuery);
+            }
+        }
+
         await next();
     });
     service.after("READ", "Results", async (data, req) => {
-        
+
         let sessionID = req.headers['authorization'] || req.headers['x-username'];
         if (req.query.SELECT.columns && req.query.SELECT?.columns[0].as === '$count' && req.headers?.select) {
-            
+
         } else {
 
             const queryString = JSON.stringify(req.query);
@@ -38,7 +86,12 @@ module.exports = cds.service.impl(async (service) => {
                 item.id = uuid.v1()
 
             })
+
         }
+
+
+
+
     });
     service.on("READ", "valueHelps", async (req, next) => {
         let sessionID = req.headers['authorization'] || req.headers['x-username'];
@@ -67,7 +120,7 @@ module.exports = cds.service.impl(async (service) => {
                 lt_count = removeDuplicates([req._query["search-focus"]], lt_count);
                 lt_result.push({ $count: lt_count.length })
             }
-            
+
         } else {
             if (req.query.SELECT.columns[0].as !== '$count') {
                 req.query.SELECT.distinct = true;

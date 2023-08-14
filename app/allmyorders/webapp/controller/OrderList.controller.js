@@ -9,7 +9,9 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/ui/core/message/Message",
 	"sap/ui/core/library",
-	"sap/m/MessageStrip"
+	"sap/m/MessageStrip",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
 ], function (
 	Controller,
 	JSONModel,
@@ -21,7 +23,9 @@ sap.ui.define([
 	MessageBox,
 	Message,
 	library,
-	MessageStrip
+	MessageStrip,
+	Filter,
+	FilterOperator
 
 ) {
 	"use strict";
@@ -45,9 +49,10 @@ sap.ui.define([
 				})
 			}))
 			let oModel = new JSONModel();
-
 			oModel.setProperty('/orderSelected', false);
 			oModel.setProperty('/orderSelectedSingle', false);
+			oModel.setProperty('/CurrentUser', sap.ushell.Container.getService("UserInfo").getUser().getId());
+
 			this.getView().setModel(oModel, 'localModel');
 			let oTable = this.getView().byId('idSmartTable').getTable();
 			this.getView().getModel('localModel').setProperty('/salesOrderTable', [])
@@ -87,7 +92,13 @@ sap.ui.define([
 				}
 				this.getView().getModel('localModel').setProperty('/salesOrderTable', aSalesOrderTable);
 			});
+
 		},
+
+		onBeforeRendering: function (ctx) { },
+
+		onAfterRendering: function (ctx) { },
+
 		onMessagePopoverPress: function (oEvent) {
 			var oSourceControl = oEvent.getSource();
 			this._getMessagePopover().then(function (oMessagePopover) {
@@ -118,9 +129,12 @@ sap.ui.define([
 			} else {
 				this.getView().getModel('localModel').setProperty('/msgVisible', false);
 			}
+			this.getView().getModel().setHeaders({ 'select': oEvent.getParameter('bindingParams').parameters.select, 'active-user': this.getView().getModel('localModel').getProperty('/CurrentUser') });
 
-			this.getView().getModel().setHeaders({ 'select': oEvent.getParameter('bindingParams').parameters.select })
-			if (oEvent.getParameter('bindingParams').parameters.select.includes('CHARG')){
+
+
+
+			if (oEvent.getParameter('bindingParams').parameters.select.includes('CHARG')) {
 				oEvent.getParameter('bindingParams').parameters.select = `${oEvent.getParameter('bindingParams').parameters.select},HSDAT_DATE,VFDAT_DATE`
 			}
 			this.addBindingListener(oBindingParams, "dataRequested", this._onBindingDataRequestedListener.bind(this))
@@ -139,10 +153,10 @@ sap.ui.define([
 				};
 			}
 		},
-		onRowSelChange: function(oEvent){
+		onRowSelChange: function (oEvent) {
 			let salesOrder = this.getView().getModel().getProperty(oEvent.getParameter("row").getBindingContext().sPath).VBELN
 			let orderItem = this.getView().getModel().getProperty(oEvent.getParameter("row").getBindingContext().sPath).POSNR
-			this._navToNotes(salesOrder,orderItem);
+			this._navToNotes(salesOrder, orderItem);
 		},
 		onAddNewNote: function (aContext, aaContext) {
 			let oDialog = new Dialog({
@@ -151,8 +165,8 @@ sap.ui.define([
 				content: new VBox({
 					items: [
 						new MessageStrip({
-							text:this._getText('langInfo'),
-							showIcon:true
+							text: this._getText('langInfo'),
+							showIcon: true
 						}),
 						new TextArea({
 							id: "idTextArea",
@@ -169,7 +183,7 @@ sap.ui.define([
 						oDialog.close();
 					}
 				}),
-				endButton:new Button({
+				endButton: new Button({
 					text: this._getText('save'),
 					enabled: true,
 					type: "Emphasized",
@@ -214,6 +228,249 @@ sap.ui.define([
 			let oBinding = oEvent.getParameter("itemsBinding");
 			oBinding.filter([oFilter]);
 		},
+
+		onConfigurePartnerSettingsPress: function (ctx) {
+			this.getView().setBusy(true);
+			if (!this._partnerSettingsDialog) {
+				this._partnerSettingsDialog = sap.ui.core.Fragment.load({
+					id: "idPartnerSettings",
+					name: "ordermonitoring.allmyorders.fragment.PartnerSettings",
+					controller: this
+				}).then((dialog) => {
+					return dialog;
+				})
+			}
+			this._partnerSettingsDialog.then((dialog) => {
+				this.getView().addDependent(dialog);
+				let dialogModel = new JSONModel();
+				dialog.setModel(dialogModel, "PartnerSettingsDialogModel");
+				// Get the partner settings for the current user and store it in the model
+				let mainModel = this.getView().getModel();
+				let userID = this.getView().getModel('localModel').getProperty("/CurrentUser");
+				let userFilter = new Filter({
+					path: 'BASF_USER',
+					operator: FilterOperator.EQ,
+					value1: userID
+				})
+				mainModel.read('/PartnerSettings', {
+					filters: [userFilter],
+					success: (response) => {
+						dialog.getModel("PartnerSettingsDialogModel").setProperty("/Partners", response.results);
+						dialog.getModel("PartnerSettingsDialogModel").setProperty("/ActiveUser", this.getView().getModel('localModel').getProperty('/CurrentUser'));
+						// if (response.results.length === 0) {
+						// 	// Show warning message
+						// 	MessageBox.warning("No partner settings maintained. Add some.");
+						// }
+						this.getView().setBusy(false);
+						dialog.open();
+					},
+					error: (error) => {
+						console.error(error);
+						this.getView().setBusy(false);
+						MessageBox.error("An error occurred. Contact support");
+					}
+				})
+
+			})
+
+
+
+
+		},
+		onPartnerSettingAdd: function (ctx) {
+			if (!this._addPartnerSettingDialog) {
+				this._addPartnerSettingDialog = sap.ui.core.Fragment.load({
+					id: "idAddPartnerSetting",
+					name: "ordermonitoring.allmyorders.fragment.AddPartnerSetting",
+					controller: this
+				}).then((dialog) => {
+					return dialog;
+				})
+			}
+
+			this._addPartnerSettingDialog.then((dialog) => {
+				this.getView().addDependent(dialog);
+				dialog.setModel(new JSONModel(), 'NewPartnerSetting');
+				dialog.getModel('NewPartnerSetting').setProperty('/SettingActive', true);
+				dialog.open();
+			})
+
+		},
+
+		onSaveNewPartnerSettingPress: function (ctx) {
+			let mainModel = this.getView().getModel();
+			let newPartnerSettingModel = ctx.getSource().getModel('NewPartnerSetting');
+			var newPartnerSetting = {
+				CLIENT: '100',
+				BASF_USER: this.getView().getModel('localModel').getProperty('/CurrentUser'),
+				PARTNER_ROLE: newPartnerSettingModel.getProperty('/PartnerRole'),
+				PARTNER_NUMBER: newPartnerSettingModel.getProperty('/PartnerNumber'),
+				ACTIVE: (newPartnerSettingModel.getProperty('/SettingActive') ? 'X' : ''),
+				COMMT: newPartnerSettingModel.getProperty('/Comment')
+			}
+			this.getView().setModel(new JSONModel(), 'PartnerSettingsModel');
+			this.getView().getModel('PartnerSettingsModel').setProperty('/NewPartnerSetting', newPartnerSetting);
+
+
+			this._addPartnerSettingDialog.then((dialog) => {
+				dialog.setBusy(true);
+			})
+			mainModel.create('/PartnerSettings', newPartnerSetting, {
+				success: (response) => {
+					this._addPartnerSettingDialog.then((dialog) => {
+						dialog.setBusy(false);
+						dialog.close();
+					})
+
+					this._partnerSettingsDialog.then((dialog) => {
+						let addedPartnerSetting = this.getView().getModel('PartnerSettingsModel').getProperty('/NewPartnerSetting');
+						dialog.getModel('PartnerSettingsDialogModel').getProperty('/Partners').push(addedPartnerSetting);
+						dialog.getModel('PartnerSettingsDialogModel').refresh();
+					})
+
+				},
+
+				error: (error) => {
+					this.getView().setBusy(false);
+
+				}
+			})
+
+
+		},
+
+		onPartnerSettingDelete: function (ctx) {
+			sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', true);
+			let mainModel = this.getView().getModel();
+			let selected = sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettingsTable").getSelectedIndices();
+			let partnerSettingEntries = sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').getProperty('/Partners');
+			let deleteEntries = []
+			for (let index of selected) {
+				deleteEntries.push(partnerSettingEntries[index]);
+				delete partnerSettingEntries[index];
+			}
+
+			for (let entry of deleteEntries) {
+				let entryKey = {
+					CLIENT: '100',
+					BASF_USER: this.getView().getModel('localModel').getProperty('/CurrentUser'),
+					PARTNER_ROLE: entry.PARTNER_ROLE,
+					PARTNER_NUMBER: entry.PARTNER_NUMBER
+				};
+				let deleteKey = mainModel.createKey('/PartnerSettings', entryKey)
+				mainModel.remove(deleteKey, {
+					success: (res) => {
+						sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/Partners', partnerSettingEntries.filter((entry) => entry));
+						sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').refresh();
+						sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', false);
+					},
+
+					error: (res) => {
+						MessageBox.error("An error occurred. Contact support.");
+						sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', false);
+					}
+				})
+
+			}
+		},
+
+		onPartnerActiveStateChanged: function (ctx) {
+			let partnerActive = (ctx.getSource().getState() ? 'X' : '');
+			let stateChangedEntry = ctx.getSource().getModel('PartnerSettingsDialogModel').getProperty(ctx.getSource().getBindingContext('PartnerSettingsDialogModel').getPath());
+			stateChangedEntry.ACTIVE = partnerActive;
+			ctx.getSource().getModel('PartnerSettingsDialogModel').refresh();
+
+
+
+
+		},
+
+		onConfirmPartnerSettings: function (ctx) {
+			sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', true);
+			// Batch update for all entries
+			let mainModel = this.getView().getModel();
+			let updatedEntries = sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').getProperty('/Partners');
+			// Only send update if there are entries to update
+			if (updatedEntries.length !== 0) {
+				for (let entry in updatedEntries) {
+					let entryKey = mainModel.createKey('/PartnerSettings', {
+						CLIENT: updatedEntries[entry].CLIENT,
+						BASF_USER: updatedEntries[entry].BASF_USER,
+						PARTNER_ROLE: updatedEntries[entry].PARTNER_ROLE,
+						PARTNER_NUMBER: updatedEntries[entry].PARTNER_NUMBER
+					})
+
+					let entryValue = {
+						ACTIVE: updatedEntries[entry].ACTIVE,
+						COMMT: updatedEntries[entry].COMMT
+					}
+
+					mainModel.update(entryKey, entryValue, {
+						success: (res) => {
+							sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', false);
+							this.getView().byId('idSmartTable').rebindTable();
+							this._partnerSettingsDialog.then((dialog) => {
+								dialog.close();
+							});
+						},
+
+						error: (res) => {
+							sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', false);
+							MessageBox.error("An error occurred. Contact support");
+						}
+					})
+
+				}
+
+			}
+
+
+
+		},
+
+		onCancelPartnerSettings: function (ctx) {
+			this._partnerSettingsDialog.then((dialog) => {
+				dialog.close();
+			})
+		},
+
+		onCancelNewPartnerSettingPress: function (ctx) {
+			this._addPartnerSettingDialog.then((dialog) => {
+				dialog.close();
+			})
+		},
+
+
+
+		// onPartnerSettingsChangeUserPress: function (ctx) {
+		// 	// 
+		// 	// return;
+		// 	if (!this._activeUsersSelectDialog) {
+		// 		this._activeUsersSelectDialog = sap.ui.core.Fragment.load({
+		// 			id: "idActiveUsersSelect",
+		// 			name: "ordermonitoring.allmyorders.fragment.ActiveUsers",
+		// 			controller: this
+		// 		}).then((dialog) => {
+		// 			return dialog;
+		// 		})
+		// 	}
+
+		// 	this._activeUsersSelectDialog.then((dialog) => {
+		// 		this.getView().addDependent(dialog);
+		// 		let activeUsers = this.getView().getModel("PartnerSettingsModel").getProperty("/ActiveUsers");
+		// 		let model = new JSONModel();
+		// 		dialog.setModel(model, 'ActiveUsersDialogModel');
+		// 		dialog.getModel('ActiveUsersDialogModel').setProperty('/ActiveUsers', activeUsers);
+		// 		dialog.open();
+
+		// 	})
+
+		// },
+
+		// onActiveUserSelected: function (ctx) {
+		// },
+
+
 		_openDetailsDialog: function () {
 			if (!this._showDetailsDialog) {
 				this._showDetailsDialog = sap.ui.core.Fragment.load({
@@ -278,8 +535,8 @@ sap.ui.define([
 		onShowAllNotes: function (oEvent) {
 			let salesOrder = this.getView().getModel('localModel').getProperty('/salesOrderTable')[0].salesOrder;
 			let orderItem = this.getView().getModel('localModel').getProperty('/salesOrderTable')[0].salesOrderItem;
-			this._navToNotes(salesOrder,orderItem)
-			
+			this._navToNotes(salesOrder, orderItem)
+
 		},
 		_onAddComment: function () {
 			let oSalesTable = this.getView().getModel('localModel').getProperty('/salesOrderTable');
@@ -339,8 +596,8 @@ sap.ui.define([
 				})
 			});
 		},
-		_navToNotes: function(salesOrder,orderItem){
-			this.oRouter.navTo("notes", { salesOrder: salesOrder, orderItem: orderItem});
+		_navToNotes: function (salesOrder, orderItem) {
+			this.oRouter.navTo("notes", { salesOrder: salesOrder, orderItem: orderItem });
 		}
 	});
 });
