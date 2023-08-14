@@ -10,8 +10,8 @@
             busyIndicatorDelay="0"
             title="Configure Partner Settings"
             titleAlignment="Center"
-            contentWidth="90%"
-            contentHeight="50%"
+            contentWidth="100%"
+            contentHeight="80%"
             resizable="true"
             class="sapUiResponsivePadding--content sapUiResponsivePadding--header sapUiResponsivePadding--footer sapUiResponsivePadding--subHeader">
         <VBox>
@@ -32,7 +32,9 @@
                     </form:content>
                 </form:SimpleForm>
             </HBox>
-            <HBox height="50%">
+            <HBox
+                    alignItems="Center"
+                    height="50%">
                 <table:Table
                         id="idPartnerSettingsTable"
                         rows="{PartnerSettingsDialogModel>/Partners}"
