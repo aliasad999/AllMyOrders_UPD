@@ -375,38 +375,10 @@ sap.ui.define([
 		},
 
 		onPartnerActiveStateChanged: function (ctx) {
-			this.getView().getModel('localModel').setProperty('/ActiveStateBefore', !ctx.getSource().getState());
-			ctx.getSource().getModel('PartnerSettingsDialogModel').setProperty('/IsActiveSwitchBusy', true);
-			ctx.getSource().getModel('PartnerSettingsDialogModel').refresh();
-			let mainModel = this.getView().getModel();
 			let partnerActive = (ctx.getSource().getState() ? 'X' : '');
-			let bindingPath = ctx.getSource().getBindingContext('PartnerSettingsDialogModel').getPath();
-			let settingEntry = ctx.getSource().getModel('PartnerSettingsDialogModel').getProperty(bindingPath);
-			this.getView().getModel('localModel').setProperty('/ModifiedPartnerEntry', settingEntry);
-			let entryKey = mainModel.createKey('/PartnerSettings', {
-				CLIENT: settingEntry.CLIENT,
-				BASF_USER: settingEntry.BASF_USER,
-				PARTNER_ROLE: settingEntry.PARTNER_ROLE,
-				PARTNER_NUMBER: settingEntry.PARTNER_NUMBER
-			})
-			let entryValue = {
-				ACTIVE: partnerActive
-			}
-
-			mainModel.update(entryKey, entryValue, {
-				success: (res) => {
-					let activeStateBefore = this.getView().getModel('localModel').getProperty('/ActiveStateBefore');
-					let modifiedEntry = this.getView().getModel('localModel').getProperty('/ModifiedPartnerEntry');
-					MessageToast.show((activeStateBefore ? `${modifiedEntry.PARTNER_ROLE} Partner ${modifiedEntry.PARTNER_NUMBER} deactivated` : `${modifiedEntry.PARTNER_ROLE} Partner ${modifiedEntry.PARTNER_NUMBER} activated`));
-					sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsActiveSwitchBusy', false);
-					sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').refresh();
-				},
-
-				error: (res) => {
-					sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsActiveSwitchBusy', false);
-					sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').refresh();
-				}
-			})
+			let stateChangedEntry = ctx.getSource().getModel('PartnerSettingsDialogModel').getProperty(ctx.getSource().getBindingContext('PartnerSettingsDialogModel').getPath());
+			stateChangedEntry.ACTIVE = partnerActive;
+			ctx.getSource().getModel('PartnerSettingsDialogModel').refresh();
 
 
 
@@ -414,14 +386,56 @@ sap.ui.define([
 		},
 
 		onConfirmPartnerSettings: function (ctx) {
-			this.getView().byId('idSmartTable').rebindTable();
-			this._partnerSettingsDialog.then((dialog) => {
-				dialog.close();
-			});
+			sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', true);
+			// Batch update for all entries
+			let mainModel = this.getView().getModel();
+			let updatedEntries = sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').getProperty('/Partners');
+			// Only send update if there are entries to update
+			if (updatedEntries.length !== 0) {
+				for (let entry in updatedEntries) {
+					let entryKey = mainModel.createKey('/PartnerSettings', {
+						CLIENT: updatedEntries[entry].CLIENT,
+						BASF_USER: updatedEntries[entry].BASF_USER,
+						PARTNER_ROLE: updatedEntries[entry].PARTNER_ROLE,
+						PARTNER_NUMBER: updatedEntries[entry].PARTNER_NUMBER
+					})
+
+					let entryValue = {
+						ACTIVE: updatedEntries[entry].ACTIVE,
+						COMMT: updatedEntries[entry].COMMT
+					}
+
+					mainModel.update(entryKey, entryValue, {
+						success: (res) => {
+							sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', false);
+							this.getView().byId('idSmartTable').rebindTable();
+							this._partnerSettingsDialog.then((dialog) => {
+								dialog.close();
+							});
+						},
+
+						error: (res) => {
+							sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', false);
+							MessageBox.error("An error occurred. Contact support");
+						}
+					})
+
+				}
+
+			}
+
+
+
 		},
 
 		onCancelPartnerSettings: function (ctx) {
 			this._partnerSettingsDialog.then((dialog) => {
+				dialog.close();
+			})
+		},
+
+		onCancelNewPartnerSettingPress: function (ctx) {
+			this._addPartnerSettingDialog.then((dialog) => {
 				dialog.close();
 			})
 		},

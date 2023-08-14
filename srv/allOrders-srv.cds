@@ -117,8 +117,8 @@ service srvOpenOrders {
           *
     };
 
-  entity ActiveUsers     as
-    select from db.PARTNER_SETTINGS distinct {
-      key BASF_USER
-    }
+// entity ActiveUsers     as
+//   select from db.PARTNER_SETTINGS distinct {
+//     key BASF_USER
+//   }
 }

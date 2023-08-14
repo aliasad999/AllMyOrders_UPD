@@ -45,7 +45,8 @@
                 <endButton>
                         <Button
                                         icon="sap-icon://cancel"
-                                        text="Cancel"></Button>
+                                        text="Cancel"
+                                        press="onCancelNewPartnerSettingPress"></Button>
                 </endButton>
         </Dialog>
 </core:FragmentDefinition>

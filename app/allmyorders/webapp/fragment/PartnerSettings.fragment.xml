@@ -7,6 +7,7 @@
     <Dialog
             id="idPartnerSettings"
             busy="{PartnerSettingsDialogModel>/IsBusy}"
+            busyIndicatorDelay="0"
             title="Configure Partner Settings"
             titleAlignment="Center"
             contentWidth="90%"
@@ -14,7 +15,7 @@
             resizable="true"
             class="sapUiResponsivePadding--content sapUiResponsivePadding--header sapUiResponsivePadding--footer sapUiResponsivePadding--subHeader">
         <VBox>
-            <HBox class="sapUiMediumMarginBottom">
+            <HBox class="sapUiSmallMarginBottom">
                 <form:SimpleForm
                         layout="ResponsiveGridLayout"
                         title="Active User">
@@ -51,7 +52,7 @@
                     </table:extension>
                     <table:columns>
                         <table:Column
-                                width="7%"
+                                width="4%"
                                 hAlign="Center">
                             <Label
                                     text="Partner Role"
@@ -61,7 +62,7 @@
                             </table:template>
                         </table:Column>
                         <table:Column
-                                width="10%"
+                                width="7%"
                                 hAlign="Center">
                             <Label
                                     text="Partner Number"
@@ -71,9 +72,19 @@
                             </table:template>
                         </table:Column>
                         <table:Column
-                                width="7%"
+                                width="20%"
                                 hAlign="Center">
-                            <Label text="Active"></Label>
+                            <Label text="Comment"></Label>
+                            <table:template>
+                                <TextArea
+                                        width="80%"
+                                        value="{PartnerSettingsDialogModel>COMMT}">
+                                </TextArea>
+                            </table:template>
+                        </table:Column>
+                        <table:Column
+                                width="2%"
+                                hAlign="Center">
                             <table:template>
                                 <Switch
                                         busy="{PartnerSettingsDialogModel>/IsActiveSwitchBusy}"
@@ -81,14 +92,6 @@
                                         type="AcceptReject"
                                         state="{= ${PartnerSettingsDialogModel>ACTIVE} === 'X'}"
                                         change="onPartnerActiveStateChanged"></Switch>
-                            </table:template>
-                        </table:Column>
-                        <table:Column
-                                width="20%"
-                                hAlign="Center">
-                            <Label text="Comment"></Label>
-                            <table:template>
-                                <Text text="{PartnerSettingsDialogModel>COMMT}"></Text>
                             </table:template>
                         </table:Column>
                     </table:columns>
