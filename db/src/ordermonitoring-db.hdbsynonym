@@ -31,7 +31,7 @@
     },
     "ALLORDERS_DB_PARTNER_SETTINGS": {
         "target": {
-            "object": "otc.csc.db.base.views::VT_PARTNER_SETTINGS",
+            "object": "otc.csc.db.base.tables.v::VT_PARTNER_SETTINGS",
             "schema": "_PLACEHOLDER_"
         }
     }
