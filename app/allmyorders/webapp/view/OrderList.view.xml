@@ -10,7 +10,8 @@
                 xmlns:smartTable="sap.ui.comp.smarttable"
                 xmlns:ui="sap.ui.table"
                 controllerName="ordermonitoring.allmyorders.controller.OrderList"
-                height="100%">
+                height="100%"
+                busyIndicatorDelay="0">
         <f:DynamicPage
                         id="dynamicPageId"
                         toggleHeaderOnTitleClick="false"
@@ -111,7 +112,7 @@
                                                 text="{i18n>noFilterSelected}"
                                                 visible="{localModel>/msgVisible}" />
                                 <smartTable:SmartTable
-                                                id="idSmartTable"
+                                                id="idOrdersTable"
                                                 entitySet="Results"
                                                 tableType="Table"
                                                 showFullScreenButton="true"

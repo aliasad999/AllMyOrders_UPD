@@ -32,10 +32,14 @@ sap.ui.define([
 	var MessageType = library.MessageType;
 	return Controller.extend("ordermonitoring.allmyorders.controller.OrderList", {
 		onInit: function () {
+			let smartTable = this.getView().byId("idOrdersTable")
 			this.oRouter = this.getOwnerComponent().getRouter();
+
+			// Initialise Message Manager
 			this.getView().setModel(sap.ui.getCore().getMessageManager().getMessageModel(), "message");
 			sap.ui.getCore().getMessageManager().registerObject(this.getView(), true);
-			let smartTable = this.getView().byId("idSmartTable")
+
+			// Grid table event handlers
 			smartTable.attachInitialise(((oEvent) => {
 				oEvent.getSource()._oPersController.attachDialogAfterOpen((oEvent) => {
 					this._dialogOpen = true
@@ -48,27 +52,31 @@ sap.ui.define([
 					this._bCallSent = false;
 				})
 			}))
+
+			// Initialise local utility JSON Model
 			let oModel = new JSONModel();
 			oModel.setProperty('/orderSelected', false);
 			oModel.setProperty('/orderSelectedSingle', false);
 			oModel.setProperty('/CurrentUser', sap.ushell.Container.getService("UserInfo").getUser().getId());
-
 			this.getView().setModel(oModel, 'localModel');
-			let oTable = this.getView().byId('idSmartTable').getTable();
+
+			let oTable = this.getView().byId('idOrdersTable').getTable();
 			this.getView().getModel('localModel').setProperty('/salesOrderTable', [])
+
+			// To get selected table indices
 			oTable.attachRowSelectionChange((oEvent) => {
-				let enabled = this.getView().byId('idSmartTable').getTable().getSelectedIndices().length === 0 ? false : true;
-				let SingleEnabled = this.getView().byId('idSmartTable').getTable().getSelectedIndices().length === 1 ? true : false;
+				let enabled = this.getView().byId('idOrdersTable').getTable().getSelectedIndices().length === 0 ? false : true;
+				let SingleEnabled = this.getView().byId('idOrdersTable').getTable().getSelectedIndices().length === 1 ? true : false;
 				this.getView().getModel('localModel').setProperty('/orderSelected', enabled);
 				this.getView().getModel('localModel').setProperty('/orderSelectedSingle', SingleEnabled);
 				let aSalesOrderTable = this.getView().getModel('localModel').getProperty('/salesOrderTable');
 				if (!aSalesOrderTable)
 					aSalesOrderTable = [];
 				if (oEvent.getParameter('selectAll')) {
-					let aIndices = this.getView().byId('idSmartTable').getTable().getSelectedIndices();
+					let aIndices = this.getView().byId('idOrdersTable').getTable().getSelectedIndices();
 					if (!aIndices.length) aSalesOrderTable = [];
 					aIndices.forEach((index) => {
-						let oContext = this.getView().byId('idSmartTable').getTable().getContextByIndex(index);
+						let oContext = this.getView().byId('idOrdersTable').getTable().getContextByIndex(index);
 						aSalesOrderTable.push({
 							"salesOrder": this.getView().getModel().getProperty(oContext.sPath).VBELN,
 							"salesOrderItem": this.getView().getModel().getProperty(oContext.sPath).POSNR
@@ -106,6 +114,9 @@ sap.ui.define([
 			});
 		},
 		onBeforeRebindTable: function (oEvent) {
+			// Check if any filters are entered before making a backend request
+			// If no filters are entered, the backend request is blocked and a message is shown
+			// Implemented due to memory issue when requesting data without filters
 			let oBindingParams = oEvent.getParameter("bindingParams");
 			sap.ui.getCore().getMessageManager().removeAllMessages();
 			if (!oEvent.getParameter('bindingParams').filters.length) {
@@ -125,13 +136,16 @@ sap.ui.define([
 					processor: this.getView().getModel()
 				});
 				sap.ui.getCore().getMessageManager().addMessages(oMessage);
+
+				// If no filters are entered, the backend request is blocked
 				oEvent.getParameter('bindingParams').preventTableBind = true
 			} else {
+				// Hides the filter reminder on app launch
 				this.getView().getModel('localModel').setProperty('/msgVisible', false);
 			}
+
+			// Custom headers used for server side handling
 			this.getView().getModel().setHeaders({ 'select': oEvent.getParameter('bindingParams').parameters.select, 'active-user': this.getView().getModel('localModel').getProperty('/CurrentUser') });
-
-
 
 
 			if (oEvent.getParameter('bindingParams').parameters.select.includes('CHARG')) {
@@ -201,10 +215,10 @@ sap.ui.define([
 			oDialog.open();
 		},
 		onShowDetails: function (oEvent) {
-			if (this.getView().byId('idSmartTable').getTable().getSelectedIndices().length > 1)
+			if (this.getView().byId('idOrdersTable').getTable().getSelectedIndices().length > 1)
 				return MessageBox.error(this._getText('selectOneRecord'))
-			let selectedIndex = this.getView().byId('idSmartTable').getTable().getSelectedIndices()[0]
-			let oContext = this.getView().byId('idSmartTable').getTable().getContextByIndex(selectedIndex);
+			let selectedIndex = this.getView().byId('idOrdersTable').getTable().getSelectedIndices()[0]
+			let oContext = this.getView().byId('idOrdersTable').getTable().getContextByIndex(selectedIndex);
 			let oRow = this.getView().getModel().getProperty(oContext.sPath);
 			let keyValuePair = this._createKeyValue(oRow);
 			const field = `<strong>${this._getText('key')}</strong>`
@@ -257,10 +271,6 @@ sap.ui.define([
 					success: (response) => {
 						dialog.getModel("PartnerSettingsDialogModel").setProperty("/Partners", response.results);
 						dialog.getModel("PartnerSettingsDialogModel").setProperty("/ActiveUser", this.getView().getModel('localModel').getProperty('/CurrentUser'));
-						// if (response.results.length === 0) {
-						// 	// Show warning message
-						// 	MessageBox.warning("No partner settings maintained. Add some.");
-						// }
 						this.getView().setBusy(false);
 						dialog.open();
 					},
@@ -408,7 +418,7 @@ sap.ui.define([
 					mainModel.update(entryKey, entryValue, {
 						success: (res) => {
 							sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', false);
-							this.getView().byId('idSmartTable').rebindTable();
+							this.getView().byId('idOrdersTable').rebindTable();
 							this._partnerSettingsDialog.then((dialog) => {
 								dialog.close();
 							});
@@ -579,7 +589,7 @@ sap.ui.define([
 						sap.ui.getCore().getMessageManager().addMessages(oMessage);
 					}
 					// added because the list is refreshed.. and that might change the index of the previously selected row.. 
-					this.getView().byId('idSmartTable').getTable().setSelectedIndex(-1)
+					this.getView().byId('idOrdersTable').getTable().setSelectedIndex(-1)
 					this.getView().getModel('localModel').setProperty('/salesOrderTable', []);
 					// added because the list is refreshed.. and that might change the index of the previously selected row.. 
 				}),
