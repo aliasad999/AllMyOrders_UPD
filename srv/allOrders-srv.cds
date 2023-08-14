@@ -108,7 +108,14 @@ service srvOpenOrders {
           *
     };
 
-  entity PartnerSettings as projection on db.PARTNER_SETTINGS;
+  entity PartnerSettings as
+    select from db.PARTNER_SETTINGS {
+      key CLIENT,
+      key BASF_USER,
+      key PARTNER_ROLE,
+      key PARTNER_NUMBER,
+          *
+    };
 
   entity ActiveUsers     as
     select from db.PARTNER_SETTINGS distinct {

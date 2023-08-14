@@ -11,50 +11,6 @@ module.exports = cds.service.impl(async (service) => {
         req.query._suppressLocalization = true
         req.query.SELECT.distinct = true
 
-        // Consider also partner settings, if they are maintained
-        let db = cds.transaction(req);
-        let partnerSettingsQuery = cds.parse.cql(`SELECT from srvOpenOrders_PartnerSettings where BASF_USER = 'LOWZH' and ACTIVE = 'X'`);
-        let partnerSettings = await db.run(partnerSettingsQuery);
-        if (partnerSettings.length !== 0) {
-            let VEPartners = [];
-            let ASPartners = [];
-            let AMPartners = [];
-            for (let settingsEntry of partnerSettings) {
-                let partnerNumber = settingsEntry.PARTNER_NUMBER;
-                switch (settingsEntry.PARTNER_ROLE) {
-                    case 'VE':
-                        VEPartners.push(`VE_PARTNER = ${partnerNumber}`);
-                        break;
-
-                    case 'AS':
-                        ASPartners.push(`AS_PARTNER = ${partnerNumber}`);
-                        break;
-
-                    case 'AM':
-                        AMPartners.push(`AM_PARTNER = ${partnerNumber}`);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            // Construct queries 
-            let VEQuery = VEPartners.length !== 0 ? cds.parse.expr(VEPartners.join(' or ')) : null;
-            let ASQuery = ASPartners.length !== 0 ? cds.parse.expr(ASPartners.join(' or ')) : null;
-            let AMQuery = AMPartners.length !== 0 ? cds.parse.expr(AMPartners.join(' or ')) : null;
-
-            // Add queries to request
-            let requestQuery = req.query.SELECT.where;
-            VEQuery && requestQuery.push('and');
-            VEQuery && requestQuery.push(VEQuery);
-            ASQuery && requestQuery.push('and');
-            ASQuery && requestQuery.push(ASQuery);
-            AMQuery && requestQuery.push('and');
-            AMQuery && requestQuery.push(AMQuery);
-
-
-        }
-
     });
     service.on("READ", "Results", async (req, next) => {
         if (req.query.SELECT.columns && req.query.SELECT?.columns[0].as === '$count' && req.headers?.select) {
@@ -66,6 +22,52 @@ module.exports = cds.service.impl(async (service) => {
             lt_result.push({ $count: lt_count.length })
 
         }
+
+        // Consider also partner settings, if they are maintained
+        let db = cds.transaction(req);
+        let currentUser = req.headers['active-user']
+        if (currentUser) {
+            let partnerSettingsQuery = cds.parse.cql(`SELECT from srvOpenOrders_PartnerSettings where BASF_USER = '${currentUser}' and ACTIVE = 'X'`);
+            let partnerSettings = await db.run(partnerSettingsQuery);
+            if (partnerSettings.length !== 0) {
+                let VEPartners = [];
+                let ASPartners = [];
+                let AMPartners = [];
+                for (let settingsEntry of partnerSettings) {
+                    let partnerNumber = settingsEntry.PARTNER_NUMBER;
+                    switch (settingsEntry.PARTNER_ROLE) {
+                        case 'VE':
+                            VEPartners.push(`VE_PARTNER = ${partnerNumber}`);
+                            break;
+
+                        case 'AS':
+                            ASPartners.push(`AS_PARTNER = ${partnerNumber}`);
+                            break;
+
+                        case 'AM':
+                            AMPartners.push(`AM_PARTNER = ${partnerNumber}`);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                // Construct queries 
+                let VEQuery = VEPartners.length !== 0 ? cds.parse.expr(VEPartners.join(' or ')) : null;
+                let ASQuery = ASPartners.length !== 0 ? cds.parse.expr(ASPartners.join(' or ')) : null;
+                let AMQuery = AMPartners.length !== 0 ? cds.parse.expr(AMPartners.join(' or ')) : null;
+
+                // Add queries to request
+                let requestQuery = req.query.SELECT.where;
+                VEQuery && requestQuery.push('and');
+                VEQuery && requestQuery.push(VEQuery);
+                ASQuery && requestQuery.push('and');
+                ASQuery && requestQuery.push(ASQuery);
+                AMQuery && requestQuery.push('and');
+                AMQuery && requestQuery.push(AMQuery);
+            }
+        }
+
         await next();
     });
     service.after("READ", "Results", async (data, req) => {

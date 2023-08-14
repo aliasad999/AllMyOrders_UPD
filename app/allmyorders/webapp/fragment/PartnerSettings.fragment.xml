@@ -5,6 +5,8 @@
         xmlns:form="sap.ui.layout.form"
         xmlns:layout="sap.ui.layout">
     <Dialog
+            id="idPartnerSettings"
+            busy="{PartnerSettingsDialogModel>/IsBusy}"
             title="Configure Partner Settings"
             titleAlignment="Center"
             contentWidth="90%"
@@ -18,21 +20,42 @@
                         title="Active User">
                     <form:content>
                         <Label text="Current Active User"></Label>
-                        <Text text="{PartnerSettingsDialogModel>/ActiveUser}"></Text>
+                        <Text
+                                id="idActiveUser"
+                                text="{PartnerSettingsDialogModel>/ActiveUser}"></Text>
+                        <!-- <Button
+                                width="50%"
+                                text="Change Active User"
+                                press="onPartnerSettingsChangeUserPress"></Button> -->
 
                     </form:content>
                 </form:SimpleForm>
             </HBox>
             <HBox height="50%">
                 <table:Table
+                        id="idPartnerSettingsTable"
                         rows="{PartnerSettingsDialogModel>/Partners}"
-                        selectionMode="Single"
+                        selectionMode="MultiToggle"
                         visibleRowCount="10">
+                    <table:extension>
+                        <OverflowToolbar style="Clear">
+                            <Title text="Active Partner Settings"></Title>
+                            <ToolbarSpacer></ToolbarSpacer>
+                            <Button
+                                    icon="sap-icon://add"
+                                    press="onPartnerSettingAdd"></Button>
+                            <Button
+                                    icon="sap-icon://delete"
+                                    press="onPartnerSettingDelete"></Button>
+                        </OverflowToolbar>
+                    </table:extension>
                     <table:columns>
                         <table:Column
-                                width="10%"
+                                width="7%"
                                 hAlign="Center">
-                            <Label text="Partner Role"></Label>
+                            <Label
+                                    text="Partner Role"
+                                    wrapping="true"></Label>
                             <table:template>
                                 <Text text="{PartnerSettingsDialogModel>PARTNER_ROLE}"></Text>
                             </table:template>
@@ -40,23 +63,29 @@
                         <table:Column
                                 width="10%"
                                 hAlign="Center">
-                            <Label text="Partner Number"></Label>
+                            <Label
+                                    text="Partner Number"
+                                    wrapping="true"></Label>
                             <table:template>
                                 <Text text="{PartnerSettingsDialogModel>PARTNER_NUMBER}"></Text>
                             </table:template>
                         </table:Column>
                         <table:Column
-                                width="5%"
+                                width="7%"
                                 hAlign="Center">
                             <Label text="Active"></Label>
                             <table:template>
-                                <CheckBox
-                                        selected="{= ${PartnerSettingsDialogModel>ACTIVE} === 'X'}"
-                                        enabled="true"
-                                        select="onItemActivated" />
+                                <Switch
+                                        busy="{PartnerSettingsDialogModel>/IsActiveSwitchBusy}"
+                                        busyIndicatorDelay="0"
+                                        type="AcceptReject"
+                                        state="{= ${PartnerSettingsDialogModel>ACTIVE} === 'X'}"
+                                        change="onPartnerActiveStateChanged"></Switch>
                             </table:template>
                         </table:Column>
-                        <table:Column width="20%">
+                        <table:Column
+                                width="20%"
+                                hAlign="Center">
                             <Label text="Comment"></Label>
                             <table:template>
                                 <Text text="{PartnerSettingsDialogModel>COMMT}"></Text>
@@ -66,72 +95,15 @@
                 </table:Table>
             </HBox>
         </VBox>
-
-        <!-- <FlexBox
-                width="100%"
-                justifyContent="Center">
-
-        <Label text="Active Partners"></Label>
-            <HBox>
-                <Button
-                        id="addButton"
-                        text="{i18n>add}"
-                        press="onPressAdd" />
-                <Button
-                        id="changeButton"
-                        text="{i18n>change}"
-                        enabled="{tableHeaderModel>/changeButtonEnable}"
-                        press="onPressChange"
-                        class="sapUiSmallMarginBegin" />
-                <Button
-                        id="deleteButton"
-                        text="{i18n>delete}"
-                        enabled="{tableHeaderModel>/deleteButtonEnable}"
-                        press="onPressDelete"
-                        class="sapUiSmallMarginBegin" />
-            </HBox>
-
-        </FlexBox> -->
-        <!-- <Table
-                items="{PartnerSettingsDialogModel>/Partners}"
-                mode="SingleSelect">
-            <columns>
-                <Column width="auto">
-                    <Label text="Partner Role" />
-                </Column>
-                <Column width="auto">
-                    <Label text="Partner Number" />
-                </Column>
-                <Column
-                        hAlign="Center"
-                        width="auto">
-                    <Label text="Active" />
-                </Column>
-                <Column width="auto">
-                    <Label text="Comment" />
-                </Column>
-            </columns>
-            <items>
-                <ColumnListItem>
-                    <cells>
-                        <Text
-                                text="{PartnerSettingsDialogModel>PARTNER_ROLE}"
-                                wrapping="false" />
-                        <Text text="{PartnerSettingsDialogModel>PARTNER_NUMBER}" />
-                        <CheckBox
-                                selected="{= ${PartnerSettingsDialogModel>ACTIVE} === 'X'}"
-                                enabled="true"
-                                select="onItemActivated" />
-                        <Text text="{PartnerSettingsDialogModel>COMMT}" />
-                    </cells>
-                </ColumnListItem>
-            </items>
-        </Table> -->
         <beginButton>
-            <Button text="Confirm"></Button>
+            <Button
+                    text="Confirm"
+                    press="onConfirmPartnerSettings"></Button>
         </beginButton>
         <endButton>
-            <Button text="Cancel"></Button>
+            <Button
+                    text="Cancel"
+                    press="onCancelPartnerSettings"></Button>
         </endButton>
     </Dialog>
 </core:FragmentDefinition>

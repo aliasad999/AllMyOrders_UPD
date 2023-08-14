@@ -51,9 +51,6 @@ sap.ui.define([
 			let oModel = new JSONModel();
 			oModel.setProperty('/orderSelected', false);
 			oModel.setProperty('/orderSelectedSingle', false);
-			// Partner Settings Button, enabled only when the partner settings for the user have been fetched in onBeforeRendering
-			oModel.setProperty('/IsPartnerSettingEnabled', false);
-			oModel.setProperty('/PartnerSettingBusy', true);
 			oModel.setProperty('/CurrentUser', sap.ushell.Container.getService("UserInfo").getUser().getId());
 
 			this.getView().setModel(oModel, 'localModel');
@@ -98,38 +95,7 @@ sap.ui.define([
 
 		},
 
-		onBeforeRendering: function (ctx) {
-			// Get the partner settings for the current user and store it in the model
-			let mainModel = this.getView().getModel();
-			let userID = this.getView().getModel('localModel').getProperty("/CurrentUser");
-			let userFilter = new Filter({
-				path: 'BASF_USER',
-				operator: FilterOperator.EQ,
-				value1: (userID === 'DEFAULT_USER' ? 'LOWZH' : userID)
-			})
-			mainModel.read('/PartnerSettings', {
-				filters: [userFilter],
-				success: (response) => {
-					let partnerSettingsModel = new JSONModel();
-					this.getView().setModel(partnerSettingsModel, "PartnerSettingsModel");
-					this.getView().getModel("PartnerSettingsModel").setProperty("/CurrentUserPartnerSettings", response.results);
-					this.getView().getModel("localModel").setProperty('/PartnerSettingBusy', false);
-					this.getView().getModel("localModel").setProperty('/IsPartnerSettingEnabled', true);
-				},
-				error: (error) => {
-					console.error(error);
-				}
-			})
-
-			mainModel.read('/ActiveUsers', {
-				success: (response) => {
-					this.getView().getModel("PartnerSettingsModel").setProperty("/ActiveUsers", response.results);
-				},
-				error: (error) => {
-					console.error(error);
-				}
-			})
-		},
+		onBeforeRendering: function (ctx) { },
 
 		onAfterRendering: function (ctx) { },
 
@@ -163,8 +129,8 @@ sap.ui.define([
 			} else {
 				this.getView().getModel('localModel').setProperty('/msgVisible', false);
 			}
+			this.getView().getModel().setHeaders({ 'select': oEvent.getParameter('bindingParams').parameters.select, 'active-user': this.getView().getModel('localModel').getProperty('/CurrentUser') });
 
-			this.getView().getModel().setHeaders({ 'select': oEvent.getParameter('bindingParams').parameters.select })
 
 
 
@@ -274,26 +240,221 @@ sap.ui.define([
 					return dialog;
 				})
 			}
-			this._partnerSettingsDialog.then(async (dialog) => {
+			this._partnerSettingsDialog.then((dialog) => {
 				this.getView().addDependent(dialog);
 				let dialogModel = new JSONModel();
 				dialog.setModel(dialogModel, "PartnerSettingsDialogModel");
-				let currentUserPartnerSettings = this.getView().getModel("PartnerSettingsModel").getProperty("/CurrentUserPartnerSettings")
-				let activeUsers = this.getView().getModel("PartnerSettingsModel").getProperty("/ActiveUsers");
-				if (currentUserPartnerSettings) {
-					dialog.getModel("PartnerSettingsDialogModel").setProperty("/Partners", currentUserPartnerSettings);
-					dialog.getModel("PartnerSettingsDialogModel").setProperty("/ActiveUsers", activeUsers);
-					dialog.getModel("PartnerSettingsDialogModel").setProperty("/ActiveUser", this.getView().getModel('localModel').getProperty('/CurrentUser'));
-					dialog.open();
-				} else {
-					// Show warning message
-					dialog.open();
-					MessageBox.warning("No partner settings maintained. Add some.");
-				}
+				// Get the partner settings for the current user and store it in the model
+				let mainModel = this.getView().getModel();
+				let userID = this.getView().getModel('localModel').getProperty("/CurrentUser");
+				let userFilter = new Filter({
+					path: 'BASF_USER',
+					operator: FilterOperator.EQ,
+					value1: userID
+				})
+				mainModel.read('/PartnerSettings', {
+					filters: [userFilter],
+					success: (response) => {
+						dialog.getModel("PartnerSettingsDialogModel").setProperty("/Partners", response.results);
+						dialog.getModel("PartnerSettingsDialogModel").setProperty("/ActiveUser", this.getView().getModel('localModel').getProperty('/CurrentUser'));
+						// if (response.results.length === 0) {
+						// 	// Show warning message
+						// 	MessageBox.warning("No partner settings maintained. Add some.");
+						// }
+						this.getView().setBusy(false);
+						dialog.open();
+					},
+					error: (error) => {
+						console.error(error);
+						this.getView().setBusy(false);
+						MessageBox.error("An error occurred. Contact support");
+					}
+				})
 
-				this.getView().setBusy(false);
+			})
+
+
+
+
+		},
+		onPartnerSettingAdd: function (ctx) {
+			if (!this._addPartnerSettingDialog) {
+				this._addPartnerSettingDialog = sap.ui.core.Fragment.load({
+					id: "idAddPartnerSetting",
+					name: "ordermonitoring.allmyorders.fragment.AddPartnerSetting",
+					controller: this
+				}).then((dialog) => {
+					return dialog;
+				})
+			}
+
+			this._addPartnerSettingDialog.then((dialog) => {
+				this.getView().addDependent(dialog);
+				dialog.setModel(new JSONModel(), 'NewPartnerSetting');
+				dialog.getModel('NewPartnerSetting').setProperty('/SettingActive', true);
+				dialog.open();
+			})
+
+		},
+
+		onSaveNewPartnerSettingPress: function (ctx) {
+			let mainModel = this.getView().getModel();
+			let newPartnerSettingModel = ctx.getSource().getModel('NewPartnerSetting');
+			var newPartnerSetting = {
+				CLIENT: '100',
+				BASF_USER: this.getView().getModel('localModel').getProperty('/CurrentUser'),
+				PARTNER_ROLE: newPartnerSettingModel.getProperty('/PartnerRole'),
+				PARTNER_NUMBER: newPartnerSettingModel.getProperty('/PartnerNumber'),
+				ACTIVE: (newPartnerSettingModel.getProperty('/SettingActive') ? 'X' : ''),
+				COMMT: newPartnerSettingModel.getProperty('/Comment')
+			}
+			this.getView().setModel(new JSONModel(), 'PartnerSettingsModel');
+			this.getView().getModel('PartnerSettingsModel').setProperty('/NewPartnerSetting', newPartnerSetting);
+
+
+			this._addPartnerSettingDialog.then((dialog) => {
+				dialog.setBusy(true);
+			})
+			mainModel.create('/PartnerSettings', newPartnerSetting, {
+				success: (response) => {
+					this._addPartnerSettingDialog.then((dialog) => {
+						dialog.setBusy(false);
+						dialog.close();
+					})
+
+					this._partnerSettingsDialog.then((dialog) => {
+						let addedPartnerSetting = this.getView().getModel('PartnerSettingsModel').getProperty('/NewPartnerSetting');
+						dialog.getModel('PartnerSettingsDialogModel').getProperty('/Partners').push(addedPartnerSetting);
+						dialog.getModel('PartnerSettingsDialogModel').refresh();
+					})
+
+				},
+
+				error: (error) => {
+					this.getView().setBusy(false);
+
+				}
+			})
+
+
+		},
+
+		onPartnerSettingDelete: function (ctx) {
+			sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', true);
+			let mainModel = this.getView().getModel();
+			let selected = sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettingsTable").getSelectedIndices();
+			let partnerSettingEntries = sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').getProperty('/Partners');
+			let deleteEntries = []
+			for (let index of selected) {
+				deleteEntries.push(partnerSettingEntries[index]);
+				delete partnerSettingEntries[index];
+			}
+
+			for (let entry of deleteEntries) {
+				let entryKey = {
+					CLIENT: '100',
+					BASF_USER: this.getView().getModel('localModel').getProperty('/CurrentUser'),
+					PARTNER_ROLE: entry.PARTNER_ROLE,
+					PARTNER_NUMBER: entry.PARTNER_NUMBER
+				};
+				let deleteKey = mainModel.createKey('/PartnerSettings', entryKey)
+				mainModel.remove(deleteKey, {
+					success: (res) => {
+						sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/Partners', partnerSettingEntries.filter((entry) => entry));
+						sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').refresh();
+						sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', false);
+					},
+
+					error: (res) => {
+						MessageBox.error("An error occurred. Contact support.");
+						sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsBusy', false);
+					}
+				})
+
+			}
+		},
+
+		onPartnerActiveStateChanged: function (ctx) {
+			this.getView().getModel('localModel').setProperty('/ActiveStateBefore', !ctx.getSource().getState());
+			ctx.getSource().getModel('PartnerSettingsDialogModel').setProperty('/IsActiveSwitchBusy', true);
+			ctx.getSource().getModel('PartnerSettingsDialogModel').refresh();
+			let mainModel = this.getView().getModel();
+			let partnerActive = (ctx.getSource().getState() ? 'X' : '');
+			let bindingPath = ctx.getSource().getBindingContext('PartnerSettingsDialogModel').getPath();
+			let settingEntry = ctx.getSource().getModel('PartnerSettingsDialogModel').getProperty(bindingPath);
+			this.getView().getModel('localModel').setProperty('/ModifiedPartnerEntry', settingEntry);
+			let entryKey = mainModel.createKey('/PartnerSettings', {
+				CLIENT: settingEntry.CLIENT,
+				BASF_USER: settingEntry.BASF_USER,
+				PARTNER_ROLE: settingEntry.PARTNER_ROLE,
+				PARTNER_NUMBER: settingEntry.PARTNER_NUMBER
+			})
+			let entryValue = {
+				ACTIVE: partnerActive
+			}
+
+			mainModel.update(entryKey, entryValue, {
+				success: (res) => {
+					let activeStateBefore = this.getView().getModel('localModel').getProperty('/ActiveStateBefore');
+					let modifiedEntry = this.getView().getModel('localModel').getProperty('/ModifiedPartnerEntry');
+					MessageToast.show((activeStateBefore ? `${modifiedEntry.PARTNER_ROLE} Partner ${modifiedEntry.PARTNER_NUMBER} deactivated` : `${modifiedEntry.PARTNER_ROLE} Partner ${modifiedEntry.PARTNER_NUMBER} activated`));
+					sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsActiveSwitchBusy', false);
+					sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').refresh();
+				},
+
+				error: (res) => {
+					sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').setProperty('/IsActiveSwitchBusy', false);
+					sap.ui.core.Fragment.byId("idPartnerSettings", "idPartnerSettings").getModel('PartnerSettingsDialogModel').refresh();
+				}
+			})
+
+
+
+
+		},
+
+		onConfirmPartnerSettings: function (ctx) {
+			this.getView().byId('idSmartTable').rebindTable();
+			this._partnerSettingsDialog.then((dialog) => {
+				dialog.close();
+			});
+		},
+
+		onCancelPartnerSettings: function (ctx) {
+			this._partnerSettingsDialog.then((dialog) => {
+				dialog.close();
 			})
 		},
+
+
+
+		// onPartnerSettingsChangeUserPress: function (ctx) {
+		// 	// 
+		// 	// return;
+		// 	if (!this._activeUsersSelectDialog) {
+		// 		this._activeUsersSelectDialog = sap.ui.core.Fragment.load({
+		// 			id: "idActiveUsersSelect",
+		// 			name: "ordermonitoring.allmyorders.fragment.ActiveUsers",
+		// 			controller: this
+		// 		}).then((dialog) => {
+		// 			return dialog;
+		// 		})
+		// 	}
+
+		// 	this._activeUsersSelectDialog.then((dialog) => {
+		// 		this.getView().addDependent(dialog);
+		// 		let activeUsers = this.getView().getModel("PartnerSettingsModel").getProperty("/ActiveUsers");
+		// 		let model = new JSONModel();
+		// 		dialog.setModel(model, 'ActiveUsersDialogModel');
+		// 		dialog.getModel('ActiveUsersDialogModel').setProperty('/ActiveUsers', activeUsers);
+		// 		dialog.open();
+
+		// 	})
+
+		// },
+
+		// onActiveUserSelected: function (ctx) {
+		// },
 
 
 		_openDetailsDialog: function () {
